@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import logo from "../assets/logo.png";
 
+
 // Animated Spark Effect Component
 const SparkEffect = () => (
   <motion.div
@@ -93,25 +94,38 @@ const NavigationLink = ({ children }) => (
 
 const FeatureButton = ({ icon: Icon, text }) => (
   <motion.button
-    whileHover={{ scale: 1.05 }}
+    whileHover={{
+      scale: 1.05,
+      background: "linear-gradient(to right, #FF7A18, #AF002D)",
+      boxShadow: "0px 8px 15px rgba(255, 122, 24, 0.3)",
+    }}
     whileTap={{ scale: 0.95 }}
-    className="flex items-center space-x-2 bg-orange-500/10 backdrop-blur-md px-4 py-2 rounded-full text-sm border border-orange-500/20"
+    className="flex items-center space-x-3 px-5 py-3 rounded-full text-sm font-medium text-white transition-all duration-300 ease-out bg-gradient-to-r from-orange-500 to-red-500 shadow-md hover:shadow-lg"
   >
-    <Icon size={16} className="text-orange-500" />
-    <span className="text-orange-50">{text}</span>
+    <div className="flex items-center justify-center w-8 h-8 bg-white rounded-full shadow-sm">
+      <Icon size={20} className="text-orange-500" />
+    </div>
+    <span className="tracking-wide">{text}</span>
   </motion.button>
 );
 
+
 const SparkCard = ({ icon: Icon, title, content }) => (
   <motion.div
-    whileHover={{ y: -5 }}
-    className="p-6 bg-white/5 backdrop-blur-lg rounded-2xl border border-orange-500/10"
+    whileHover={{
+      y: -10,
+      boxShadow: "0px 15px 30px rgba(255, 122, 24, 0.3)",
+    }}
+    className="p-6 bg-gradient-to-br from-orange-500/10 via-orange-500/5 to-transparent backdrop-blur-lg rounded-3xl border border-orange-500/20 shadow-lg transition-all duration-300 ease-out"
   >
-    <Icon size={24} className="text-orange-500 mb-4" />
-    <h3 className="text-lg font-semibold mb-2">{title}</h3>
-    <p className="text-gray-400">{content}</p>
+    <div className="flex items-center justify-center w-12 h-12 mb-4 bg-orange-500/10 rounded-full shadow-md">
+      <Icon size={24} className="text-orange-500" />
+    </div>
+    <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
+    <p className="text-gray-300 leading-relaxed">{content}</p>
   </motion.div>
 );
+
 
 const Web4Landing = () => {
    const [scrollY, setScrollY] = useState(0);
@@ -149,7 +163,7 @@ const Web4Landing = () => {
               className="flex items-center space-x-2"
             >
               {/* <Sparkles className="text-orange-500" size={24} /> */}
-              <img src={logo} alt="Logo" className="w-40" />
+              <img src={logo} alt="Logo" className="ml-4 w-40" />
 
             </motion.div>
 
