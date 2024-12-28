@@ -12,8 +12,7 @@ const withDelay = (importFunction: () => Promise<any>, delay: number) => {
 };
 
 // Lazy load avec délai de 3 secondes
-const Dashboard = lazy(() => withDelay(() => import('./components/Dashboard'), 3000));
-const Home = lazy(() => withDelay(() => import('./components/Home'), 3000));
+const MainFeed = lazy(() => withDelay(() => import('./components/MainFeed'), 3000));
 const About = lazy(() => withDelay(() => import('./components/About'), 3000));
 const Login = lazy(() => withDelay(() => import('./components/Login'), 3000));
 
@@ -21,10 +20,9 @@ const AppRoutes = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<MainFeed />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Suspense>
   );

@@ -109,7 +109,6 @@ const Loader = () => {
             className="text-xs" 
             fill="#6b7280"
           >
-            LOADING
           </text>
         </svg>
       </div>
