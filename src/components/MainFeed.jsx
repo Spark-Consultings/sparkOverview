@@ -6,6 +6,7 @@ import CustomCursor from './CustomCursor';
 import FormLine from './FormLine';
 import PerformanceSection from './PerformanceSection';
 import logo from '../assets/logo.png';
+import FuturisticOurTeam from './FuturisticOurTeam';
 
 const MainFeed = () => {
   return (
@@ -17,6 +18,7 @@ const MainFeed = () => {
         <HeroSection />
         <FeaturesSection />
         <PerformanceSection />
+        <FuturisticOurTeam />
         <FormLine />
         {/* Footer */}
         <footer className="bg-gray-900 border-t border-gray-800 py-12 px-8">
