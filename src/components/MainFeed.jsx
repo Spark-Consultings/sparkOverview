@@ -5,6 +5,7 @@ import FeaturesSection from './FeaturesSection';
 import CustomCursor from './CustomCursor';
 import FormLine from './FormLine';
 import PerformanceSection from './PerformanceSection';
+import logo from '../assets/logo.png';
 
 const MainFeed = () => {
   return (
@@ -23,9 +24,7 @@ const MainFeed = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {/* Brand Column */}
               <div className="space-y-4">
-                <div className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
-                  TechPlatform
-                </div>
+                <img alt='logo Sparkline' src={logo} className="text-2xl w-11/12 font-bold bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text" />
                 <p className="text-gray-400">
                   Building the future of technology, one line of code at a time.
                 </p>

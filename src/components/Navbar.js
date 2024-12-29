@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ExternalLink, Search } from 'lucide-react';
+import logo from "../assets/logo.png";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -99,7 +100,7 @@ const NavBar = () => {
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-2"
             >
-              <div className="text-2xl font-bold text-white">LOGO</div>
+              <img className="text-2xl w-4/12 font-bold text-white" src={logo} alt='Logo Spakline' />
             </motion.a>
 
             {/* Desktop Menu */}
