@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import HeroSection from './HeroSection';
 import FeaturesSection from './FeaturesSection';
 import CustomCursor from './CustomCursor';
-// import FormLine from './FormLine';
+import FormLine from './FormLine';
 import PerformanceSection from './PerformanceSection';
 
 const MainFeed = () => {
@@ -16,7 +16,7 @@ const MainFeed = () => {
         <HeroSection />
         <FeaturesSection />
         <PerformanceSection />
-        {/* <FormLine /> */}
+        <FormLine />
         {/* Footer */}
         <footer className="bg-gray-900 border-t border-gray-800 py-12 px-8">
           <div className="max-w-7xl mx-auto">
