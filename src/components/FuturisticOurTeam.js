@@ -23,7 +23,7 @@ const teamMembers = [
     description: 'Pionnier du développement full-stack et DevOps'
   },
   {
-    name: 'Seydina Mouhammad Diop',
+    name: 'Seydina M. Diop',
     role: 'Développeur Fullstack | UI/UX Designer',
     image: 'https://res.cloudinary.com/drxouwbms/image/upload/v1734391710/seydina-removebg-preview_btrgp6.png',
     skills: ['ReactJs', 'NuxtJs', 'ExpressJs', 'Figma', '...'],
@@ -87,14 +87,14 @@ const FuturisticOurTeam = () => {
                 </div>
 
                 {/* Info Overlay */}
-                <div className={`absolute inset-x-0 bottom-0 top-[54%] p-3 sm:p-4 md:p-5 bg-gradient-to-t from-gray-900 to-transparent
+                <div className={`absolute inset-x-0 bottom-0 top-[53%] p-3 sm:p-4 md:p-5 bg-gradient-to-t from-gray-900 to-transparent
                   transform transition-all duration-500 ease-out
                   ${hoveredIndex === index ? 'translate-y-0' : 'translate-y-16 sm:translate-y-20'}`}>
                   <h3 className="text-base sm:text-lg md:text-xl -mt-3  lg:text-2xl font-extrabold text-white mb-1">{member.name}</h3>
                   <p className="text-xs sm:text-sm md:text-base text-orange-500 font-bold mb-1">{member.role}</p>
                   
                   {/* Skills Tags */}
-                  <div className="flex flex-wrap gap-1 mt-1">
+                  <div className="flex flex-wrap gap-1 mt-2">
                     {member.skills.map((skill) => (
                       <span key={skill} className="px-1 sm:px-1.5 py-0.5 text-[0.6rem] sm:text-xs md:text-sm bg-orange-500/20 text-orange-400 rounded-full">
                         {skill}
