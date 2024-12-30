@@ -139,7 +139,7 @@ const FormLine = () => {
 
     return (
         <motion.div
-            className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-20 px-4 flex items-center justify-center"
+            className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-10 sm:py-20 px-4 flex items-center justify-center"
             initial={{ opacity: 0, y: 50 }}
             animate={controls}
         >
@@ -147,7 +147,7 @@ const FormLine = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="w-full max-w-6xl"
+            className="w-full max-w-xl sm:max-w-2xl md:max-w-4xl lg:max-w-6xl"
         >
             <div className="text-center mb-16">
             <motion.div
@@ -155,7 +155,7 @@ const FormLine = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
             >
-                <h2 className="text-6xl font-bold text-white mb-6">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
                 Partagez Votre{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
                     Vision
@@ -175,7 +175,7 @@ const FormLine = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-gray-800/50 backdrop-blur-xl rounded-3xl border border-orange-500/20 p-10 overflow-hidden shadow-2xl"
+            className="bg-gray-800/50 backdrop-blur-xl rounded-3xl border border-orange-500/20 p-4 sm:p-6 md:p-10 overflow-hidden shadow-2xl w-full"
             whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgba(249, 115, 22, 0.25)" }}
             >
             <form onSubmit={handleSubmit} className="space-y-8">
@@ -187,7 +187,7 @@ const FormLine = () => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 50 }}
                     transition={{ duration: 0.3 }}
-                    className="grid grid-cols-2 gap-8"
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8"
                     >
                     <div className="space-y-4">
                         <label htmlFor="firstName" className="block text-white text-sm font-medium">
@@ -259,7 +259,7 @@ const FormLine = () => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 50 }}
                     transition={{ duration: 0.3 }}
-                    className="grid grid-cols-2 gap-8"
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8"
                     >
                     <div className="space-y-4">
                         <label className="block text-white text-sm font-medium">
@@ -347,7 +347,7 @@ const FormLine = () => {
                         <h3 className="text-2xl font-bold mb-2">Prendre Rendez-vous</h3>
                         <p className="text-gray-300">Choisissez une date et un horaire pour votre consultation</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                         <div className="space-y-4">
                         <label className="block text-white text-sm font-medium mb-2">
                             Date
@@ -365,7 +365,7 @@ const FormLine = () => {
                         <label className="block text-white text-sm font-medium mb-2">
                             Horaire Disponible
                         </label>
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-3 sm:grid-cols-2 gap-2 sm:gap-3">
                             {availableTimes.map((time) => (
                             <motion.button
                                 key={time}
@@ -389,12 +389,12 @@ const FormLine = () => {
                 )}
                 </AnimatePresence>
 
-                <div className="flex justify-between mt-10">
+                <div className="flex flex-col sm:flex-row justify-between items-center mt-6 sm:mt-10 space-y-4 sm:space-y-0">
                 {currentStep > 1 && (
                     <motion.button
                     type="button"
                     onClick={prevStep}
-                    className="px-6 py-3 bg-gray-700/50 border border-orange-500/20 rounded-lg text-white hover:bg-gray-600/50 focus:outline-none focus:ring-2 focus:ring-orange-500 flex items-center transition-all duration-300"
+                    className="w-full sm:w-auto px-6 py-3 bg-gray-700/50 border border-orange-500/20 rounded-lg text-white hover:bg-gray-600/50 focus:outline-none focus:ring-2 focus:ring-orange-500 flex items-center transition-all duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     >
@@ -403,7 +403,7 @@ const FormLine = () => {
                 )}
                 <motion.button
                     type="submit"
-                    className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-orange-500 flex items-center transition-all duration-300"
+                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-orange-500 flex items-center transition-all duration-300"
                     whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(249, 115, 22, 0.5)" }}
                     whileTap={{ scale: 0.95 }}
                 >
@@ -432,7 +432,7 @@ const FormLine = () => {
             <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" aria-hidden="true" />
 
             <div className="fixed inset-0 flex items-center justify-center p-4">
-                <Dialog.Panel className="mx-auto max-w-2xl w-full bg-gray-800 rounded-2xl p-8 shadow-2xl">
+                <Dialog.Panel className="mx-auto max-w-xl sm:max-w-2xl w-full bg-gray-800 rounded-2xl p-4 sm:p-8 shadow-2xl overflow-y-auto max-h-[90vh]">
                 <Dialog.Title className="text-3xl font-bold text-white mb-4">
                     Récapitulatif de votre demande
                 </Dialog.Title>
@@ -440,7 +440,7 @@ const FormLine = () => {
                     Vérifiez les détails de votre demande avant de confirmer.
                 </Dialog.Description>
 
-                <div className="grid grid-cols-2 gap-6 text-white mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-white mb-8">
                     <div>
                     <p className="font-semibold text-orange-400">Nom complet:</p>
                     <p>{formData.firstName} {formData.lastName}</p>
@@ -471,11 +471,11 @@ const FormLine = () => {
                     </div>
                 </div>
 
-                <div className="flex justify-end gap-4">
+                <div className="flex flex-col sm:flex-row justify-end gap-4">
                     <motion.button
                     type="button"
                     onClick={() => setIsRecapOpen(false)}
-                    className="px-6 py-3 bg-gray-700 border border-orange-500/20 rounded-lg text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300"
+                    className="w-full sm:w-auto px-6 py-3 bg-gray-700 border border-orange-500/20 rounded-lg text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     >
@@ -484,7 +484,7 @@ const FormLine = () => {
                     <motion.button
                     type="button"
                     onClick={handleFinalSubmit}
-                    className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300"
+                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300"
                     whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(249, 115, 22, 0.5)" }}
                     whileTap={{ scale: 0.95 }}
                     >
