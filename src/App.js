@@ -1,12 +1,10 @@
 import React from 'react';
-import Navbar from './components/Navbar';
 import ErrorBoundary from './ErrorBoundary';
 import AppRoutes from './routes'; // Import the routes
 
 function App() {
   return (
     <div>
-      {/* <Navbar /> */}
       <ErrorBoundary>
         <AppRoutes /> {/* Use the centralized routes */}
       </ErrorBoundary>

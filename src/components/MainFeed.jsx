@@ -7,6 +7,7 @@ import FormLine from './FormLine';
 import PerformanceSection from './PerformanceSection';
 import logo from '../assets/logo.png';
 import FuturisticOurTeam from './FuturisticOurTeam';
+import HeroSection2 from './NewHero';
 
 const MainFeed = () => {
   return (
@@ -15,6 +16,7 @@ const MainFeed = () => {
       <Navbar />
       {/* Main Content */}
       <main className="flex flex-col">
+        <HeroSection2 />
         <HeroSection />
         <FeaturesSection />
         <PerformanceSection />

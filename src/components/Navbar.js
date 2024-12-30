@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, ExternalLink, Search } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import logo from "../assets/logo.png";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeItem, setActiveItem] = useState('Accueil');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +17,6 @@ const NavBar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when screen size changes to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -31,22 +29,12 @@ const NavBar = () => {
   }, []);
 
   const menuItems = [
-    { 
-      label: 'Products',
-      submenu: ['Analytics Platform', 'Cloud Solutions', 'Enterprise Suite']
-    },
-    {
-      label: 'Solutions',
-      submenu: ['For Startups', 'For Enterprise', 'For Developers']
-    },
-    { 
-      label: 'Resources',
-      submenu: ['Documentation', 'API Reference', 'Community']
-    },
-    { 
-      label: 'Company',
-      submenu: ['About Us', 'Careers', 'Contact']
-    }
+    'Accueil',
+    'Nos Services',
+    'Projets',
+    'À Propos',
+    'Notre Équipe',
+    'Contact'
   ];
 
   const navVariants = {
@@ -61,25 +49,6 @@ const NavBar = () => {
     }
   };
 
-  const dropdownVariants = {
-    hidden: { 
-      opacity: 0,
-      y: -10,
-      transition: {
-        duration: 0.2
-      }
-    },
-    visible: { 
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 30
-      }
-    }
-  };
-
   return (
     <>
       <motion.nav
@@ -90,7 +59,7 @@ const NavBar = () => {
           scrolled ? 'bg-gray-900/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'
         }`}
         role="navigation"
-        aria-label="Main navigation"
+        aria-label="Navigation principale"
       >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
@@ -100,100 +69,35 @@ const NavBar = () => {
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-2"
             >
-              <img className="text-2xl w-4/12 font-bold text-white" src={logo} alt='Logo Spakline' />
+              <img className="w-32 lg:w-40 font-bold text-white" src={logo} alt='Logo Spakline' />
             </motion.a>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-8">
               {menuItems.map((item) => (
                 <div 
-                  key={item.label} 
-                  className="relative"
-                  onMouseEnter={() => setActiveDropdown(item.label)}
-                  onMouseLeave={() => setActiveDropdown(null)}
+                  key={item}
+                  className="relative group"
                 >
-                  <button 
-                    className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors"
-                    aria-expanded={activeDropdown === item.label}
-                    aria-haspopup="true"
+                  <motion.button 
+                    className="text-gray-300 hover:text-white transition-colors py-2"
+                    onClick={() => setActiveItem(item)}
+                    whileHover={{ scale: 1.05 }}
                   >
-                    <span>{item.label}</span>
-                    <motion.span
-                      animate={{ rotate: activeDropdown === item.label ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ChevronDown size={16} />
-                    </motion.span>
-                  </button>
-                  
-                  <AnimatePresence>
-                    {activeDropdown === item.label && (
-                      <motion.div
-                        variants={dropdownVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                        className="absolute top-full left-0 mt-2"
-                      >
-                        <div className="py-3 px-4 bg-gray-800 rounded-xl border border-orange-500/20 backdrop-blur-xl min-w-[220px] shadow-xl">
-                          {item.submenu.map((subItem) => (
-                            <motion.a
-                              key={subItem}
-                              href="#"
-                              whileHover={{ x: 4 }}
-                              className="block py-2 text-gray-300 hover:text-white transition-colors"
-                            >
-                              {subItem}
-                            </motion.a>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                    {item}
+                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  </motion.button>
                 </div>
               ))}
-            </div>
-
-            {/* Action Buttons */}
-            <div className="hidden md:flex items-center space-x-4">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-2 text-gray-300 hover:text-white transition-colors rounded-lg"
-                onClick={() => setSearchOpen(!searchOpen)}
-                aria-label="Search"
-              >
-                <Search size={20} />
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 text-gray-300 hover:text-white transition-colors"
-              >
-                Sign In
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 0 20px rgba(249, 115, 22, 0.3)"
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl text-white flex items-center gap-2 shadow-lg"
-              >
-                Get Started
-                <ExternalLink size={16} />
-              </motion.button>
             </div>
 
             {/* Mobile Menu Button */}
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white p-2 rounded-lg"
+              className="lg:hidden text-white p-2 rounded-lg"
               aria-expanded={mobileMenuOpen}
-              aria-label="Toggle mobile menu"
+              aria-label="Toggle menu mobile"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
@@ -201,71 +105,35 @@ const NavBar = () => {
         </div>
       </motion.nav>
 
-      {/* Search Overlay */}
-      <AnimatePresence>
-        {searchOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-gray-900/95 backdrop-blur-xs z-50 p-4"
-          >
-            <div className="max-w-3xl mx-auto mt-20">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="w-full bg-gray-800 text-white px-6 py-4 rounded-xl border border-orange-500/20 focus:outline-none focus:border-orange-500/40"
-                  autoFocus
-                />
-                <button
-                  onClick={() => setSearchOpen(false)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
-                >
-                  <X size={24} />
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-[72px] p-4 bg-gray-900/95 backdrop-blur-lg z-40 md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-x-0 top-[72px] bg-gray-900/95 backdrop-blur-lg z-40 lg:hidden overflow-hidden"
           >
-            <div className="space-y-4">
+            <div className="p-4 space-y-2">
               {menuItems.map((item) => (
-                <div key={item.label} className="space-y-2">
-                  <div className="text-white font-medium">{item.label}</div>
-                  <div className="pl-4 space-y-2">
-                    {item.submenu.map((subItem) => (
-                      <motion.a
-                        key={subItem}
-                        href="#"
-                        whileHover={{ x: 4 }}
-                        className="block text-gray-300 hover:text-white transition-colors"
-                      >
-                        {subItem}
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
+                <motion.a
+                  key={item}
+                  href="#"
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className={`block py-3 px-4 text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-gray-800 ${
+                    activeItem === item ? 'text-white bg-gray-800' : ''
+                  }`}
+                  onClick={() => {
+                    setActiveItem(item);
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  {item}
+                </motion.a>
               ))}
-              <div className="pt-4 space-y-4">
-                <button className="w-full px-4 py-2 text-gray-300 hover:text-white transition-colors">
-                  Sign In
-                </button>
-                <button className="w-full px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl text-white flex items-center justify-center gap-2">
-                  Get Started
-                  <ExternalLink size={16} />
-                </button>
-              </div>
             </div>
           </motion.div>
         )}

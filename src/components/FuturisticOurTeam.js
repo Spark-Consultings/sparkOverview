@@ -19,14 +19,14 @@ const teamMembers = [
     name: 'Serigne Fallou Seck',
     role: 'Développeur Fullstack | DevOps Engineer',
     image: 'https://res.cloudinary.com/drxouwbms/image/upload/v1734391519/fallou-removebg-preview_rckbfz.png',
-    skills: ['PHP', 'Java', 'Elasticsearch', 'Kibana', 'Lockstash'],
+    skills: ['PHP', 'Java', 'ELK-Stack', 'ExpressJs', ],
     description: 'Pionnier du développement full-stack et DevOps'
   },
   {
     name: 'Seydina Mouhammad Diop',
     role: 'Développeur Fullstack | UI/UX Designer',
     image: 'https://res.cloudinary.com/drxouwbms/image/upload/v1734391710/seydina-removebg-preview_btrgp6.png',
-    skills: ['NuxtJS', 'NextJS', 'Figma', 'ReactJS'],
+    skills: ['ReactJs', 'NuxtJs', 'ExpressJs', 'Figma', '...'],
     description: 'Créative passionnée par l\'expérience utilisateur'
   }
 ];
