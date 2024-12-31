@@ -178,9 +178,10 @@ const HeroSection = () => {
                 SUCCESS.
               </h1>
               <p className="text-gray-400 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0">
-                Découvrez la prochaine évolution de la technologie avec notre
-                plateforme de pointe. Conçue pour les innovateurs, pensée pour
-                l'avenir.
+                Nous accompagnons les entreprises dans leur évolution numérique
+                grâce à une expertise pointue en développement de plateformes
+                robustes, en gestion optimisée des ressources, et en conception
+                de stratégies digitales percutantes.
               </p>
             </motion.div>
 
