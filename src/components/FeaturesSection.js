@@ -52,9 +52,9 @@ const FeaturesSection = () => {
   const features = [
   {
     icon: LayoutDashboard,
-    title: "Création de Sites Internet",
+    title: "Création de solutions sur mesure",
     description:
-      "Nous concevons des sites web sur mesure, parfaitement adaptés aux objectifs de nos clients. Que ce soit un site vitrine, une plateforme e-commerce ou une application web, nos développeurs expérimentés mettent en œuvre des solutions technologiques modernes et performantes pour garantir une expérience en ligne exceptionnelle.",
+      "Nous développons des solutions numériques personnalisées, incluant des sites web, des logiciels et des applications sur mesure, parfaitement alignées avec les besoins spécifiques de nos clients. Que ce soit pour un site vitrine, une plateforme e-commerce, un logiciel métier ou une application web innovante, nos experts combinent technologies modernes et méthodologies agiles pour garantir des performances optimales et une expérience utilisateur exceptionnelle.",
   },
   {
     icon: PenTool,
