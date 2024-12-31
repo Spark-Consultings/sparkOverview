@@ -6,8 +6,8 @@ const ValueCard = ({ icon: Icon, title, description, delay }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay, duration: 0.5 }}
-    whileHover={{ scale: 1.05, zIndex: 1 }}
+    transition={{  duration: 0.2 }}
+    whileHover={{ scale: 1.02 , zIndex: 1 }}
     className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 p-4 relative group"
   >
     <motion.div 
@@ -25,10 +25,10 @@ const ValueCard = ({ icon: Icon, title, description, delay }) => (
     <div className="relative flex items-center gap-3">
       <motion.div 
         className="p-2 rounded-lg bg-white/10"
-        whileHover={{ rotate: 360, scale: 1.1 }}
+        whileHover={{ rotate: 360, scale: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Icon size={18} className="text-[#A855F7]" />
+        <Icon size={18} className="text-[#FF7452]" />
       </motion.div>
       <div>
         <motion.h4 
@@ -68,7 +68,7 @@ export const CompanyValues = () => {
 
   return (
     <motion.div 
-      className="space-y-8 mt-12"
+      className="space-y-8 "
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
