@@ -30,27 +30,21 @@ const MainFeed = () => {
       <Navbar />
       {/* Main Content ! */}
       <main className="flex flex-col">
-        // HeroSection
         <section id="hero-section">
           <HeroSection />
         </section>
-        // FeaturesSection
         <section id="features-section">
           <FeaturesSection />
         </section>
-        // PerformanceSection
         <section id="performance-section">
           <PerformanceSection />
         </section>
-        // CompanyValuesSection
         <section id="company-values-section">
           <CompanyValuesSection />
         </section>
-        // FuturisticOurTeam
         <section id="team-section">
           <FuturisticOurTeam />
         </section>
-        // FormLine
         <section id="contact-section">
           <FormLine />
         </section>
