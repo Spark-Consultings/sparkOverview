@@ -105,7 +105,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen pt-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen pt-44 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gray-900">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900/50" />
