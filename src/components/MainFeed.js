@@ -7,7 +7,18 @@ import FormLine from "./FormLine";
 import PerformanceSection from "./PerformanceSection";
 import logo from "../assets/logo.png";
 import FuturisticOurTeam from "./FuturisticOurTeam";
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, HelpCircle, Shield, FileText } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Twitter,
+  Facebook,
+  Instagram,
+  HelpCircle,
+  Shield,
+  FileText,
+} from "lucide-react";
 import CompanyValuesSection from "./CompanyValuesSection";
 
 const orangeIconClass = "w-5 h-5 text-orange-400";
@@ -19,12 +30,30 @@ const MainFeed = () => {
       <Navbar />
       {/* Main Content ! */}
       <main className="flex flex-col">
-        <HeroSection />
-        <FeaturesSection />
-        <CompanyValuesSection />
-        <PerformanceSection />
-        <FuturisticOurTeam />
-        <FormLine />
+        // HeroSection
+        <section id="hero-section">
+          <HeroSection />
+        </section>
+        // FeaturesSection
+        <section id="features-section">
+          <FeaturesSection />
+        </section>
+        // PerformanceSection
+        <section id="performance-section">
+          <PerformanceSection />
+        </section>
+        // CompanyValuesSection
+        <section id="company-values-section">
+          <CompanyValuesSection />
+        </section>
+        // FuturisticOurTeam
+        <section id="team-section">
+          <FuturisticOurTeam />
+        </section>
+        // FormLine
+        <section id="contact-section">
+          <FormLine />
+        </section>
         {/* Footer */}
         <footer className="bg-gray-900 border-t border-gray-800 py-12 px-8">
           <div className="max-w-7xl mx-auto">
@@ -37,7 +66,7 @@ const MainFeed = () => {
                   className="text-2xl w-11/12 font-bold bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text"
                 />
                 <p className="text-gray-400">
-                Spark the Change, Illuminate Success
+                  Spark the Change, Illuminate Success
                 </p>
               </div>
 
@@ -46,33 +75,67 @@ const MainFeed = () => {
                 {
                   title: "Contacts",
                   links: [
-                    { icon: <Mail className={orangeIconClass} />, text: "contact@sparkline.com" },
-                    { icon: <Phone className={orangeIconClass} />, text: "+33 1 23 45 67 89" },
-                    { icon: <MapPin className={orangeIconClass} />, text: "123 Rue de l'Innovation, Paris, France" }
-                  ]
+                    {
+                      icon: <Mail className={orangeIconClass} />,
+                      text: "contact@sparkline.com",
+                    },
+                    {
+                      icon: <Phone className={orangeIconClass} />,
+                      text: "+33 1 23 45 67 89",
+                    },
+                    {
+                      icon: <MapPin className={orangeIconClass} />,
+                      text: "123 Rue de l'Innovation, Paris, France",
+                    },
+                  ],
                 },
                 {
                   title: "Réseaux Sociaux",
                   links: [
-                    { icon: <Linkedin className={orangeIconClass} />, text: "LinkedIn", url: "https://linkedin.com/sparkline" },
-                    { icon: <Twitter className={orangeIconClass} />, text: "Twitter", url: "https://twitter.com/sparkline" },
-                    { icon: <Facebook className={orangeIconClass} />, text: "Facebook", url: "https://facebook.com/sparkline" },
-                    { icon: <Instagram className={orangeIconClass} />, text: "Instagram", url: "https://instagram.com/sparkline" }
-                  ]
+                    {
+                      icon: <Linkedin className={orangeIconClass} />,
+                      text: "LinkedIn",
+                      url: "https://linkedin.com/sparkline",
+                    },
+                    {
+                      icon: <Twitter className={orangeIconClass} />,
+                      text: "Twitter",
+                      url: "https://twitter.com/sparkline",
+                    },
+                    {
+                      icon: <Facebook className={orangeIconClass} />,
+                      text: "Facebook",
+                      url: "https://facebook.com/sparkline",
+                    },
+                    {
+                      icon: <Instagram className={orangeIconClass} />,
+                      text: "Instagram",
+                      url: "https://instagram.com/sparkline",
+                    },
+                  ],
                 },
                 {
                   title: "Informations",
                   links: [
-                    { icon: <HelpCircle className={orangeIconClass} />, text: "FAQ" },
-                    { icon: <Shield className={orangeIconClass} />, text: "Support Technique" },
-                  ]
+                    {
+                      icon: <HelpCircle className={orangeIconClass} />,
+                      text: "FAQ",
+                    },
+                    {
+                      icon: <Shield className={orangeIconClass} />,
+                      text: "Support Technique",
+                    },
+                  ],
                 },
               ].map((column) => (
                 <div key={column.title} className="space-y-4">
                   <h3 className="text-white font-medium">{column.title}</h3>
                   <ul className="space-y-2">
                     {column.links.map((link) => (
-                      <li key={link.text} className="flex items-center space-x-2">
+                      <li
+                        key={link.text}
+                        className="flex items-center space-x-2"
+                      >
                         {link.icon}
                         {link.url ? (
                           <a
@@ -126,4 +189,3 @@ const MainFeed = () => {
 };
 
 export default MainFeed;
-

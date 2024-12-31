@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import logo from "../assets/logo.png";
@@ -6,11 +6,33 @@ import logo from "../assets/logo.png";
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState('Accueil');
+  const [activeSection, setActiveSection] = useState('Accueil');
+
+  const menuItems = [
+    { name: 'Accueil', id: 'hero-section' },
+    { name: 'Nos Services', id: 'features-section' },
+    { name: 'Projets', id: 'performance-section' },
+    { name: 'À Propos', id: 'company-values-section' },
+    { name: 'Notre Équipe', id: 'team-section' },
+    { name: 'Contact', id: 'contact-section' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // Update active section based on scroll position
+      const sections = menuItems.map(item => document.getElementById(item.id));
+      const currentSection = sections.find(section => {
+        if (!section) return false;
+        const rect = section.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom >= 100;
+      });
+
+      if (currentSection) {
+        const activeItem = menuItems.find(item => item.id === currentSection.id);
+        if (activeItem) setActiveSection(activeItem.name);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -28,14 +50,19 @@ const NavBar = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const menuItems = [
-    'Accueil',
-    'Nos Services',
-    'Projets',
-    'À Propos',
-    'Notre Équipe',
-    'Contact'
-  ];
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Adjust based on navbar height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const navVariants = {
     hidden: { y: -100 },
@@ -63,35 +90,37 @@ const NavBar = () => {
       >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <motion.a
-              href="/"
+            <motion.div
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-2"
+              onClick={() => scrollToSection('hero-section')}
             >
               <img className="w-32 lg:w-40 font-bold text-white" src={logo} alt='Logo Spakline' />
-            </motion.a>
+            </motion.div>
 
-            {/* Desktop Menu */}
             <div className="hidden lg:flex items-center space-x-8">
               {menuItems.map((item) => (
                 <div 
-                  key={item}
+                  key={item.name}
                   className="relative group"
                 >
                   <motion.button 
-                    className="text-gray-300 hover:text-white transition-colors py-2"
-                    onClick={() => setActiveItem(item)}
+                    className={`text-gray-300 hover:text-white transition-colors py-2 ${
+                      activeSection === item.name ? 'text-white' : ''
+                    }`}
+                    onClick={() => scrollToSection(item.id)}
                     whileHover={{ scale: 1.05 }}
                   >
-                    {item}
-                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                    {item.name}
+                    <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 
+                      ${activeSection === item.name ? 'scale-x-100' : 'scale-x-0'} 
+                      group-hover:scale-x-100 transition-transform duration-300 origin-left`} 
+                    />
                   </motion.button>
                 </div>
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -105,7 +134,6 @@ const NavBar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -117,22 +145,21 @@ const NavBar = () => {
           >
             <div className="p-4 space-y-2">
               {menuItems.map((item) => (
-                <motion.a
-                  key={item}
-                  href="#"
+                <motion.button
+                  key={item.name}
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.3 }}
-                  className={`block py-3 px-4 text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-gray-800 ${
-                    activeItem === item ? 'text-white bg-gray-800' : ''
+                  className={`block w-full text-left py-3 px-4 text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-gray-800 ${
+                    activeSection === item.name ? 'text-white bg-gray-800' : ''
                   }`}
                   onClick={() => {
-                    setActiveItem(item);
+                    scrollToSection(item.id);
                     setMobileMenuOpen(false);
                   }}
                 >
-                  {item}
-                </motion.a>
+                  {item.name}
+                </motion.button>
               ))}
             </div>
           </motion.div>
