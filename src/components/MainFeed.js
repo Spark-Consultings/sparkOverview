@@ -19,7 +19,6 @@ const MainFeed = () => {
       <Navbar />
       {/* Main Content ! */}
       <main className="flex flex-col">
-        <HeroSection2 />
         <HeroSection />
         <FeaturesSection />
         <PerformanceSection />

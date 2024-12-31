@@ -196,13 +196,6 @@ const HeroSection = () => {
                 Regarder notre présentation
               </GradientButton>
             </div>
-
-            {/* Trust Indicators */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-              <StatCard label="Active Users" value="100K+" index={0} />
-              <StatCard label="Global Reach" value="150+ Countries" index={1} />
-              <StatCard label="Uptime SLA" value="99.99%" index={2} />
-            </div>
           </motion.div>
 
           {/* Right Visual Section - Visible on all screens */}
