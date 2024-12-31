@@ -155,15 +155,15 @@ const HeroSection = () => {
                 </div>
               </div>
               <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
-                ALLUMEZ
+                SPARK 
                 <motion.span 
                   className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text block mt-2"
                   animate={{ backgroundPosition: ['0%', '100%', '0%'] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                 >
-                LA MÈCHE 
+                THE CHANGE 
                 </motion.span>
-                DE VOTRE ÉVOLUTION DIGITALE.
+                ILLUMINATE SUCCESS.
               </h1>
               <p className="text-gray-400 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0">
               Découvrez la prochaine évolution de la technologie avec notre plateforme de pointe.

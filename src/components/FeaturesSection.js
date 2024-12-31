@@ -1,15 +1,15 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Zap, 
-  Globe, 
-  Shield, 
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Zap,
+  Globe,
+  Shield,
   Cpu,
   BarChart3,
   Cloud,
   Lock,
-  Sparkles
-} from 'lucide-react';
+  Sparkles,
+} from "lucide-react";
 
 const FeatureCard = ({ icon: Icon, title, description, delay }) => (
   <motion.div
@@ -30,7 +30,7 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
           <h3 className="text-xl font-semibold text-white">{title}</h3>
         </div>
         <p className="text-gray-300 leading-relaxed">{description}</p>
-        <motion.div 
+        <motion.div
           className="h-1 w-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"
           whileHover={{ width: "100%" }}
         />
@@ -42,32 +42,36 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
 const FeaturesSection = () => {
   const features = [
     {
-        icon: Zap,
-        title: "Solutions Digitales Innovantes",
-        description: "Développez votre entreprise avec des solutions digitales sur-mesure adaptées à vos besoins spécifiques."
+      icon: Zap,
+      title: "Solutions Digitales Innovantes",
+      description:
+        "Développez votre entreprise avec des solutions digitales sur-mesure adaptées à vos besoins spécifiques.",
     },
     {
-        icon: Shield,
-        title: "Améliorations de Logiciels",
-        description: "Optimisez vos outils existants grâce à des améliorations logicielles performantes et sécurisées."
+      icon: Shield,
+      title: "Améliorations de Logiciels",
+      description:
+        "Optimisez vos outils existants grâce à des améliorations logicielles performantes et sécurisées.",
     },
     {
-        icon: Globe,
-        title: "Projets sur Mesure",
-        description: "Transformez vos idées en réalité avec nos projets conçus spécifiquement pour répondre à vos objectifs uniques."
+      icon: Globe,
+      title: "Projets sur Mesure",
+      description:
+        "Transformez vos idées en réalité avec nos projets conçus spécifiquement pour répondre à vos objectifs uniques.",
     },
     {
-        icon: Cpu,
-        title: "Applications Intelligentes",
-        description: "Nous créons des applications modernes et intelligentes, intégrant les dernières avancées technologiques."
+      icon: Cpu,
+      title: "Applications Intelligentes",
+      description:
+        "Nous créons des applications modernes et intelligentes, intégrant les dernières avancées technologiques.",
     },
     {
-        icon: BarChart3,
-        title: "Masterclasses Spécialisées",
-        description: "Profitez de formations pointues pour monter en compétences et rester compétitif dans un monde digital en constante évolution."
-    }
-];
-
+      icon: BarChart3,
+      title: "Masterclasses Spécialisées",
+      description:
+        "Profitez de formations pointues pour monter en compétences et rester compétitif dans un monde digital en constante évolution.",
+    },
+  ];
 
   return (
     <section className="py-24 px-8 relative overflow-hidden">
@@ -87,19 +91,30 @@ const FeaturesSection = () => {
             className="flex items-center justify-center gap-2"
           >
             <Sparkles size={20} className="text-orange-500" />
-            <span className="text-orange-500 font-medium">Nous sommes là pour vous !</span> 
+            <span className="text-orange-500 font-medium">
+              Nous sommes là pour vous !
+            </span>
           </motion.div>
-          
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-4xl md:text-5xl font-bold text-white"
+            className="text-4xl md:text-6xl font-bold text-white"
           >
-            Nos Services
+            Nos{" "}
+            <span
+              className="text-orange-500 relative inline-block 
+                after:content-[''] after:absolute after:-bottom-1 after:left-0 
+                after:w-full after:h-1 after:bg-orange-500 after:rounded-full 
+                after:origin-left after:scale-x-0 hover:after:scale-x-100 
+                after:transition-transform after:duration-300"
+            >
+              Services
+            </span>
           </motion.h2>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -107,7 +122,9 @@ const FeaturesSection = () => {
             transition={{ delay: 0.3 }}
             className="text-gray-400 max-w-2xl mx-auto text-lg"
           >
-            Découvrez nos services, et profitez de nos expertises pour améliorer et faire évoluer votre entreprise et répondre à vos besoins spécifiques.
+            Découvrez nos services, et profitez de nos expertises pour améliorer
+            et faire évoluer votre entreprise et répondre à vos besoins
+            spécifiques.
           </motion.p>
         </div>
 
@@ -119,7 +136,7 @@ const FeaturesSection = () => {
               icon={feature.icon}
               title={feature.title}
               description={feature.description}
-              delay={0.2 + (index * 0.1)}
+              delay={0.2 + index * 0.1}
             />
           ))}
         </div>
@@ -133,14 +150,14 @@ const FeaturesSection = () => {
           className="mt-20 text-center"
         >
           <motion.button
-            whileHover={{ 
+            whileHover={{
               scale: 1.02,
-              boxShadow: "0 0 20px rgba(249, 115, 22, 0.4)"
+              boxShadow: "0 0 20px rgba(249, 115, 22, 0.4)",
             }}
             whileTap={{ scale: 0.98 }}
             className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl font-medium inline-flex items-center gap-2"
           >
-            Start Building Now
+            Prenez rendez-vous dès maintenant
             <Lock size={18} />
           </motion.button>
         </motion.div>
