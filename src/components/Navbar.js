@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import logo from "../assets/logo.png";
@@ -20,8 +20,7 @@ const NavBar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-
-      // Update active section based on scroll position
+      
       const sections = menuItems.map(item => document.getElementById(item.id));
       const currentSection = sections.find(section => {
         if (!section) return false;
@@ -50,17 +49,26 @@ const NavBar = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80; // Adjust based on navbar height
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+  const handleMobileNavClick = (sectionId) => {
+    setMobileMenuOpen(false);
+    setTimeout(() => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const navHeight = 80;
+        const yOffset = -navHeight;
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 300);
+  };
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const navHeight = 80;
+      const yOffset = -navHeight;
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
@@ -92,8 +100,8 @@ const NavBar = () => {
           <div className="flex items-center justify-between">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-2"
-              onClick={() => scrollToSection('hero-section')}
+              className="flex items-center space-x-2 cursor-pointer"
+              onClick={() => handleMobileNavClick('hero-section')}
             >
               <img className="w-32 lg:w-40 font-bold text-white" src={logo} alt='Logo Spakline' />
             </motion.div>
@@ -153,10 +161,7 @@ const NavBar = () => {
                   className={`block w-full text-left py-3 px-4 text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-gray-800 ${
                     activeSection === item.name ? 'text-white bg-gray-800' : ''
                   }`}
-                  onClick={() => {
-                    scrollToSection(item.id);
-                    setMobileMenuOpen(false);
-                  }}
+                  onClick={() => handleMobileNavClick(item.id)}
                 >
                   {item.name}
                 </motion.button>
