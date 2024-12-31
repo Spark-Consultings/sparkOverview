@@ -39,8 +39,9 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
           <h3 className="text-xl font-semibold text-white">{title}</h3>
         </div>
         <p className="text-gray-300 leading-relaxed">{description}</p>
-        <div 
-          className="h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full w-12 group-hover:w-full transition-all duration-300"
+        <motion.div
+          className="h-1 w-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"
+          whileHover={{ width: "100%" }}
         />
       </div>
     </div>
@@ -50,10 +51,10 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
 const FeaturesSection = () => {
   const features = [
   {
-    icon: LayoutDashboard,
-    title: "Création de solutions sur mesure",
-    description:
-      "Nous développons des solutions numériques personnalisées, incluant des sites web, des logiciels et des applications sur mesure, parfaitement alignées avec les besoins spécifiques de nos clients. Que ce soit pour un site vitrine, une plateforme e-commerce, un logiciel métier ou une application web innovante, nos experts combinent technologies modernes et méthodologies agiles pour garantir des performances optimales et une expérience utilisateur exceptionnelle.",
+     icon: LayoutDashboard,
+  title: "Création de solutions sur mesure",
+  description:
+    "Nous développons des solutions numériques personnalisées, incluant des sites web, des logiciels et des applications sur mesure, parfaitement alignées avec les besoins spécifiques de nos clients. Que ce soit pour un site vitrine, une plateforme e-commerce, un logiciel métier ou une application web innovante, nos experts combinent technologies modernes et méthodologies agiles pour garantir des performances optimales et une expérience utilisateur exceptionnelle.",
   },
   {
     icon: PenTool,
