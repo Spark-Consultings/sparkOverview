@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { Sparkles, ExternalLink, Play, ChevronRight } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
+import { motion } from "framer-motion";
+import { Sparkles, ExternalLink, Play, ChevronRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
 
 const TypeWriter = ({ words }) => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -12,26 +12,29 @@ const TypeWriter = ({ words }) => {
     if (isPaused) return;
 
     const currentWord = words[wordIndex];
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        if (text.length < currentWord.length) {
-          setText(currentWord.slice(0, text.length + 1));
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting) {
+          if (text.length < currentWord.length) {
+            setText(currentWord.slice(0, text.length + 1));
+          } else {
+            setIsPaused(true);
+            setTimeout(() => {
+              setIsPaused(false);
+              setIsDeleting(true);
+            }, 1500);
+          }
         } else {
-          setIsPaused(true);
-          setTimeout(() => {
-            setIsPaused(false);
-            setIsDeleting(true);
-          }, 1500);
+          if (text.length === 0) {
+            setIsDeleting(false);
+            setWordIndex((prev) => (prev + 1) % words.length);
+          } else {
+            setText(text.slice(0, -1));
+          }
         }
-      } else {
-        if (text.length === 0) {
-          setIsDeleting(false);
-          setWordIndex((prev) => (prev + 1) % words.length);
-        } else {
-          setText(text.slice(0, -1));
-        }
-      }
-    }, isDeleting ? 50 : 150);
+      },
+      isDeleting ? 50 : 150
+    );
 
     return () => clearTimeout(timeout);
   }, [text, isDeleting, wordIndex, words, isPaused]);
@@ -54,7 +57,7 @@ const FloatingElement = ({ delay = 0, duration = 3, className, children }) => (
       duration,
       delay,
       repeat: Infinity,
-      ease: "easeInOut"
+      ease: "easeInOut",
     }}
     className={className}
   >
@@ -67,9 +70,9 @@ const GradientButton = ({ children, primary = false }) => (
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
     className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-medium flex items-center gap-2 transition-all ${
-      primary 
-        ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30' 
-        : 'bg-gray-800/50 backdrop-blur-xl text-white border border-orange-500/20 hover:bg-gray-800/70'
+      primary
+        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30"
+        : "bg-gray-800/50 backdrop-blur-xl text-white border border-orange-500/20 hover:bg-gray-800/70"
     }`}
   >
     {children}
@@ -80,12 +83,14 @@ const StatCard = ({ label, value, index }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.2 + (index * 0.1) }}
+    transition={{ delay: 0.2 + index * 0.1 }}
     className="relative group"
   >
     <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-xl blur-xl group-hover:blur-2xl transition-all" />
     <div className="relative p-3 sm:p-4 bg-gray-800/50 backdrop-blur-xl rounded-xl border border-orange-500/20">
-      <div className="text-lg sm:text-2xl font-bold text-white mb-1">{value}</div>
+      <div className="text-lg sm:text-2xl font-bold text-white mb-1">
+        {value}
+      </div>
       <div className="text-xs sm:text-sm text-gray-400">{label}</div>
     </div>
   </motion.div>
@@ -96,7 +101,7 @@ const HeroSection = () => {
     "Evolution digitale",
     "Innovation technologique",
     "Maintenabilité",
-    "Bonnes pratiques"
+    "Bonnes pratiques",
   ];
 
   return (
@@ -104,15 +109,16 @@ const HeroSection = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gray-900">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900/50" />
-        <div 
+        <div
           className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: "radial-gradient(circle at 2px 2px, rgba(249, 115, 22, 0.15) 1px, transparent 0)",
-            backgroundSize: '32px 32px',
-          }} 
+            backgroundImage:
+              "radial-gradient(circle at 2px 2px, rgba(249, 115, 22, 0.15) 1px, transparent 0)",
+            backgroundSize: "32px 32px",
+          }}
         />
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 360],
           }}
@@ -120,7 +126,7 @@ const HeroSection = () => {
           className="absolute top-1/4 -left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1.2, 1, 1.2],
             rotate: [360, 0],
           }}
@@ -133,13 +139,12 @@ const HeroSection = () => {
       <div className="max-w-7xl mx-auto relative">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center lg:text-left w-full"
           >
             {/* Status Badge */}
-            
 
             {/* Main Title */}
             <motion.div
@@ -155,26 +160,35 @@ const HeroSection = () => {
                 </div>
               </div>
               <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
-                SPARK 
-                <motion.span 
+                <motion.span
                   className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text block mt-2"
-                  animate={{ backgroundPosition: ['0%', '100%', '0%'] }}
+                  animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                 >
-                THE CHANGE 
+                  SPARK
                 </motion.span>
-                ILLUMINATE SUCCESS.
+                THE CHANGE
+                <motion.span
+                  className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text block mt-2"
+                  animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                >
+                  ILLUMINATE
+                </motion.span>
+                SUCCESS.
               </h1>
               <p className="text-gray-400 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0">
-              Découvrez la prochaine évolution de la technologie avec notre plateforme de pointe.
-              Conçue pour les innovateurs, pensée pour l'avenir.
+                Découvrez la prochaine évolution de la technologie avec notre
+                plateforme de pointe. Conçue pour les innovateurs, pensée pour
+                l'avenir.
               </p>
             </motion.div>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start mb-8 sm:mb-12">
               <GradientButton primary>
-                Decouvrir <ChevronRight className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px]" />
+                Decouvrir{" "}
+                <ChevronRight className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px]" />
               </GradientButton>
               <GradientButton>
                 <Play className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] text-orange-500" />
@@ -208,7 +222,9 @@ const HeroSection = () => {
                     key={i}
                     className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full bg-orange-500/30"
                     style={{
-                      transform: `rotate(${i * 7.5}deg) translateX(clamp(140px, 30vw, 280px)) translate(-50%, -50%)`
+                      transform: `rotate(${
+                        i * 7.5
+                      }deg) translateX(clamp(140px, 30vw, 280px)) translate(-50%, -50%)`,
                     }}
                   />
                 ))}
@@ -240,7 +256,11 @@ const HeroSection = () => {
                     scale: [1, 1.1, 1],
                     rotate: [0, 360],
                   }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
                   className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center"
                 >
                   <div className="absolute inset-1 rounded-full bg-gray-900 flex items-center justify-center">
