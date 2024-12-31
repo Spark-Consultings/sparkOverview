@@ -13,7 +13,11 @@ import {
   Globe,
   Monitor,
   BarChart,
+  LayoutDashboard,
+  PenTool,
+  Film,
   GraduationCap,
+  MonitorSmartphone,
 } from "lucide-react";
 
 const FeatureCard = ({ icon: Icon, title, description, delay }) => (
@@ -47,37 +51,36 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
 const FeaturesSection = () => {
   const features = [
     {
-      icon: Target,
-      title: "Plateformes stratégiques",
+      icon: LayoutDashboard,
+      title: "Création de Sites Internet",
       description:
-        "Nous créons des bases technologiques solides et stratégiques, essentielles pour des solutions numériques performantes et évolutives.",
+        "Nous concevons des sites web sur mesure, parfaitement adaptés aux objectifs de nos clients. Que ce soit un site vitrine, une plateforme e-commerce ou une application web, nos développeurs expérimentés mettent en œuvre des solutions technologiques modernes et performantes pour garantir une expérience en ligne exceptionnelle.",
     },
     {
-      icon: Layers,
-      title: "Solutions intégrées",
+      icon: PenTool,
+      title: "Supports de Communication & Identité Visuelle",
       description:
-        "Nous connectons compétences, outils et stratégies pour une transformation cohérente et harmonieuse.",
+        "Nous aidons nos clients à se démarquer grâce à des stratégies de communication digitales impactantes. De la conception de logos aux supports physiques personnalisés (T-shirts, casquettes, sacs, stylos, etc.), en passant par la création de contenus engageants et la gestion des réseaux sociaux, nous bâtissons des identités visuelles fortes et cohérentes, optimisant leur impact auprès de leur audience.",
     },
     {
-      icon: Globe,
-      title: "Optimisation des ressources",
+      icon: Film,
+      title: "Production Audiovisuelle & Voix Off",
       description:
-        "Nous maximisons l’utilisation des ressources – qu’il s’agisse de talents, de technologies ou d’opportunités – pour garantir une efficacité optimale.",
+        "Donnez vie à vos idées avec notre expertise en production audiovisuelle. Nous offrons des services de voix off professionnelles, de réalisation de vidéos publicitaires et d'animation événementielle (modération de cérémonies, meetings, bootcamps, etc.), pour captiver et inspirer votre audience à chaque interaction.",
     },
     {
-      icon: Monitor,
-      title: "Connaissances de pointe",
+      icon: MonitorSmartphone,
+      title: "Formation Personnalisée",
       description:
-        "Notre expertise repose sur une connaissance approfondie des tendances, des outils technologiques et des meilleures pratiques numériques.",
+        "Nous proposons des programmes de formation adaptés à vos besoins spécifiques, couvrant des domaines clés comme le développement numérique, l'utilisation des nouvelles technologies ou encore l'optimisation des communications en ligne. Ces formations sur mesure visent à renforcer vos compétences et à vous positionner en leader dans votre secteur.",
     },
     {
       icon: GraduationCap,
-      title: "Masterclasses Spécialisées",
+      title: "Design d’Expérience Utilisateur (UI/UX)",
       description:
-        "Profitez de formations pointues pour monter en compétences et rester compétitif dans un monde digital en constante évolution.",
+        "Placez vos utilisateurs au centre de vos projets numériques grâce à nos services de design UI/UX. Nous concevons des interfaces élégantes, intuitives et fonctionnelles, en intégrant des maquettes interactives et des designs multi-plateformes. L’objectif : offrir une expérience utilisateur unique et mémorable.",
     },
   ];
-
   return (
     <section className="py-24 px-8 relative overflow-hidden">
       {/* Background Elements */}
@@ -127,9 +130,8 @@ const FeaturesSection = () => {
             transition={{ delay: 0.3 }}
             className="text-gray-400 max-w-2xl mx-auto text-lg"
           >
-            Découvrez nos services, et profitez de nos expertises pour améliorer
-            et faire évoluer votre entreprise et répondre à vos besoins
-            spécifiques.
+           SPARKLINE propose une gamme complète de services innovants pour répondre aux besoins
+           numériques de ses clients.
           </motion.p>
         </div>
 
