@@ -2,13 +2,18 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   Zap,
-  Globe,
   Shield,
   Cpu,
   BarChart3,
   Cloud,
   Lock,
   Sparkles,
+  Target,
+  Layers,
+  Globe,
+  Monitor,
+  BarChart,
+  GraduationCap,
 } from "lucide-react";
 
 const FeatureCard = ({ icon: Icon, title, description, delay }) => (
@@ -42,31 +47,31 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
 const FeaturesSection = () => {
   const features = [
     {
-      icon: Zap,
-      title: "Solutions Digitales Innovantes",
+      icon: Target,
+      title: "Plateformes stratégiques",
       description:
-        "Développez votre entreprise avec des solutions digitales sur-mesure adaptées à vos besoins spécifiques.",
+        "Nous créons des bases technologiques solides et stratégiques, essentielles pour des solutions numériques performantes et évolutives.",
     },
     {
-      icon: Shield,
-      title: "Améliorations de Logiciels",
+      icon: Layers,
+      title: "Solutions intégrées",
       description:
-        "Optimisez vos outils existants grâce à des améliorations logicielles performantes et sécurisées.",
+        "Nous connectons compétences, outils et stratégies pour une transformation cohérente et harmonieuse.",
     },
     {
       icon: Globe,
-      title: "Projets sur Mesure",
+      title: "Optimisation des ressources",
       description:
-        "Transformez vos idées en réalité avec nos projets conçus spécifiquement pour répondre à vos objectifs uniques.",
+        "Nous maximisons l’utilisation des ressources – qu’il s’agisse de talents, de technologies ou d’opportunités – pour garantir une efficacité optimale.",
     },
     {
-      icon: Cpu,
-      title: "Applications Intelligentes",
+      icon: Monitor,
+      title: "Connaissances de pointe",
       description:
-        "Nous créons des applications modernes et intelligentes, intégrant les dernières avancées technologiques.",
+        "Notre expertise repose sur une connaissance approfondie des tendances, des outils technologiques et des meilleures pratiques numériques.",
     },
     {
-      icon: BarChart3,
+      icon: GraduationCap,
       title: "Masterclasses Spécialisées",
       description:
         "Profitez de formations pointues pour monter en compétences et rester compétitif dans un monde digital en constante évolution.",
