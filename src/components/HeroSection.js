@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
-import { Sparkles, ExternalLink, Play, ChevronRight } from "lucide-react";
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles, ChevronRight, Play, ExternalLink } from 'lucide-react';
+import VideoPlayer from "./VideoPlayer";
 
 const TypeWriter = ({ words }) => {
   const [text, setText] = useState("");
@@ -52,6 +53,8 @@ const FloatingElement = ({ delay = 0, duration = 3, className, children }) => (
     animate={{
       y: [-10, 10, -10],
       opacity: [0.5, 1, 0.5],
+      rotateX: [0, 5, 0],
+      rotateY: [0, 5, 0],
     }}
     transition={{
       duration,
@@ -65,38 +68,60 @@ const FloatingElement = ({ delay = 0, duration = 3, className, children }) => (
   </motion.div>
 );
 
-const GradientButton = ({ children, primary = false }) => (
+const GradientButton = ({ children, primary = false, onClick }) => (
   <motion.button
-    whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-    className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-medium flex items-center gap-2 transition-all ${
+    whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(249, 115, 22, 0.5)" }}
+    whileTap={{ scale: 0.95 }}
+    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+    className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-all ${
       primary
         ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30"
         : "bg-gray-800/50 backdrop-blur-xl text-white border border-orange-500/20 hover:bg-gray-800/70"
     }`}
+    onClick={onClick}
   >
     {children}
   </motion.button>
 );
 
-const StatCard = ({ label, value, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.2 + index * 0.1 }}
-    className="relative group"
-  >
-    <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-xl blur-xl group-hover:blur-2xl transition-all" />
-    <div className="relative p-3 sm:p-4 bg-gray-800/50 backdrop-blur-xl rounded-xl border border-orange-500/20">
-      <div className="text-lg sm:text-2xl font-bold text-white mb-1">
-        {value}
-      </div>
-      <div className="text-xs sm:text-sm text-gray-400">{label}</div>
+const ParticleEffect = () => {
+  const particles = Array.from({ length: 50 }).map((_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 3 + 1,
+  }));
+
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute rounded-full bg-orange-500"
+          style={{
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+            width: particle.size,
+            height: particle.size,
+          }}
+          animate={{
+            x: [0, Math.random() * 100 - 50],
+            y: [0, Math.random() * 100 - 50],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: Math.random() * 5 + 5,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
     </div>
-  </motion.div>
-);
+  );
+};
 
 const HeroSection = () => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const typingWords = [
     "Evolution digitale",
     "Innovation technologique",
@@ -135,29 +160,33 @@ const HeroSection = () => {
         />
       </div>
 
+      <ParticleEffect />
+
       {/* Main Content */}
       <div className="max-w-7xl mx-auto relative">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center lg:text-left w-full"
           >
-            {/* Status Badge */}
-
             {/* Main Title */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
               className="mb-6 sm:mb-8"
             >
               <div className="flex items-center gap-2 justify-center lg:justify-start mb-4">
-                <div className="px-3 sm:px-4 py-1 bg-orange-500/10 rounded-full border border-orange-500/20 text-orange-400 text-xs sm:text-sm flex items-center gap-2">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="px-3 sm:px-4 py-1 bg-orange-500/10 rounded-full border border-orange-500/20 text-orange-400 text-xs sm:text-sm flex items-center gap-2"
+                >
                   <Sparkles className="w-3.5 h-3.5 animate-pulse" />
                   Soyez positivement surpris
-                </div>
+                </motion.div>
               </div>
               <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
                 <motion.span
@@ -177,31 +206,42 @@ const HeroSection = () => {
                 </motion.span>
                 SUCCESS.
               </h1>
-              <p className="text-gray-400 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="text-gray-400 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0"
+              >
                 Nous accompagnons les entreprises dans leur évolution numérique
                 grâce à une expertise pointue en développement de plateformes
                 robustes, en gestion optimisée des ressources, et en conception
                 de stratégies digitales percutantes.
-              </p>
+              </motion.p>
             </motion.div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start mb-8 sm:mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8 sm:mb-12"
+            >
               <GradientButton primary>
-                Decouvrir{" "}
-                <ChevronRight className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px]" />
+                Découvrir{" "}
+                <ChevronRight className="w-5 h-5" />
               </GradientButton>
-              <GradientButton>
-                <Play className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] text-orange-500" />
+              <GradientButton onClick={() => setIsVideoOpen(true)}>
+                <Play className="w-5 h-5 text-orange-500" />
                 Regarder notre présentation
               </GradientButton>
-            </div>
+            </motion.div>
           </motion.div>
 
-          {/* Right Visual Section - Visible on all screens */}
+          {/* Right Visual Section */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative w-full"
           >
             <div className="relative w-full aspect-square max-w-[400px] lg:max-w-[600px] mx-auto">
@@ -212,14 +252,14 @@ const HeroSection = () => {
                 className="absolute inset-0"
               >
                 {Array.from({ length: 48 }).map((_, i) => (
-                  <div
+                  <motion.div
                     key={i}
                     className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full bg-orange-500/30"
                     style={{
-                      transform: `rotate(${
-                        i * 7.5
-                      }deg) translateX(clamp(140px, 30vw, 280px)) translate(-50%, -50%)`,
+                      transform: `rotate(${i * 7.5}deg) translateX(clamp(140px, 30vw, 280px)) translate(-50%, -50%)`,
                     }}
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
                   />
                 ))}
               </motion.div>
@@ -235,7 +275,7 @@ const HeroSection = () => {
               </FloatingElement>
 
               <FloatingElement
-                delay={0}
+                delay={0.5}
                 className="absolute bottom-[10%] right-[10%] w-36 sm:w-48 h-28 sm:h-32 bg-gray-800/50 backdrop-blur-xl rounded-2xl border border-orange-500/20 p-4 flex flex-col justify-between"
               >
                 <div className="text-lg sm:text-xl text-orange-500">
@@ -266,8 +306,12 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+      <AnimatePresence>
+        {isVideoOpen && <VideoPlayer onClose={() => setIsVideoOpen(false)} />}
+      </AnimatePresence>
     </section>
   );
 };
 
 export default HeroSection;
+
