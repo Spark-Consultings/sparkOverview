@@ -12,7 +12,7 @@ const withDelay = (importFunction: () => Promise<any>, delay: number) => {
 };
 
 // Lazy load avec délai de 3 secondes
-const MainFeed = lazy(() => withDelay(() => import('./components/MainFeed'), 900));
+const MainFeed = lazy(() => withDelay(() => import('./components/MainFeed'), 700));
 const About = lazy(() => withDelay(() => import('./components/About'), 1000));
 const Login = lazy(() => withDelay(() => import('./components/Login'), 1000));
 
