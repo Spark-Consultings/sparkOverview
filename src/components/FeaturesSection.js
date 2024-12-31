@@ -50,37 +50,37 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
 
 const FeaturesSection = () => {
   const features = [
-    {
-      icon: LayoutDashboard,
-      title: "Création de Sites Internet",
-      description:
-        "Nous concevons des sites web sur mesure, parfaitement adaptés aux objectifs de nos clients. Que ce soit un site vitrine, une plateforme e-commerce ou une application web, nos développeurs expérimentés mettent en œuvre des solutions technologiques modernes et performantes pour garantir une expérience en ligne exceptionnelle.",
-    },
-    {
-      icon: PenTool,
-      title: "Supports de Communication & Identité Visuelle",
-      description:
-        "Nous aidons nos clients à se démarquer grâce à des stratégies de communication digitales impactantes. De la conception de logos aux supports physiques personnalisés (T-shirts, casquettes, sacs, stylos, etc.), en passant par la création de contenus engageants et la gestion des réseaux sociaux, nous bâtissons des identités visuelles fortes et cohérentes, optimisant leur impact auprès de leur audience.",
-    },
-    {
-      icon: Film,
-      title: "Production Audiovisuelle & Voix Off",
-      description:
-        "Donnez vie à vos idées avec notre expertise en production audiovisuelle. Nous offrons des services de voix off professionnelles, de réalisation de vidéos publicitaires et d'animation événementielle (modération de cérémonies, meetings, bootcamps, etc.), pour captiver et inspirer votre audience à chaque interaction.",
-    },
-    {
-      icon: MonitorSmartphone,
-      title: "Formation Personnalisée",
-      description:
-        "Nous proposons des programmes de formation adaptés à vos besoins spécifiques, couvrant des domaines clés comme le développement numérique, l'utilisation des nouvelles technologies ou encore l'optimisation des communications en ligne. Ces formations sur mesure visent à renforcer vos compétences et à vous positionner en leader dans votre secteur.",
-    },
-    {
-      icon: GraduationCap,
-      title: "Design d’Expérience Utilisateur (UI/UX)",
-      description:
-        "Placez vos utilisateurs au centre de vos projets numériques grâce à nos services de design UI/UX. Nous concevons des interfaces élégantes, intuitives et fonctionnelles, en intégrant des maquettes interactives et des designs multi-plateformes. L’objectif : offrir une expérience utilisateur unique et mémorable.",
-    },
-  ];
+  {
+    icon: LayoutDashboard,
+    title: "Création de Sites Internet",
+    description:
+      "Nous concevons des sites web sur mesure, parfaitement adaptés aux objectifs de nos clients. Que ce soit un site vitrine, une plateforme e-commerce ou une application web, nos développeurs expérimentés mettent en œuvre des solutions technologiques modernes et performantes pour garantir une expérience en ligne exceptionnelle.",
+  },
+  {
+    icon: PenTool,
+    title: "Supports de Communication & Identité Visuelle",
+    description:
+      "Nous aidons nos clients à se démarquer grâce à des stratégies de communication digitales impactantes. De la conception de logos aux supports physiques personnalisés (T-shirts, casquettes, sacs, stylos, etc.), en passant par la création de contenus engageants et la gestion des réseaux sociaux, nous bâtissons des identités visuelles fortes et cohérentes, optimisant leur impact auprès de leur audience.",
+  },
+  {
+    icon: Film,
+    title: "Production Audiovisuelle & Voix Off",
+    description:
+      "Donnez vie à vos idées avec notre expertise en production audiovisuelle. Nous offrons des services de voix off professionnelles, de réalisation de vidéos publicitaires et d'animation événementielle (modération de cérémonies, meetings, bootcamps, etc.), pour captiver et inspirer votre audience à chaque interaction.",
+  },
+  {
+    icon:  GraduationCap,
+    title: "Formation Personnalisée",
+    description:
+      "Nous proposons des programmes de formation adaptés à vos besoins spécifiques, couvrant des domaines clés comme le développement numérique, l'utilisation des nouvelles technologies ou encore l'optimisation des communications en ligne. Ces formations sur mesure visent à renforcer vos compétences et à vous positionner en leader dans votre secteur.",
+  },
+  {
+    icon: MonitorSmartphone ,
+    title: "Design d’Expérience Utilisateur (UI/UX)",
+    description:
+      "Placez vos utilisateurs au centre de vos projets numériques grâce à nos services de design UI/UX. Nous concevons des interfaces élégantes, intuitives et fonctionnelles, en intégrant des maquettes interactives et des designs multi-plateformes. L’objectif : offrir une expérience utilisateur unique et mémorable.",
+  },
+];
   return (
     <section className="py-24 px-8 relative overflow-hidden">
       {/* Background Elements */}
