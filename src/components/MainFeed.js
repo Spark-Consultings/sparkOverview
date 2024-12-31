@@ -17,7 +17,7 @@ const MainFeed = () => {
     <div className="min-h-screen bg-gray-900">
       <CustomCursor />
       <Navbar />
-      {/* Main Content */}
+      {/* Main Content ! */}
       <main className="flex flex-col">
         <HeroSection2 />
         <HeroSection />
