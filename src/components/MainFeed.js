@@ -94,7 +94,7 @@ const MainFeed = () => {
                     {
                       icon: <Facebook className={orangeIconClass} />,
                       text: "Facebook",
-                      url: "https://www.facebook.com/profile.php?id=61570623324520",
+                      url: "https://www.facebook.com/profile.php?id=61571405220386",
                     },
                     {
                       icon: <Instagram className={orangeIconClass} />,
