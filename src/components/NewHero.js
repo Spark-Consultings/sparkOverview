@@ -1,34 +1,31 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Rocket, Globe, Cpu, Sparkles, Bot } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Rocket, Globe, Cpu, Sparkles, Bot, Eye, Target, Flag } from 'lucide-react';
 import React, { useState, useEffect, useCallback } from 'react';
 
 const slides = [
   {
     id: 1,
-    title: "AI-First Design",
-    subtitle: "Neural Interface",
-    description: "Experience our adaptive UI that learns and evolves with your interactions.",
-    icon: Bot,
+    title: "MISSION",
+    description: "Notre mission est d’allumer l’étincelle qui propulse l’innovation, en traçant une ligne directe entre vision et réalisation grâce à des solutions numériques stratégiques et personnalisées qui surpassent les attentes.",
+    icon: Flag,
     gradient: "from-violet-600 to-fuchsia-600",
     accent: "violet",
     particles: 15
   },
   {
     id: 2,
-    title: "Quantum Ready",
-    subtitle: "Future Proof",
-    description: "Built for the next generation of quantum-enhanced web applications.",
-    icon: Sparkles,
+    title: "VISION",
+    description: "Nous aspirons à devenir le partenaire incontournable des entreprises dans leur transformation numérique, en les guidant sur un chemin fluide vers un monde connecté, innovant et durable.",
+    icon: Eye,
     gradient: "from-cyan-500 to-blue-600",
     accent: "cyan",
     particles: 20
   },
   {
     id: 3,
-    title: "Neural Network",
-    subtitle: "Deep Learning",
-    description: "Harness the power of distributed neural processing across the metaverse.",
-    icon: Cpu,
+    title: "OBJECTIF",
+    description: "Devenir le moteur qui alimente l'innovation numérique de nos clients. Chez SPARKline, nous traçons une route claire vers la réussite en transformant des idées ambitieuses en solutions concrètes. Notre objectif est de connecter nos clients aux opportunités infinies qu’offre la technologie, tout en leur permettant de rester compétitifs, efficaces et inspirants dans un monde digital en constante évolution.",
+    icon: Target,
     gradient: "from-rose-500 to-orange-600",
     accent: "rose",
     particles: 12
@@ -154,7 +151,7 @@ const SlideContent = ({ slide, direction }) => {
               shadow-lg shadow-${slide.accent}-500/20 hover:shadow-2xl hover:shadow-${slide.accent}-500/40
               text-base relative overflow-hidden group`}
           >
-            <span className="relative z-10">Explore Now</span>
+            <span className="relative z-10">En savoir plus</span>
             <motion.div
               className="absolute inset-0 bg-white/20"
               initial={{ x: '-100%' }}
