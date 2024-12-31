@@ -71,15 +71,15 @@ const MainFeed = () => {
                   links: [
                     {
                       icon: <Mail className={orangeIconClass} />,
-                      text: "contact@sparkline.com",
+                      text: "spark221@gmail.com",
                     },
                     {
                       icon: <Phone className={orangeIconClass} />,
-                      text: "+33 1 23 45 67 89",
+                      text: "+221 78 528 63 30",
                     },
                     {
                       icon: <MapPin className={orangeIconClass} />,
-                      text: "123 Rue de l'Innovation, Paris, France",
+                      text: "Dakar, Senegal",
                     },
                   ],
                 },
@@ -89,22 +89,17 @@ const MainFeed = () => {
                     {
                       icon: <Linkedin className={orangeIconClass} />,
                       text: "LinkedIn",
-                      url: "https://linkedin.com/sparkline",
-                    },
-                    {
-                      icon: <Twitter className={orangeIconClass} />,
-                      text: "Twitter",
-                      url: "https://twitter.com/sparkline",
+                      url: "https://www.linkedin.com/in/sparkline-/",
                     },
                     {
                       icon: <Facebook className={orangeIconClass} />,
                       text: "Facebook",
-                      url: "https://facebook.com/sparkline",
+                      url: "https://www.facebook.com/profile.php?id=61570623324520",
                     },
                     {
                       icon: <Instagram className={orangeIconClass} />,
                       text: "Instagram",
-                      url: "https://instagram.com/sparkline",
+                      url: "https://instagram.com/SPARKLINE",
                     },
                   ],
                 },
@@ -152,7 +147,7 @@ const MainFeed = () => {
 
             <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="text-gray-400">
-                © 2024 Sparkline. Tous droits réservés.
+                © 2025 Sparkline. Tous droits réservés.
               </div>
               <div className="flex items-center gap-6">
                 <a
