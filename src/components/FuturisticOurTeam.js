@@ -158,7 +158,7 @@ const FuturisticOurTeam = () => {
                 after:content-[''] after:absolute after:-bottom-1 after:left-0 
                 after:w-full after:h-1 after:bg-orange-500 after:rounded-full 
                 after:origin-left after:scale-x-0 hover:after:scale-x-100 
-                after:transition-transform after:duration-300">Equipe</span>
+                after:transition-transform after:duration-300">Équipe</span>
             </h2>
           </div>
           <p className={`text-gray-400 max-w-3xl mx-auto mt-3 leading-relaxed ${

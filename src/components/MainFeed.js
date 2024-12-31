@@ -8,6 +8,7 @@ import PerformanceSection from "./PerformanceSection";
 import logo from "../assets/logo.png";
 import FuturisticOurTeam from "./FuturisticOurTeam";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, HelpCircle, Shield, FileText } from 'lucide-react';
+import CompanyValuesSection from "./CompanyValuesSection";
 
 const orangeIconClass = "w-5 h-5 text-orange-400";
 
@@ -20,6 +21,7 @@ const MainFeed = () => {
       <main className="flex flex-col">
         <HeroSection />
         <FeaturesSection />
+        <CompanyValuesSection />
         <PerformanceSection />
         <FuturisticOurTeam />
         <FormLine />
