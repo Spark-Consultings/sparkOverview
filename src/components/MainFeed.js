@@ -1,13 +1,16 @@
-import React from 'react';
-import Navbar from './Navbar';
-import HeroSection from './HeroSection';
-import FeaturesSection from './FeaturesSection';
-import CustomCursor from './CustomCursor';
-import FormLine from './FormLine';
-import PerformanceSection from './PerformanceSection';
-import logo from '../assets/logo.png';
-import FuturisticOurTeam from './FuturisticOurTeam';
-import HeroSection2 from './NewHero';
+import React from "react";
+import Navbar from "./Navbar";
+import HeroSection from "./HeroSection";
+import FeaturesSection from "./FeaturesSection";
+import CustomCursor from "./CustomCursor";
+import FormLine from "./FormLine";
+import PerformanceSection from "./PerformanceSection";
+import logo from "../assets/logo.png";
+import FuturisticOurTeam from "./FuturisticOurTeam";
+import HeroSection2 from "./NewHero";
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, HelpCircle, Shield, FileText } from 'lucide-react';
+
+const orangeIconClass = "w-5 h-5 text-orange-400";
 
 const MainFeed = () => {
   return (
@@ -28,55 +31,90 @@ const MainFeed = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {/* Brand Column */}
               <div className="space-y-4">
-                <img alt='logo Sparkline' src={logo} className="text-2xl w-11/12 font-bold bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text" />
+                <img
+                  alt="logo Sparkline"
+                  src={logo}
+                  className="text-2xl w-11/12 font-bold bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text"
+                />
                 <p className="text-gray-400">
-                  Building the future of technology, one line of code at a time.
+                  Allumez l'étincelle de votre transformation digitale.
                 </p>
               </div>
-              
+
               {/* Quick Links */}
               {[
                 {
-                  title: "Product",
-                  links: ["Features", "Solutions", "Pricing", "Enterprise"]
+                  title: "Contacts",
+                  links: [
+                    { icon: <Mail className={orangeIconClass} />, text: "contact@sparkline.com" },
+                    { icon: <Phone className={orangeIconClass} />, text: "+33 1 23 45 67 89" },
+                    { icon: <MapPin className={orangeIconClass} />, text: "123 Rue de l'Innovation, Paris, France" }
+                  ]
                 },
                 {
-                  title: "Company",
-                  links: ["About", "Careers", "Blog", "Press"]
+                  title: "Réseaux Sociaux",
+                  links: [
+                    { icon: <Linkedin className={orangeIconClass} />, text: "LinkedIn", url: "https://linkedin.com/sparkline" },
+                    { icon: <Twitter className={orangeIconClass} />, text: "Twitter", url: "https://twitter.com/sparkline" },
+                    { icon: <Facebook className={orangeIconClass} />, text: "Facebook", url: "https://facebook.com/sparkline" },
+                    { icon: <Instagram className={orangeIconClass} />, text: "Instagram", url: "https://instagram.com/sparkline" }
+                  ]
                 },
                 {
-                  title: "Resources",
-                  links: ["Documentation", "Help Center", "Community", "Contact"]
-                }
+                  title: "Informations",
+                  links: [
+                    { icon: <HelpCircle className={orangeIconClass} />, text: "FAQ" },
+                    { icon: <Shield className={orangeIconClass} />, text: "Support Technique" },
+                  ]
+                },
               ].map((column) => (
                 <div key={column.title} className="space-y-4">
                   <h3 className="text-white font-medium">{column.title}</h3>
                   <ul className="space-y-2">
                     {column.links.map((link) => (
-                      <li key={link}>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                          {link}
-                        </a>
+                      <li key={link.text} className="flex items-center space-x-2">
+                        {link.icon}
+                        {link.url ? (
+                          <a
+                            href={link.url}
+                            className="text-gray-400 hover:text-white transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {link.text}
+                          </a>
+                        ) : (
+                          <span className="text-gray-400">{link.text}</span>
+                        )}
                       </li>
                     ))}
                   </ul>
                 </div>
               ))}
             </div>
-            
+
             <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="text-gray-400">
-                © 2024 TechPlatform. All rights reserved.
+                © 2024 Sparkline. Tous droits réservés.
               </div>
               <div className="flex items-center gap-6">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Privacy Policy
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Politique de confidentialité
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Terms of Service
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Conditions d'utilisation
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Cookie Policy
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Politique sur les cookies
                 </a>
               </div>
             </div>
@@ -88,3 +126,4 @@ const MainFeed = () => {
 };
 
 export default MainFeed;
+

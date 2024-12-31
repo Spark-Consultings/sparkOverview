@@ -93,10 +93,10 @@ const StatCard = ({ label, value, index }) => (
 
 const HeroSection = () => {
   const typingWords = [
-    "Expanding Globally",
-    "Scaling Fast",
-    "Breaking Records",
-    "Leading Innovation"
+    "Evolution digitale",
+    "Innovation technologique",
+    "Maintenabilité",
+    "Bonnes pratiques"
   ];
 
   return (
@@ -139,14 +139,7 @@ const HeroSection = () => {
             className="text-center lg:text-left w-full"
           >
             {/* Status Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gray-800/50 backdrop-blur-xl border border-orange-500/20 mb-4 sm:mb-6"
-            >
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-gray-300 text-xs sm:text-sm">Platform Status: Operational</span>
-            </motion.div>
+            
 
             {/* Main Title */}
             <motion.div
@@ -158,34 +151,34 @@ const HeroSection = () => {
               <div className="flex items-center gap-2 justify-center lg:justify-start mb-4">
                 <div className="px-3 sm:px-4 py-1 bg-orange-500/10 rounded-full border border-orange-500/20 text-orange-400 text-xs sm:text-sm flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-                  Next Generation Platform
+                  Soyez positivement surpris
                 </div>
               </div>
               <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
-                BUILDING THE
+                ALLUMEZ
                 <motion.span 
                   className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text block mt-2"
                   animate={{ backgroundPosition: ['0%', '100%', '0%'] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                 >
-                  FUTURE OF TECH
+                LA MÈCHE 
                 </motion.span>
-                TODAY.
+                DE VOTRE ÉVOLUTION DIGITALE.
               </h1>
               <p className="text-gray-400 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0">
-                Experience the next evolution of technology with our cutting-edge platform. 
-                Built for innovators, designed for the future.
+              Découvrez la prochaine évolution de la technologie avec notre plateforme de pointe.
+              Conçue pour les innovateurs, pensée pour l'avenir.
               </p>
             </motion.div>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start mb-8 sm:mb-12">
               <GradientButton primary>
-                Get Started <ChevronRight className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px]" />
+                Decouvrir <ChevronRight className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px]" />
               </GradientButton>
               <GradientButton>
                 <Play className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] text-orange-500" />
-                Watch Demo
+                Regarder notre présentation
               </GradientButton>
             </div>
 
@@ -226,14 +219,15 @@ const HeroSection = () => {
                 delay={0}
                 className="absolute top-[10%] left-[10%] w-36 sm:w-48 h-28 sm:h-32 bg-gray-800/50 backdrop-blur-xl rounded-2xl border border-orange-500/20 p-4 flex flex-col justify-between"
               >
-                <TypeWriter words={typingWords} />
+                <div className="text-lg sm:text-xl text-orange-500">
+                  <TypeWriter words={typingWords} />
+                </div>
               </FloatingElement>
 
               <FloatingElement
-                delay={1}
+                delay={0}
                 className="absolute bottom-[10%] right-[10%] w-36 sm:w-48 h-28 sm:h-32 bg-gray-800/50 backdrop-blur-xl rounded-2xl border border-orange-500/20 p-4 flex flex-col justify-between"
               >
-                <ExternalLink className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
                 <div className="text-lg sm:text-xl text-orange-500">
                   <TypeWriter words={typingWords} />
                 </div>

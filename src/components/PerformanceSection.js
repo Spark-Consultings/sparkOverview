@@ -15,7 +15,7 @@ const CircularProgress = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setScore(82);
+      setScore(0);
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
@@ -267,7 +267,7 @@ const PerformanceSection = () => {
                   repeat: Infinity
                 }}
               />
-              <span className="text-[#FF7452] font-medium">Performance First</span>
+              <span className="text-[#FF7452] font-medium">La satisfaction avant tout</span>
             </motion.div>
 
             <motion.h2
@@ -275,7 +275,7 @@ const PerformanceSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               className="text-5xl font-bold text-white"
             >
-              Headless = performance
+              Nombre de Projets réalisés
             </motion.h2>
             
             <motion.p
@@ -284,7 +284,7 @@ const PerformanceSection = () => {
               transition={{ delay: 0.1 }}
               className="text-gray-400 text-lg leading-relaxed"
             >
-              Headless separates backend and frontend allowing developers to pick their preferred tech stack. This leads to improved performance and simplified maintenance.
+              Ici on vous presente nos projets realisés basé sur une architecture bien pensée, un design moderne et un code propre evolutif, scalable et maintenable.
             </motion.p>
 
             <motion.a
@@ -295,7 +295,7 @@ const PerformanceSection = () => {
               href="#"
               className="inline-flex items-center gap-2 text-[#FF7452] hover:text-orange-400 font-medium"
             >
-              Learn more about headless
+              Voir tous nos projets realisés
               <ArrowRight size={20} />
             </motion.a>
           </div>
