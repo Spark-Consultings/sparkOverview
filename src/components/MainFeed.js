@@ -7,7 +7,6 @@ import FormLine from "./FormLine";
 import PerformanceSection from "./PerformanceSection";
 import logo from "../assets/logo.png";
 import FuturisticOurTeam from "./FuturisticOurTeam";
-import HeroSection2 from "./NewHero";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, HelpCircle, Shield, FileText } from 'lucide-react';
 
 const orangeIconClass = "w-5 h-5 text-orange-400";
