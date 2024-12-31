@@ -27,11 +27,11 @@ const Card = ({ icon: Icon, title, description, delay }) => (
         className="flex items-center gap-4 mb-4"
         initial={{ x: -20, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: delay + 0.2, duration: 0.5 }}
+        transition={{  duration: 0.2 }}
       >
         <motion.div
           className="p-2 rounded-lg bg-white/10"
-          whileHover={{ rotate: 360, scale: 1.1 }}
+          whileHover={{ rotate: 360, scale: 1.01 }}
           transition={{ duration: 0.5 }}
         >
           <Icon size={24} className="text-[#FF7452]" />
@@ -93,7 +93,7 @@ export const MissionVisionObjectives = () => {
         description="Notre mission est d’allumer l’étincelle qui propulse l’innovation, en traçant une ligne directe entre
 vision et réalisation grâce à des solutions numériques stratégiques et personnalisées qui surpassent
 les attentes."
-        delay={0.2}
+        delay={0}
       />
 
       <Card
@@ -101,7 +101,7 @@ les attentes."
         title="Vision"
         description="Nous aspirons à devenir le partenaire incontournable des entreprises dans leur transformation
 numérique, en les guidant sur un chemin fluide vers un monde connecté, innovant et durable."
-        delay={0.4}
+        delay={0}
       />
 
       <Card
@@ -112,7 +112,7 @@ traçons une route claire vers la réussite en transformant des idées ambitieus
 concrètes. Notre objectif est de connecter nos clients aux opportunités infinies qu’offre la
 technologie, tout en leur permettant de rester compétitifs, efficaces et inspirants dans un monde
 digital en constante évolution."
-        delay={0.6}
+        delay={0}
       />
     </motion.div>
   );
