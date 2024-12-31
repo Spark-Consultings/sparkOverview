@@ -37,7 +37,7 @@ const MainFeed = () => {
                   className="text-2xl w-11/12 font-bold bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text"
                 />
                 <p className="text-gray-400">
-                Spark the Change, Illuminate Success
+                Spark the Change, Illuminate Success !
                 </p>
               </div>
 
