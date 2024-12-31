@@ -15,7 +15,7 @@ const CircularProgress = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setScore(0);
+      setScore(25);
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
