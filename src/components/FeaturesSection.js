@@ -1,18 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  Zap,
-  Shield,
-  Cpu,
-  BarChart3,
-  Cloud,
   Lock,
   Sparkles,
-  Target,
-  Layers,
-  Globe,
-  Monitor,
-  BarChart,
   LayoutDashboard,
   PenTool,
   Film,
@@ -29,7 +19,7 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
     whileHover={{ y: -5, transition: { duration: 0.2 } }}
     className="relative group w-full"
   >
-    <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
+    <div className="absolute inset-0 bg-gradient-to-r h-[85%] from-orange-500/10 to-red-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
     <div className="relative p-4 sm:p-6 lg:p-8 bg-gray-900/50 backdrop-blur-xl rounded-2xl border border-orange-500/20">
       <div className="flex flex-col h-full space-y-4 lg:space-y-6">
         <div className="flex items-center gap-3 lg:gap-4">
