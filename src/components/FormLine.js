@@ -4,7 +4,7 @@ import { Listbox } from '@headlessui/react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { Calendar, Upload, Send, Clock, CheckCircle, ChevronRight, ChevronDown } from 'lucide-react';
+import {  Upload, Clock, CheckCircle, ChevronRight, ChevronDown } from 'lucide-react';
 
 const FormSteps = ({ currentStep }) => (
     <motion.div 
