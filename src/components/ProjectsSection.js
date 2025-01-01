@@ -95,7 +95,7 @@ const ProjectCard = ({ project, index }) => {
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-70"
           />
         </motion.div>
 
@@ -107,11 +107,14 @@ const ProjectCard = ({ project, index }) => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex items-center gap-2 bg-orange-500/20 text-orange-300 px-4 py-2 rounded-full 
-                     w-fit backdrop-blur-sm border border-orange-500/30"
+            className=""
           >
-            <Code2 size={16} />
-            <span className="text-sm font-medium">{project.technologies[0]}</span>
+            <img
+            src={project.logo}
+            alt={project.title}
+            className="w-20 h-20 rounded-full object-cover opacity-70"
+          />
+           
           </motion.div>
 
           <div className="space-y-4">
@@ -148,7 +151,7 @@ const ProjectCard = ({ project, index }) => {
               {project.technologies?.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1.5 rounded-lg bg-gray-800/80 text-orange-300 text-sm font-medium
+                  className="px-3 py-1.5 rounded-lg bg-orange-500 text-white text-sm font-medium
                            border border-orange-500/20 backdrop-blur-sm"
                 >
                   {tech}
@@ -213,34 +216,38 @@ const ProjectsSection = () => {
     {
       title: "Farlu ci diiné Ohio Colombus",
       description: "Une plateforme étant votre source d'information sur la spiritualité et l'histoire Layène.",
-      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735739289/Capture_d_%C3%A9cran_du_2025-01-01_13-47-41_zmwfjs.png",
+      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735754062/techback_ymazyq.jpg",
       liveUrl: "https://www.farlucidineohio.com/",
       technologies: ["React", "Cloudinary", "Drive", "vercel"],
-      category: "web"
+      category: "web",
+      logo: "https://res.cloudinary.com/drxouwbms/image/upload/v1735753581/farlu_teiota_1_mot1qq.png"
     },
     {
       title: "Sentech Academy",
       description: "L’école des métiers d’avenir en Management, développement web, IT et programmation informatique",
-      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735741566/Capture_d_%C3%A9cran_du_2025-01-01_14-23-19_ooomby.png",
+      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735754062/techback_ymazyq.jpg",
       liveUrl: "https://senegal.sentechacademy.com/",
       technologies: ["Wordpress", "PHP"],
-      category: "web"
+      category: "web",
+      logo: "https://res.cloudinary.com/drxouwbms/image/upload/t_crop/v1735752711/sentech_ujdofs.png"
     },
     {
       title: "Madjiguene TMT",
       description: "Entreprise sénégalaise evoluant dans le transport routier, la manutention et le transit",
-      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735742156/Design_sans_titre_yhfdib.png",
+      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735754062/techback_ymazyq.jpg",
       liveUrl: "https://madjiguenelogistic.com/",
-      technologies: ["Wordpress", "PHP"],
-      category: "web"
+      technologies: ["PHP"],
+      category: "web",
+      logo: "https://res.cloudinary.com/drxouwbms/image/upload/v1735753437/madjiguene_r5orlf.png"
     },
     {
       title: "Bayre Host",
       description: "Plateforme d'hébergement de sites web",
-      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735742707/Capture_d_%C3%A9cran_du_2025-01-01_14-44-09_gvdjsr.png",
+      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735754062/techback_ymazyq.jpg",
       liveUrl: "https://bayrehost.com/",
-      technologies: ["Wordpress", "PHP"],
-      category: "web"
+      technologies: ["Wordpress", "PHP", "Js"],
+      category: "web",
+      logo: "https://res.cloudinary.com/drxouwbms/image/upload/v1735753785/bayrehost_i4hkgh.png"
     },
     
     // ... autres projets avec leurs catégories
