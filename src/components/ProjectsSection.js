@@ -251,6 +251,14 @@ const ProjectsSection = () => {
       technologies: ["Wordpress", "PHP"],
       category: "web"
     },
+    {
+      title: "Bayre Host",
+      description: "Plateforme d'hébergement de sites web",
+      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735742707/Capture_d_%C3%A9cran_du_2025-01-01_14-44-09_gvdjsr.png",
+      liveUrl: "https://bayrehost.com/",
+      technologies: ["Wordpress", "PHP"],
+      category: "web"
+    },
     
 
 
