@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Sparkles, Code2, Globe, Lock } from "lucide-react";
+import { Github, Sparkles, Code2, Globe, Lock, Palette } from 'lucide-react';
 
 const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isExpanded] = useState(false);
 
   const cardVariants = {
     hidden: { 
@@ -24,7 +23,7 @@ const ProjectCard = ({ project, index }) => {
       }
     },
     hover: {
-      scale: 1.02,
+      scale: 1.05,
       rotateY: 5,
       transition: { duration: 0.3 }
     }
@@ -65,36 +64,29 @@ const ProjectCard = ({ project, index }) => {
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      {/* Card container with 3D effect */}
       <motion.div 
-        className={`relative h-[450px] md:h-[500px] rounded-2xl overflow-hidden backdrop-blur-lg
+        className="relative h-[500px] rounded-2xl overflow-hidden backdrop-blur-lg
                    transition-all duration-500 transform-gpu preserve-3d
                    bg-gradient-to-br from-gray-900/90 to-gray-800/90
-                   border border-orange-500/20 shadow-xl
-                   ${isExpanded ? "md:col-span-2 md:h-[600px]" : ""}`}
+                   border border-orange-500/20 shadow-xl"
       >
-        {/* Glow effect */}
         <motion.div
           variants={glowVariants}
-          className="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-red-500/20 blur-2xl"
+          className="absolute inset-0 "
         />
 
-        {/* Animated border */}
-        <div className="absolute inset-0 rounded-2xl overflow-hidden">
-          <motion.div
-            animate={{
-              backgroundPosition: ["0% 0%", "100% 100%"],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-            className="absolute inset-0 bg-gradient-to-r "
-          />
-        </div>
+        <motion.div
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-2xl"
+        />
 
-        {/* Background image with parallax */}
         <motion.div
           animate={isHovered ? { scale: 1.1 } : { scale: 1 }}
           transition={{ duration: 0.4 }}
@@ -107,12 +99,10 @@ const ProjectCard = ({ project, index }) => {
           />
         </motion.div>
 
-        {/* Content container */}
         <motion.div
           variants={contentVariants}
           className="relative h-full z-10 p-6 flex flex-col justify-between"
         >
-          {/* Project type badge */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -125,25 +115,21 @@ const ProjectCard = ({ project, index }) => {
           </motion.div>
 
           <div className="space-y-4">
-            {/* Title with animated underline */}
-            <div className="relative">
-              <motion.h3
-                className="text-3xl font-bold text-white mb-2"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                {project.title}
-              </motion.h3>
-              <motion.div
-                className="h-0.5 bg-orange-500/50 rounded-full"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-              />
-            </div>
+            <motion.h3
+              className="text-3xl font-bold text-white mb-2"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              {project.title}
+            </motion.h3>
+            <motion.div
+              className="h-0.5 bg-orange-500/50 rounded-full"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            />
 
-            {/* Description */}
             <motion.p
               className="text-gray-300 line-clamp-3 md:text-lg"
               initial={{ y: 20, opacity: 0 }}
@@ -153,9 +139,8 @@ const ProjectCard = ({ project, index }) => {
               {project.description}
             </motion.p>
 
-            {/* Technologies */}
             <motion.div
-              className="flex flex-wrap gap-1"
+              className="flex flex-wrap gap-2"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -171,7 +156,6 @@ const ProjectCard = ({ project, index }) => {
               ))}
             </motion.div>
 
-            {/* Action buttons */}
             <motion.div
               className="flex flex-wrap gap-3 pt-4"
               initial={{ y: 20, opacity: 0 }}
@@ -259,8 +243,6 @@ const ProjectsSection = () => {
       category: "web"
     },
     
-
-
     // ... autres projets avec leurs catégories
   ];
 
@@ -268,6 +250,7 @@ const ProjectsSection = () => {
     { id: "all", label: "Tous les Projets", icon: Sparkles },
     { id: "web", label: "Applications Web", icon: Globe },
     { id: "mobile", label: "Apps Mobiles", icon: Lock },
+    { id: "uiux", label: "UI/UX Design", icon: Palette },
   ];
 
   const filteredProjects = projects.filter(
@@ -395,3 +378,4 @@ const ProjectsSection = () => {
 };
 
 export default ProjectsSection;
+
