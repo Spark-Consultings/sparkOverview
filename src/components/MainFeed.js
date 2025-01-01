@@ -7,6 +7,7 @@ import FormLine from "./FormLine";
 import PerformanceSection from "./PerformanceSection";
 import logo from "../assets/logo.png";
 import FuturisticOurTeam from "./FuturisticOurTeam";
+import ProjectsSection from "./ProjectsSection";
 import {
   Mail,
   Phone,
@@ -39,6 +40,9 @@ const MainFeed = () => {
         <section id="performance-section">
           <PerformanceSection />
         </section>
+        <section className="pt-12" id="projects-section">
+          <ProjectsSection />
+        </section>
         <section id="company-values-section">
           <CompanyValuesSection />
         </section>
@@ -48,6 +52,8 @@ const MainFeed = () => {
         <section id="contact-section">
           <FormLine />
         </section>
+      
+        
         {/* Footer */}
         <footer className="bg-gray-900 border-t border-gray-800 py-12 px-8">
           <div className="max-w-7xl mx-auto">

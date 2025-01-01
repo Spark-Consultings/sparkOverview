@@ -11,7 +11,7 @@ const NavBar = () => {
   const menuItems = [
     { name: 'Accueil', id: 'hero-section' },
     { name: 'Nos Services', id: 'features-section' },
-    { name: 'Projets', id: 'performance-section' },
+    { name: 'Projets', id: 'projects-section' },
     { name: 'À Propos', id: 'company-values-section' },
     { name: 'Notre Équipe', id: 'team-section' },
     { name: 'Contact', id: 'contact-section' }
