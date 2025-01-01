@@ -22,13 +22,14 @@ import {
 } from "lucide-react";
 import CompanyValuesSection from "./CompanyValuesSection";
 import { GlobalStyles, ScrollToTop } from './scroll-components';
-
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const orangeIconClass = "w-5 h-5 text-orange-400";
 
 const MainFeed = () => {
   return (
     <div className="min-h-screen bg-gray-900">
+      <SpeedInsights/>
       <CustomCursor />
       <GlobalStyles />
       <ScrollToTop />
