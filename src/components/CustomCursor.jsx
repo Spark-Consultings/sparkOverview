@@ -1,157 +1,111 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 
-const EnhancedCursor = () => {
+const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorState, setCursorState] = useState({
-    isPointer: false,
-    isClicking: false,
-    isHidden: false,
-    lastActivity: Date.now()
-  });
+  const [isPointer, setIsPointer] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
+  const [velocity, setVelocity] = useState({ x: 0, y: 0 });
+  const [lastPosition, setLastPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    let rafId;
-    let hideTimeout;
+    let lastTime = performance.now();
 
     const mouseMove = (e) => {
-      rafId = requestAnimationFrame(() => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
+      requestAnimationFrame(() => {
+        const currentTime = performance.now();
+        const deltaTime = currentTime - lastTime;
+        const newPosition = { x: e.clientX, y: e.clientY };
+        
+        // Calculate velocity
+        if (deltaTime > 0) {
+          const newVelocity = {
+            x: (newPosition.x - lastPosition.x) / deltaTime,
+            y: (newPosition.y - lastPosition.y) / deltaTime
+          };
+          setVelocity(newVelocity);
+        }
+
+        setLastPosition(newPosition);
+        setMousePosition(newPosition);
+        lastTime = currentTime;
+
         const hoveredElement = document.elementFromPoint(e.clientX, e.clientY);
-        setCursorState(prev => ({
-          ...prev,
-          isPointer: hoveredElement ? window.getComputedStyle(hoveredElement).cursor === 'pointer' : false,
-          isHidden: false,
-          lastActivity: Date.now()
-        }));
+        setIsPointer(hoveredElement ? window.getComputedStyle(hoveredElement).cursor === 'pointer' : false);
       });
-      
-      // Reset hide timeout
-      clearTimeout(hideTimeout);
-      hideTimeout = setTimeout(() => {
-        setCursorState(prev => ({ ...prev, isHidden: true }));
-      }, 3000);
     };
 
-    const mouseDown = () => {
-      setCursorState(prev => ({ ...prev, isClicking: true }));
-    };
-
-    const mouseUp = () => {
-      setCursorState(prev => ({ ...prev, isClicking: false }));
-    };
-
-    const mouseLeave = () => {
-      setCursorState(prev => ({ ...prev, isHidden: true }));
-    };
-
-    const mouseEnter = () => {
-      setCursorState(prev => ({ ...prev, isHidden: false }));
-    };
+    const handleMouseDown = () => setIsClicking(true);
+    const handleMouseUp = () => setIsClicking(false);
 
     window.addEventListener('mousemove', mouseMove);
-    window.addEventListener('mousedown', mouseDown);
-    window.addEventListener('mouseup', mouseUp);
-    window.addEventListener('mouseleave', mouseLeave);
-    window.addEventListener('mouseenter', mouseEnter);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
 
     return () => {
       window.removeEventListener('mousemove', mouseMove);
-      window.removeEventListener('mousedown', mouseDown);
-      window.removeEventListener('mouseup', mouseUp);
-      window.removeEventListener('mouseleave', mouseLeave);
-      window.removeEventListener('mouseenter', mouseEnter);
-      clearTimeout(hideTimeout);
-      cancelAnimationFrame(rafId);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, []);
+  }, [lastPosition]);
 
-  const cursorVariants = {
-    default: {
-      scale: 1,
-      opacity: cursorState.isHidden ? 0 : 1,
-      transition: { duration: 0.2 }
-    },
-    pointer: {
-      scale: 1.2,
-      opacity: cursorState.isHidden ? 0 : 1,
-      transition: { duration: 0.2 }
-    },
-    clicking: {
-      scale: 0.8,
-      opacity: cursorState.isHidden ? 0 : 1,
-      transition: { duration: 0.1 }
-    }
-  };
-
-  const ringVariants = {
-    default: {
-      scale: 1,
-      opacity: cursorState.isHidden ? 0 : 0.5,
-      transition: { duration: 0.3 }
-    },
-    pointer: {
-      scale: 1.5,
-      opacity: cursorState.isHidden ? 0 : 0.7,
-      transition: { duration: 0.3 }
-    },
-    clicking: {
-      scale: 0.9,
-      opacity: cursorState.isHidden ? 0 : 0.8,
-      transition: { duration: 0.1 }
-    }
+  // Calculate trail effect based on velocity
+  const getTrailStyle = () => {
+    const speed = Math.sqrt(velocity.x ** 2 + velocity.y ** 2);
+    const maxTrailLength = 32;
+    const trailLength = Math.min(speed * 2, maxTrailLength);
+    const angle = Math.atan2(velocity.y, velocity.x);
+    
+    return {
+      width: `${trailLength}px`,
+      transform: `translate(${mousePosition.x - trailLength/2}px, ${mousePosition.y}px) rotate(${angle}rad)`,
+      opacity: Math.min(speed / 10, 0.5)
+    };
   };
 
   return (
     <>
-      {/* Traînée du curseur */}
-      {[...Array(3)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="fixed top-0 left-0 w-4 h-4 rounded-full bg-gradient-to-r from-orange-500/30 to-red-500/30 pointer-events-none z-40 mix-blend-screen"
+      {/* Velocity-based trail effect */}
+      <div
+        className="fixed top-0 left-0 h-0.5 bg-orange-500/30 pointer-events-none z-50 transition-all duration-100"
+        style={getTrailStyle()}
+      />
+
+      {/* Main cursor dot */}
+      <div
+        className={`fixed top-0 left-0 w-4 h-4 rounded-full bg-gradient-to-r from-orange-500 to-red-500 
+          pointer-events-none z-50 transition-all duration-100 ease-out
+          ${isClicking ? 'scale-75' : isPointer ? 'scale-150' : 'scale-100'}
+        `}
+        style={{
+          transform: `translate(${mousePosition.x - 8}px, ${mousePosition.y - 8}px)`,
+          boxShadow: '0 0 10px rgba(249, 115, 22, 0.5)'
+        }}
+      />
+
+      {/* Outer ring with dynamic effects */}
+      <div
+        className={`fixed top-0 left-0 w-8 h-8 rounded-full border border-orange-500/50 
+          pointer-events-none z-50 transition-all duration-150 ease-out
+          ${isClicking ? 'scale-90' : isPointer ? 'scale-150' : 'scale-100'}
+        `}
+        style={{
+          transform: `translate(${mousePosition.x - 16}px, ${mousePosition.y - 16}px)`,
+          boxShadow: isPointer ? '0 0 15px rgba(249, 115, 22, 0.3)' : 'none'
+        }}
+      />
+
+      {/* Interactive pulse effect */}
+      {isPointer && (
+        <div
+          className="fixed top-0 left-0 w-12 h-12 rounded-full border-2 border-orange-500/30 
+            pointer-events-none z-50 animate-ping"
           style={{
-            x: mousePosition.x - 8,
-            y: mousePosition.y - 8,
-          }}
-          transition={{
-            type: "tween",
-            duration: 0.2 + (i * 0.1),
-            ease: "linear"
+            transform: `translate(${mousePosition.x - 24}px, ${mousePosition.y - 24}px)`
           }}
         />
-      ))}
-
-      {/* Curseur principal */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50"
-        style={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8,
-        }}
-        variants={cursorVariants}
-        animate={cursorState.isClicking ? "clicking" : (cursorState.isPointer ? "pointer" : "default")}
-      >
-        <div className="w-4 h-4 rounded-full bg-gradient-to-r from-orange-500 to-red-500">
-          <div className="w-full h-full rounded-full bg-white mix-blend-overlay opacity-50 animate-pulse" />
-        </div>
-      </motion.div>
-
-      {/* Anneau extérieur */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50"
-        style={{
-          x: mousePosition.x - 16,
-          y: mousePosition.y - 16,
-        }}
-        variants={ringVariants}
-        animate={cursorState.isClicking ? "clicking" : (cursorState.isPointer ? "pointer" : "default")}
-      >
-        <div className="w-8 h-8 rounded-full border-2 border-orange-500">
-          <div className="w-full h-full rounded-full border border-red-500 animate-ping opacity-50" />
-        </div>
-      </motion.div>
+      )}
     </>
   );
 };
 
-export default EnhancedCursor;
+export default CustomCursor;
