@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -8,24 +8,21 @@ const CustomCursor = () => {
   const [lastPosition, setLastPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Check if the device is mobile or tablet
     const isMobileOrTablet = () => {
       const ua = navigator.userAgent;
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
     };
 
-    // If it's a mobile or tablet device, don't set up any listeners
     if (isMobileOrTablet()) return;
 
     let lastTime = performance.now();
 
-    const mouseMove = (e: MouseEvent) => {
+    const mouseMove = (e) => {
       requestAnimationFrame(() => {
         const currentTime = performance.now();
         const deltaTime = currentTime - lastTime;
         const newPosition = { x: e.clientX, y: e.clientY };
 
-        // Calculate velocity
         if (deltaTime > 0) {
           const newVelocity = {
             x: (newPosition.x - lastPosition.x) / deltaTime,
@@ -61,13 +58,12 @@ const CustomCursor = () => {
     };
   }, [lastPosition]);
 
-  // If it's a mobile or tablet device, don't render anything
   if (typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     return null;
   }
 
   const getTrailStyle = () => {
-    const speed = Math.sqrt(velocity.x ** 2 + velocity.y ** 2); 
+    const speed = Math.sqrt(velocity.x ** 2 + velocity.y ** 2);
     const maxTrailLength = 32;
     const trailLength = Math.min(speed * 2, maxTrailLength);
     const angle = Math.atan2(velocity.y, velocity.x);
@@ -121,4 +117,3 @@ const CustomCursor = () => {
 };
 
 export default CustomCursor;
-
