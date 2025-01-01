@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Sparkles, Code2, Globe, Lock, Palette } from 'lucide-react';
+import { Github, Sparkles, Code2, Globe, Smartphone, Palette } from 'lucide-react';
 
 const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -249,7 +249,7 @@ const ProjectsSection = () => {
   const categories = [
     { id: "all", label: "Tous les Projets", icon: Sparkles },
     { id: "web", label: "Applications Web", icon: Globe },
-    { id: "mobile", label: "Apps Mobiles", icon: Lock },
+    { id: "mobile", label: "Apps Mobiles", icon: Smartphone },
     { id: "uiux", label: "UI/UX Design", icon: Palette },
   ];
 
