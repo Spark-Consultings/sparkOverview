@@ -156,7 +156,7 @@ const ProjectCard = ({ project, index }) => {
 
             {/* Technologies */}
             <motion.div
-              className="flex flex-wrap gap-2"
+              className="flex flex-wrap gap-1"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
