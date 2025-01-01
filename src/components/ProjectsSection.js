@@ -6,7 +6,7 @@ const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const cardVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       y: 50,
       rotateX: 45
@@ -64,7 +64,7 @@ const ProjectCard = ({ project, index }) => {
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      <motion.div 
+      <motion.div
         className="relative h-[400px] rounded-xl overflow-hidden backdrop-blur-lg
                    transition-all duration-500 transform-gpu preserve-3d
                    bg-gradient-to-br from-gray-900/90 to-gray-800/90
@@ -124,7 +124,7 @@ const ProjectCard = ({ project, index }) => {
             >
               {project.title}
             </motion.h3>
-            
+
             <motion.div
               className="h-0.5 bg-orange-500/50 rounded-full"
               initial={{ scaleX: 0 }}
@@ -248,16 +248,6 @@ const ProjectsSection = () => {
       category: "web",
       logo: "https://res.cloudinary.com/drxouwbms/image/upload/v1735753785/bayrehost_i4hkgh.png"
     },
-    {
-      title: "Bayre Host",
-      description: "Plateforme d'hébergement de sites web",
-      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735754062/techback_ymazyq.jpg",
-      liveUrl: "https://bayrehost.com/",
-      technologies: ["Wordpress", "PHP", "Js"],
-      category: "web",
-      logo: "https://res.cloudinary.com/drxouwbms/image/upload/v1735753785/bayrehost_i4hkgh.png"
-    },
-
   ];
 
   const categories = [
@@ -368,20 +358,22 @@ const ProjectsSection = () => {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-6"
-        >
-          <AnimatePresence mode="wait">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.title}
-                project={project}
-                index={index}
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 justify-items-center"
+          >
+            <AnimatePresence mode="wait">
+              {filteredProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  index={index}
+                />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
