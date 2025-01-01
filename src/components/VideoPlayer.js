@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from 'lucide-react';
+import { X } from "lucide-react";
 import React from "react";
 
 const VideoPlayer = ({ onClose }) => {
@@ -33,8 +33,8 @@ const VideoPlayer = ({ onClose }) => {
             className="w-full h-full"
           >
             <iframe
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Remplacez par l'URL de votre vidéo de présentation
-              title="Présentation de notre startup"
+              src="https://www.youtube.com/embed/5re_0cAeu90" // Lien d'intégration correct
+              title="Présentation de Sparkline"
               className="w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -47,4 +47,3 @@ const VideoPlayer = ({ onClose }) => {
 };
 
 export default VideoPlayer;
-
