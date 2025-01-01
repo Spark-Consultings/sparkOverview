@@ -103,7 +103,7 @@ const NavBar = () => {
               className="flex items-center space-x-2 cursor-pointer"
               onClick={() => handleMobileNavClick('hero-section')}
             >
-              <img className="w-32 lg:w-40 font-bold text-white" src={logo} alt='Logo Spakline' />
+              <img className="w-32 lg:w-40 font-bold text-white" src={logo} alt='Sparkline' />
             </motion.div>
 
             <div className="hidden lg:flex items-center space-x-8">

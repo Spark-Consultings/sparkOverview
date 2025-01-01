@@ -185,7 +185,7 @@ const HeroSection = () => {
                   className="px-3 sm:px-4 py-1 bg-orange-500/10 rounded-full border border-orange-500/20 text-orange-400 text-xs sm:text-sm flex items-center gap-2"
                 >
                   <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-                  Soyez positivement surpris
+                  Soyez positivement surpris. Sparkline !
                 </motion.div>
               </div>
               <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
