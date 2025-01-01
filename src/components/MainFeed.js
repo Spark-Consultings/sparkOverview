@@ -20,6 +20,8 @@ import {
   FileText,
 } from "lucide-react";
 import CompanyValuesSection from "./CompanyValuesSection";
+import { GlobalStyles, ScrollToTop } from './scroll-components';
+
 
 const orangeIconClass = "w-5 h-5 text-orange-400";
 
@@ -27,6 +29,8 @@ const MainFeed = () => {
   return (
     <div className="min-h-screen bg-gray-900">
       <CustomCursor />
+      <GlobalStyles />
+      <ScrollToTop />
       <Navbar />
       {/* Main Content ! */}
       <main className="flex flex-col">
