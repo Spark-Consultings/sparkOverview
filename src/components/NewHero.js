@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Rocket, Globe, Cpu, Sparkles, Bot, Eye, Target, Flag } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Eye, Target, Flag } from 'lucide-react';
 import React, { useState, useEffect, useCallback } from 'react';
 
 const slides = [
