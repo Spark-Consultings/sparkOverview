@@ -6,32 +6,20 @@ const CustomCursor = () => {
   const [isClicking, setIsClicking] = useState(false);
   const [velocity, setVelocity] = useState({ x: 0, y: 0 });
   const [lastPosition, setLastPosition] = useState({ x: 0, y: 0 });
-  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
   useEffect(() => {
-    // Detect if the user is on a mobile or tablet device
-    const updateIsMobileOrTablet = () => {
-      const isTouchDevice =
-        'ontouchstart' in window ||
-        navigator.maxTouchPoints > 0 ||
-        navigator.msMaxTouchPoints > 0;
-      setIsMobileOrTablet(window.innerWidth < 1024 && isTouchDevice);
+    // Check if the device is mobile or tablet
+    const isMobileOrTablet = () => {
+      const ua = navigator.userAgent;
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
     };
 
-    updateIsMobileOrTablet();
-    window.addEventListener('resize', updateIsMobileOrTablet);
-
-    return () => {
-      window.removeEventListener('resize', updateIsMobileOrTablet);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isMobileOrTablet) return; // Disable cursor functionality on mobile and tablet devices
+    // If it's a mobile or tablet device, don't set up any listeners
+    if (isMobileOrTablet()) return;
 
     let lastTime = performance.now();
 
-    const mouseMove = (e) => {
+    const mouseMove = (e: MouseEvent) => {
       requestAnimationFrame(() => {
         const currentTime = performance.now();
         const deltaTime = currentTime - lastTime;
@@ -71,7 +59,12 @@ const CustomCursor = () => {
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [lastPosition, isMobileOrTablet]);
+  }, [lastPosition]);
+
+  // If it's a mobile or tablet device, don't render anything
+  if (typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    return null;
+  }
 
   const getTrailStyle = () => {
     const speed = Math.sqrt(velocity.x ** 2 + velocity.y ** 2);
@@ -85,11 +78,6 @@ const CustomCursor = () => {
       opacity: Math.min(speed / 10, 0.5),
     };
   };
-
-  // Do not render the cursor on mobile or tablet devices
-  if (isMobileOrTablet) {
-    return null;
-  }
 
   return (
     <>
@@ -133,3 +121,4 @@ const CustomCursor = () => {
 };
 
 export default CustomCursor;
+
