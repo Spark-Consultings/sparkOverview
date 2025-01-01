@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, ChevronRight, Play} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sparkles, ChevronRight, Play } from 'lucide-react';
 import VideoPlayer from "./VideoPlayer";
 
 const TypeWriter = ({ words }) => {
@@ -120,7 +120,7 @@ const ParticleEffect = () => {
   );
 };
 
-const HeroSection = () => {
+const ModernHeroSection = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const typingWords = [
     "Evolution digitale",
@@ -227,8 +227,7 @@ const HeroSection = () => {
               className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8 sm:mb-12"
             >
               <GradientButton primary>
-                Découvrir{" "}
-                <ChevronRight className="w-5 h-5" />
+                Découvrir <ChevronRight className="w-5 h-5" />
               </GradientButton>
               <GradientButton onClick={() => setIsVideoOpen(true)}>
                 <Play className="w-5 h-5 text-orange-500" />
@@ -306,6 +305,7 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+      
       <AnimatePresence>
         {isVideoOpen && <VideoPlayer onClose={() => setIsVideoOpen(false)} />}
       </AnimatePresence>
@@ -313,5 +313,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
-
+export default ModernHeroSection;

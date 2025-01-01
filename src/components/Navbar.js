@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Facebook, Linkedin, Instagram } from 'lucide-react';
 import logo from "../assets/logo.png";
 
 const NavBar = () => {
@@ -15,6 +15,12 @@ const NavBar = () => {
     { name: 'À Propos', id: 'company-values-section' },
     { name: 'Notre Équipe', id: 'team-section' },
     { name: 'Contact', id: 'contact-section' }
+  ];
+
+  const socialLinks = [
+    { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61571405220386", label: "Facebook" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/sparkline-/", label: "LinkedIn" },
+    { icon: Instagram, href: "https://instagram.com/SPARKLINE", label: "Instagram" },
   ];
 
   useEffect(() => {
@@ -127,6 +133,33 @@ const NavBar = () => {
                   </motion.button>
                 </div>
               ))}
+
+              {/* Social Icons */}
+              <div className="flex items-center gap-4 ml-6 border-l border-gray-700 pl-6">
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                      whileTap={{ scale: 0.9 }}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ 
+                        opacity: 1, 
+                        y: 0,
+                        transition: { delay: index * 0.1 } 
+                      }}
+                      className="text-gray-400 hover:text-orange-500 transition-colors"
+                      aria-label={social.label}
+                    >
+                      <Icon size={20} />
+                    </motion.a>
+                  );
+                })}
+              </div>
             </div>
 
             <motion.button
@@ -151,7 +184,7 @@ const NavBar = () => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="fixed inset-x-0 top-[72px] bg-gray-900/95 backdrop-blur-lg z-40 lg:hidden overflow-hidden"
           >
-            <div className="p-4 space-y-2">
+            <div className="p-4 space-y-8">
               {menuItems.map((item) => (
                 <motion.button
                   key={item.name}
@@ -166,6 +199,33 @@ const NavBar = () => {
                   {item.name}
                 </motion.button>
               ))}
+              
+              {/* Social Icons for Mobile */}
+              <div className="flex justify-center gap-8 pt-4 border-t border-gray-700 mt-4">
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                      whileTap={{ scale: 0.9 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ 
+                        opacity: 1, 
+                        y: 0,
+                        transition: { delay: 0.3 + index * 0.1 } 
+                      }}
+                      className="text-gray-400 hover:text-orange-500 transition-colors p-2"
+                      aria-label={social.label}
+                    >
+                      <Icon size={24} />
+                    </motion.a>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
         )}
