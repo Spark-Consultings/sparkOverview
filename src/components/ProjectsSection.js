@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, ExternalLink, Sparkles, Code2, Globe, Lock } from "lucide-react";
+import { Github, Sparkles, Code2, Globe, Lock } from "lucide-react";
 
 const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded] = useState(false);
 
   const cardVariants = {
     hidden: { 
@@ -64,7 +64,6 @@ const ProjectCard = ({ project, index }) => {
       className="group relative perspective-1000"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      onClick={() => setIsExpanded(!isExpanded)}
     >
       {/* Card container with 3D effect */}
       <motion.div 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, ChevronRight, Play, ExternalLink } from 'lucide-react';
+import { Sparkles, ChevronRight, Play} from 'lucide-react';
 import VideoPlayer from "./VideoPlayer";
 
 const TypeWriter = ({ words }) => {
