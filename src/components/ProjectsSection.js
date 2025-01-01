@@ -91,8 +91,7 @@ const ProjectCard = ({ project, index }) => {
               repeat: Infinity,
               repeatType: "reverse",
             }}
-            className="absolute inset-0 bg-gradient-to-r from-orange-500/20 via-red-500/20 to-orange-500/20 
-                     bg-[length:200%_200%] opacity-50"
+            className="absolute inset-0 bg-gradient-to-r "
           />
         </div>
 
@@ -229,32 +228,15 @@ const ProjectsSection = () => {
 
   const projects = [
     {
-      title: "E-commerce Platform",
-      description: "Une plateforme de commerce électronique moderne avec panier d'achat, paiement sécurisé et gestion des commandes.",
-      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1734187991/master_zihlvw.avif",
+      title: "Farlu ci diiné Ohio Colombus",
+      description: "Une plateforme étant votre source d'information sur la spiritualité et l'histoire Layène.",
+      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735739289/Capture_d_%C3%A9cran_du_2025-01-01_13-47-41_zmwfjs.png",
       githubUrl: "https://github.com/example/project1",
-      liveUrl: "https://project1.example.com",
-      technologies: ["React", "Node.js", "MongoDB"],
+      liveUrl: "https://www.farlucidineohio.com/",
+      technologies: ["React", "Cloudinary", "Drive", "vercel"],
       category: "web"
     },
-    {
-      title: "Application Mobile",
-      description: "Une application mobile de gestion de stocks pour une entreprise de vente en ligne.",
-      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1734175022/future_mztxr8.avif",
-      githubUrl: "https://github.com/example/project2",
-      liveUrl: "https://project2.example.com",
-      technologies: ["React Native", "Expo", "Firebase"],
-      category: "mobile"
-    },
-    {
-      title: "Application Web",
-      description: "Une application web de gestion de stocks pour une entreprise de vente en ligne.",
-      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1734184184/Lovepik_com-450074056-Futuristic_vnmo4p.jpg",
-      githubUrl: "https://github.com/example/project3",
-      liveUrl: "https://project3.example.com",
-      technologies: ["React", "Node.js", "MongoDB"],
-      category: "web"
-    },
+    
 
 
     // ... autres projets avec leurs catégories

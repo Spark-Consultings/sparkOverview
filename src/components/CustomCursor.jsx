@@ -67,7 +67,7 @@ const CustomCursor = () => {
   }
 
   const getTrailStyle = () => {
-    const speed = Math.sqrt(velocity.x ** 2 + velocity.y ** 2);
+    const speed = Math.sqrt(velocity.x ** 2 + velocity.y ** 2); 
     const maxTrailLength = 32;
     const trailLength = Math.min(speed * 2, maxTrailLength);
     const angle = Math.atan2(velocity.y, velocity.x);
