@@ -231,9 +231,24 @@ const ProjectsSection = () => {
       title: "Farlu ci diiné Ohio Colombus",
       description: "Une plateforme étant votre source d'information sur la spiritualité et l'histoire Layène.",
       image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735739289/Capture_d_%C3%A9cran_du_2025-01-01_13-47-41_zmwfjs.png",
-      githubUrl: "https://github.com/example/project1",
       liveUrl: "https://www.farlucidineohio.com/",
       technologies: ["React", "Cloudinary", "Drive", "vercel"],
+      category: "web"
+    },
+    {
+      title: "Sentech Academy",
+      description: "L’école des métiers d’avenir en Management, développement web, IT et programmation informatique",
+      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735741566/Capture_d_%C3%A9cran_du_2025-01-01_14-23-19_ooomby.png",
+      liveUrl: "https://senegal.sentechacademy.com/",
+      technologies: ["Wordpress", "PHP"],
+      category: "web"
+    },
+    {
+      title: "Madjiguene TMT",
+      description: "Entreprise sénégalaise evoluant dans le transport routier, la manutention et le transit",
+      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735742156/Design_sans_titre_yhfdib.png",
+      liveUrl: "https://madjiguenelogistic.com/",
+      technologies: ["Wordpress", "PHP"],
       category: "web"
     },
     
