@@ -20,7 +20,7 @@ const NavBar = () => {
   const socialLinks = [
     { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61571405220386", label: "Facebook" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/sparkline-/", label: "LinkedIn" },
-    { icon: Instagram, href: "https://instagram.com/SPARKLINE", label: "Instagram" },
+    { icon: Instagram, href: "https://www.instagram.com/sparkline221/", label: "Instagram" },
   ];
 
   useEffect(() => {
