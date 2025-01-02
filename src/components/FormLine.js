@@ -681,7 +681,7 @@ const FormLine = () => {
               >
                 <CheckCircle className="w-20 h-20 mx-auto mb-6" />
                 <h3 className="text-3xl font-bold mb-4">Demande envoyée avec succès!</h3>
-                <p className="text-xl">Nous vous contacterons bientôt pour confirmer votre rendez-vous.</p>
+                <p className="text-xl">Nous vous contacterons bientôt pour confirmer votre rendez-vous !</p>
               </motion.div>
             </motion.div>
           )}
