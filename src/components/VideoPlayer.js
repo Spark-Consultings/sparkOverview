@@ -33,7 +33,7 @@ const VideoPlayer = ({ onClose }) => {
             className="w-full h-full"
           >
             <iframe
-              src="https://youtu.be/5re_0cAeu90?si=l7GnwJDDZ7LKOSoS" 
+              src="https://www.youtube.com/embed/5re_0cAeu90" 
               title="Présentation de Sparkline"
               className="w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
