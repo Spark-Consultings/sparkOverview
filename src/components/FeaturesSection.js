@@ -26,12 +26,14 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
           <div className="p-2 lg:p-3 rounded-xl bg-gradient-to-r from-orange-500 to-red-500">
             <Icon size={20} className="text-white" />
           </div>
-          <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white">{title}</h3>
+          <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white">
+            {title}
+          </h3>
         </div>
-        <p className="text-sm sm:text-base text-gray-300 leading-relaxed">{description}</p>
-        <div 
-          className="h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full w-12 group-hover:w-full transition-all duration-300"
-        />
+        <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+          {description}
+        </p>
+        <div className="h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full w-12 group-hover:w-full transition-all duration-300" />
       </div>
     </div>
   </motion.div>
@@ -102,7 +104,8 @@ const FeaturesSection = () => {
             className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white"
           >
             Nos{" "}
-            <span className="text-orange-500 relative inline-block 
+            <span
+              className="text-orange-500 relative inline-block 
                 after:content-[''] after:absolute after:-bottom-1 after:left-0 
                 after:w-full after:h-1 after:bg-orange-500 after:rounded-full 
                 after:origin-left after:scale-x-0 hover:after:scale-x-100 
@@ -119,8 +122,8 @@ const FeaturesSection = () => {
             transition={{ delay: 0.3 }}
             className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto"
           >
-            SPARKLINE propose une gamme complète de services innovants pour répondre aux besoins
-            numériques de ses clients.
+            SPARKLINE propose une gamme complète de services innovants pour
+            répondre aux besoins numériques de ses clients.
           </motion.p>
         </div>
 
@@ -146,6 +149,11 @@ const FeaturesSection = () => {
           className="mt-12 sm:mt-16 lg:mt-20 text-center"
         >
           <motion.button
+            onClick={() => {
+              document
+                .getElementById("contact-section")
+                .scrollIntoView({ behavior: "smooth" });
+            }}
             whileHover={{
               scale: 1.02,
               boxShadow: "0 0 20px rgba(249, 115, 22, 0.4)",
