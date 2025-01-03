@@ -6,28 +6,28 @@ const teamMembers = [
     role: 'Développeur Fullstack | UI/UX Designer',
     image: 'https://res.cloudinary.com/drxouwbms/image/upload/v1732391040/h3gxu5c7wsfkmwbbkfiq.png',
     skills: ['React', 'Figma', 'TailwindCSS', 'TypeScript'],
-    description: 'Créatif passionné par l\'expérience utilisateur'
+    description: ''
   },
   {
     name: 'Fanta Ndao Tine',
     role: 'CEO | Développeur Fullstack | CMS',
     image: 'https://res.cloudinary.com/drxouwbms/image/upload/v1734391711/fanta-removebg-preview_eamyrs.png',
     skills: ['WordPress', 'PHP', 'MySQL', 'Angular'],
-    description: 'Experte en architecture logicielle et gestion d\'équipe'
+    description: ''
   },
   {
     name: 'Serigne Fallou Seck',
     role: 'Développeur Fullstack | DevOps Engineer',
     image: 'https://res.cloudinary.com/drxouwbms/image/upload/v1734391519/fallou-removebg-preview_rckbfz.png',
     skills: ['PHP', 'Java', 'ELK-Stack', 'ExpressJs'],
-    description: 'Pionnier du développement full-stack et DevOps'
+    description: ''
   },
   {
     name: 'Seydina Mouhammad Diop',
     role: 'Développeur Fullstack | UI/UX Designer',
     image: 'https://res.cloudinary.com/drxouwbms/image/upload/v1734391710/seydina-removebg-preview_btrgp6.png',
     skills: ['ReactJs', 'NuxtJs', 'ExpressJs', 'NuxtJs', 'Figma'],
-    description: 'Créative passionnée par l\'expérience utilisateur'
+    description: ''
   }
 ];
 
