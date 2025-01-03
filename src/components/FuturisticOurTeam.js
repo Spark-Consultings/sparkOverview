@@ -26,7 +26,7 @@ const teamMembers = [
     name: 'Seydina Mouhammad Diop',
     role: 'Développeur Fullstack | UI/UX Designer',
     image: 'https://res.cloudinary.com/drxouwbms/image/upload/v1734391710/seydina-removebg-preview_btrgp6.png',
-    skills: ['ReactJs', 'NuxtJs', 'ExpressJs'],
+    skills: ['ReactJs', 'NuxtJs', 'ExpressJs', 'NuxtJs', 'Figma'],
     description: 'Créative passionnée par l\'expérience utilisateur'
   }
 ];
