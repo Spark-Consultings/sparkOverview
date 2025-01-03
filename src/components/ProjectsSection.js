@@ -248,6 +248,16 @@ const ProjectsSection = () => {
       category: "web",
       logo: "https://res.cloudinary.com/drxouwbms/image/upload/v1735753785/bayrehost_i4hkgh.png"
     },
+    {
+      title: "Bayre Host",
+      description: "Plateforme d'hébergement de sites web",
+      image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735754062/techback_ymazyq.jpg",
+      liveUrl: "https://bayrehost.com/",
+      technologies: ["Wordpress", "PHP", "Js"],
+      category: "web",
+      logo: "https://res.cloudinary.com/drxouwbms/image/upload/v1735753785/bayrehost_i4hkgh.png"
+    },
+    
   ];
 
   const categories = [

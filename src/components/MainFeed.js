@@ -28,14 +28,14 @@ const orangeIconClass = "w-5 h-5 text-orange-400";
 
 const MainFeed = () => {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen  bg-gray-900">
       <SpeedInsights/>
       <CustomCursor />
       <GlobalStyles />
       <ScrollToTop />
       <Navbar />
       {/* Main Content ! */}
-      <main className="flex flex-col">
+      <main className="flex flex-col ">
         <section id="hero-section">
           <HeroSection />
         </section>

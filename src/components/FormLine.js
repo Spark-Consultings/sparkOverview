@@ -44,7 +44,7 @@ const FormSteps = ({ currentStep }) => (
             initial={{ scaleX: 0 }}
             animate={{ scaleX: currentStep > step ? 1 : 0 }}
             transition={{ duration: 0.5 }}
-            className={`w-28 h-0.5 mx-3 rounded-full 
+            className={`w-10 h-0.5 mx-3 rounded-full 
               ${currentStep > step
                 ? 'bg-gradient-to-r from-orange-400 to-red-500'
                 : 'bg-gray-700'}`}
@@ -318,7 +318,7 @@ const FormLine = () => {
 
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-12 sm:py-20 px-4 flex items-center justify-center"
+      className="min-h-screen w-full overflow-hidden overflow-x-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-6 sm:py-12 md:py-20 px-2 sm:px-4 flex items-center justify-center"
       initial={{ opacity: 0, y: 50 }}
       animate={controls}
     >
@@ -326,24 +326,24 @@ const FormLine = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-xl sm:max-w-2xl md:max-w-4xl lg:max-w-6xl"
+        className="w-full max-w-lg sm:max-w-xl md:max-w-3xl lg:max-w-5xl overflow-hidden"
       >
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-16">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="relative"
+            className="relative px-4"
           >
             <div className="absolute -inset-1 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000" />
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-8">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-8">
               Partagez Votre{" "}
               <span className="relative">
                 <span className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
                   Vision
                 </span>
                 <motion.span
-                  className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-500 rounded-full"
+                  className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-500 rounded-full"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
@@ -351,25 +351,25 @@ const FormLine = () => {
               </span>
               {" "}Avec Nous
             </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto text-xl leading-relaxed">
+            <p className="text-gray-300 max-w-xs sm:max-w-lg md:max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed">
               Transformez vos idées en réalité. Prenez rendez-vous avec nos experts
               pour donner vie à votre vision innovante.
             </p>
           </motion.div>
         </div>
-
+  
         <FormSteps currentStep={currentStep} />
-
+  
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="relative bg-gray-800/40 backdrop-blur-xl rounded-3xl border border-orange-500/10 p-6 sm:p-8 md:p-12 overflow-hidden shadow-2xl"
+          className="relative bg-gray-800/40 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-orange-500/10 p-4 sm:p-6 md:p-8 lg:p-12 overflow-hidden shadow-2xl mx-2 sm:mx-0"
           whileHover={{ y: -5 }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 pointer-events-none" />
-
-          <form onSubmit={handleSubmit} className="relative space-y-8">
+  
+          <form onSubmit={handleSubmit} className="relative space-y-6 sm:space-y-8">
             <AnimatePresence mode="wait">
               {currentStep === 1 && (
                 <motion.div
@@ -378,7 +378,7 @@ const FormLine = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 50 }}
                   transition={{ duration: 0.3 }}
-                  className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8"
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8"
                 >
                   {renderInput('firstName', 'Prénom', 'text', 'Votre prénom')}
                   {renderInput('lastName', 'Nom', 'text', 'Votre nom')}
@@ -386,7 +386,7 @@ const FormLine = () => {
                   {renderInput('email', 'Email', 'email', 'votre@email.com')}
                 </motion.div>
               )}
-
+  
               {currentStep === 2 && (
                 <motion.div
                   key="step2"
@@ -394,9 +394,9 @@ const FormLine = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 50 }}
                   transition={{ duration: 0.3 }}
-                  className="grid grid-cols-1 gap-4 sm:gap-6 md:gap-8"
+                  className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6 lg:gap-8"
                 >
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     <label className="block text-white text-sm font-medium">
                       Type de Projet
                     </label>
@@ -405,21 +405,21 @@ const FormLine = () => {
                       onChange={(value) => setFormData(prev => ({ ...prev, projectType: value }))}
                     >
                       <div className="relative">
-                        <Listbox.Button className="w-full px-4 py-3 bg-gray-700/50 border border-orange-500/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500 text-left flex justify-between items-center">
-                          <span>
+                        <Listbox.Button className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-700/50 border border-orange-500/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500 text-left flex justify-between items-center text-sm sm:text-base">
+                          <span className="truncate">
                             {formData.projectType
                               ? projectTypes.find(type => type.value === formData.projectType)?.label
                               : "Sélectionnez un type"}
                           </span>
-                          <ChevronDown className="w-5 h-5" />
+                          <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                         </Listbox.Button>
-                        <Listbox.Options className="absolute w-full mt-1 bg-gray-800 border border-orange-500/20 rounded-lg py-1 text-white z-10 max-h-60 overflow-auto">
+                        <Listbox.Options className="absolute w-full mt-1 bg-gray-800 border border-orange-500/20 rounded-lg py-1 text-white z-10 max-h-48 sm:max-h-60 overflow-auto text-sm sm:text-base">
                           {projectTypes.map((type) => (
                             <Listbox.Option
                               key={type.value}
                               value={type.value}
                               className={({ active }) =>
-                                `${active ? 'bg-orange-500/20' : ''} cursor-pointer px-4 py-2 transition-colors duration-150`
+                                `${active ? 'bg-orange-500/20' : ''} cursor-pointer px-3 sm:px-4 py-2 transition-colors duration-150 truncate`
                               }
                             >
                               {type.label}
@@ -428,12 +428,9 @@ const FormLine = () => {
                         </Listbox.Options>
                       </div>
                     </Listbox>
-                    {errors.projectType && (
-                      <p className="text-red-500 text-sm">{errors.projectType}</p>
-                    )}
                   </div>
-
-                  <div className="space-y-4">
+  
+                  <div className="space-y-3 sm:space-y-4">
                     <label htmlFor="projectFile" className="block text-white text-sm font-medium">
                       Document du Projet (PDF, max {Math.floor(MAX_FILE_SIZE / 1024)}KB)
                     </label>
@@ -448,37 +445,26 @@ const FormLine = () => {
                       <motion.button
                         type="button"
                         onClick={() => document.getElementById('projectFile').click()}
-                        className={`w-full px-4 py-3 bg-gray-700/50 border ${
-                          fileError ? 'border-red-500' : 'border-orange-500/20'
-                        } rounded-lg text-white hover:bg-gray-600/50 focus:outline-none focus:ring-2 focus:ring-orange-500 flex items-center justify-center transition-all duration-300`}
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-700/50 border border-orange-500/20 rounded-lg text-white hover:bg-gray-600/50 focus:outline-none focus:ring-2 focus:ring-orange-500 flex items-center justify-center text-sm sm:text-base transition-all duration-300"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <Upload className="w-5 h-5 mr-2" />
-                        {formData.projectFile ? formData.projectFile.name : "Sélectionner un fichier"}
+                        <Upload className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                        <span className="truncate">
+                          {formData.projectFile ? formData.projectFile.name : "Sélectionner un fichier"}
+                        </span>
                       </motion.button>
-                      {fileError && (
-                        <motion.p
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="text-red-500 text-sm mt-2"
-                        >
-                          {fileError}
-                        </motion.p>
-                      )}
                     </div>
                   </div>
-
-                  <div className="space-y-4">
+  
+                  <div className="space-y-3 sm:space-y-4">
                     <label htmlFor="description" className="block text-white text-sm font-medium">
                       Description du Projet
                     </label>
                     <motion.textarea
                       id="description"
                       placeholder="Décrivez votre vision du projet..."
-                      className={`w-full px-4 py-3 bg-gray-700/50 border ${
-                        errors.description ? 'border-red-500' : 'border-orange-500/20'
-                      } rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500 min-h-32 transition-all duration-300`}
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-700/50 border border-orange-500/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500 min-h-32 text-sm sm:text-base transition-all duration-300 resize-y"
                       value={formData.description}
                       onChange={(e) => {
                         setFormData(prev => ({ ...prev, description: e.target.value }));
@@ -486,15 +472,11 @@ const FormLine = () => {
                         setErrors(prev => ({ ...prev, description: error }));
                       }}
                       required
-                      whileFocus={{ scale: 1.02 }}
                     />
-                    {errors.description && (
-                      <p className="text-red-500 text-sm">{errors.description}</p>
-                    )}
                   </div>
                 </motion.div>
               )}
-
+  
               {currentStep === 3 && (
                 <motion.div
                   key="step3"
@@ -502,33 +484,28 @@ const FormLine = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 50 }}
                   transition={{ duration: 0.3 }}
-                  className="space-y-8"
+                  className="space-y-6 sm:space-y-8"
                 >
                   <div className="text-white text-center">
-                    <h3 className="text-2xl font-bold mb-2">Prendre Rendez-vous</h3>
-                    <p className="text-gray-300">Choisissez une date et un horaire pour votre consultation</p>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2">Prendre Rendez-vous</h3>
+                    <p className="text-gray-300 text-sm sm:text-base">Choisissez une date et un horaire pour votre consultation</p>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
-                    <div className="space-y-4">
-                      <label className="block text-white text-sm font-medium mb-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+                    <div className="space-y-3 sm:space-y-4">
+                      <label className="block text-white text-sm font-medium">
                         Date
                       </label>
                       <DatePicker
                         selected={date}
                         onChange={(date) => setDate(date)}
                         minDate={new Date()}
-                        className={`w-full px-4 py-3 bg-gray-700/50 border ${
-                          errors.date ? 'border-red-500' : 'border-orange-500/20'
-                        } rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300`}
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-700/50 border border-orange-500/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm sm:text-base transition-all duration-300"
                         dateFormat="dd/MM/yyyy"
                         placeholderText="Sélectionnez une date"
                       />
-                      {errors.date && (
-                        <p className="text-red-500 text-sm">{errors.date}</p>
-                      )}
                     </div>
-                    <div className="space-y-4">
-                      <label className="block text-white text-sm font-medium mb-2">
+                    <div className="space-y-3 sm:space-y-4">
+                      <label className="block text-white text-sm font-medium">
                         Horaire Disponible
                       </label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -536,7 +513,7 @@ const FormLine = () => {
                           <motion.button
                             key={time}
                             type="button"
-                            className={`px-4 py-3 rounded-lg ${
+                            className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base ${
                               selectedTime === time
                                 ? 'bg-orange-500 text-white'
                                 : 'bg-gray-700/50 border border-orange-500/20 text-white hover:bg-gray-600/50'
@@ -549,21 +526,18 @@ const FormLine = () => {
                           </motion.button>
                         ))}
                       </div>
-                      {errors.time && (
-                        <p className="text-red-500 text-sm">{errors.time}</p>
-                      )}
                     </div>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
-
-            <div className="flex flex-col sm:flex-row justify-between items-center mt-8 space-y-4 sm:space-y-0 sm:space-x-4">
+  
+            <div className="flex flex-col sm:flex-row justify-between items-center mt-6 sm:mt-8 space-y-3 sm:space-y-0 sm:space-x-4">
               {currentStep > 1 && (
                 <motion.button
                   type="button"
                   onClick={prevStep}
-                  className="w-full sm:w-auto px-8 py-4 bg-gray-700/50 border border-orange-500/20 rounded-xl text-white hover:bg-gray-600/50 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300 flex items-center justify-center"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gray-700/50 border border-orange-500/20 rounded-xl text-white text-sm sm:text-base hover:bg-gray-600/50 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300 flex items-center justify-center"
                   whileHover={{ scale: 1.02, x: -5 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -575,7 +549,7 @@ const FormLine = () => {
               )}
               <motion.button
                 type="submit"
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300 flex items-center justify-center"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm sm:text-base rounded-xl hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300 flex items-center justify-center"
                 whileHover={{ scale: 1.02, x: 5 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -586,7 +560,7 @@ const FormLine = () => {
                   </span>
                 ) : (
                   <span className="relative inline-flex items-center">
-                    <Clock className="w-5 h-5 mr-2" />
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Prendre Rendez-vous
                   </span>
                 )}
@@ -594,101 +568,103 @@ const FormLine = () => {
             </div>
           </form>
         </motion.div>
-
+  
         <Dialog
           open={isRecapOpen}
           onClose={() => setIsRecapOpen(false)}
           className="relative z-50"
         >
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" aria-hidden="true" />
-
+  
           <div className="fixed inset-0 flex items-center justify-center p-4">
-            <Dialog.Panel className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl bg-gray-800 rounded-2xl p-6 sm:p-8 shadow-2xl">
-              <Dialog.Title className="text-2xl font-bold text-white mb-4">
-                Récapitulatif de votre demande
-              </Dialog.Title>
+            <Dialog.Panel className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl bg-gray-800 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl overflow-y-auto mx-2">
+            <Dialog.Title className="text-xl sm:text-2xl font-bold text-white mb-4">
+              Récapitulatif de votre demande
+            </Dialog.Title>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-white mb-6">
-                <div>
-                  <p className="font-semibold text-orange-400">Nom complet:</p>
-                  <p>{formData.firstName} {formData.lastName}</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-orange-400">Téléphone:</p>
-                  <p>{formData.phone}</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-orange-400">Email:</p>
-                  <p>{formData.email}</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-orange-400">Type de projet:</p>
-                  <p>{projectTypes.find(type => type.value === formData.projectType)?.label}</p>
-                </div>
-                <div className="col-span-1 sm:col-span-2">
-                  <p className="font-semibold text-orange-400">Description:</p>
-                  <p className="text-sm">{formData.description}</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-orange-400">Date:</p>
-                  <p>{date?.toLocaleDateString()}</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-orange-400">Heure:</p>
-                  <p>{selectedTime}</p>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-white mb-6">
+              <div>
+                <p className="font-semibold text-orange-400">Nom complet:</p>
+                <p className="text-sm sm:text-base truncate">{formData.firstName} {formData.lastName}</p>
               </div>
-
-              <div className="flex flex-col sm:flex-row justify-end gap-4">
-                <motion.button
-                  type="button"
-                  onClick={() => setIsRecapOpen(false)}
-                  className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Modifier
-                </motion.button>
-                <motion.button
-                  type="button"
-                  onClick={handleFinalSubmit}
-                  className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Confirmer
-                </motion.button>
+              <div>
+                <p className="font-semibold text-orange-400">Téléphone:</p>
+                <p className="text-sm sm:text-base truncate">{formData.phone}</p>
               </div>
-            </Dialog.Panel>
-          </div>
-        </Dialog>
+              <div>
+                <p className="font-semibold text-orange-400">Email:</p>
+                <p className="text-sm sm:text-base truncate">{formData.email}</p>
+              </div>
+              <div>
+                <p className="font-semibold text-orange-400">Type de projet:</p>
+                <p className="text-sm sm:text-base truncate">
+                  {projectTypes.find(type => type.value === formData.projectType)?.label}
+                </p>
+              </div>
+              <div className="col-span-1 sm:col-span-2">
+                <p className="font-semibold text-orange-400">Description:</p>
+                <p className="text-sm sm:text-base break-words">{formData.description}</p>
+              </div>
+              <div>
+                <p className="font-semibold text-orange-400">Date:</p>
+                <p className="text-sm sm:text-base">{date?.toLocaleDateString()}</p>
+              </div>
+              <div>
+                <p className="font-semibold text-orange-400">Heure:</p>
+                <p className="text-sm sm:text-base">{selectedTime}</p>
+              </div>
+            </div>
 
-        <AnimatePresence>
-          {isSubmissionSuccessful && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.5 }}
-              className="fixed inset-0 flex items-center justify-center z-50"
-            >
-              <motion.div
-                className="bg-gradient-to-r from-orange-500 to-red-500 text-white p-10 rounded-2xl shadow-2xl text-center"
-                animate={{
-                  scale: [1, 1.05, 1],
-                  transition: { duration: 1.5, repeat: Infinity }
-                }}
+            <div className="flex flex-col sm:flex-row justify-end gap-3">
+              <motion.button
+                type="button"
+                onClick={() => setIsRecapOpen(false)}
+                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-700 text-white text-sm sm:text-base rounded-lg hover:bg-gray-600 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <CheckCircle className="w-20 h-20 mx-auto mb-6" />
-                <h3 className="text-3xl font-bold mb-4">Demande envoyée avec succès!</h3>
-                <p className="text-xl">Nous vous contacterons bientôt pour confirmer votre rendez-vous !</p>
-              </motion.div>
+                Modifier
+              </motion.button>
+              <motion.button
+                type="button"
+                onClick={handleFinalSubmit}
+                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm sm:text-base rounded-lg transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Confirmer
+              </motion.button>
+            </div>
+          </Dialog.Panel>
+        </div>
+      </Dialog>
+
+      <AnimatePresence>
+        {isSubmissionSuccessful && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 flex items-center justify-center z-50 px-4"
+          >
+            <motion.div
+              className="bg-gradient-to-r from-orange-500 to-red-500 text-white p-6 sm:p-10 rounded-2xl shadow-2xl text-center max-w-sm sm:max-w-md"
+              animate={{
+                scale: [1, 1.05, 1],
+                transition: { duration: 1.5, repeat: Infinity }
+              }}
+            >
+              <CheckCircle className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6" />
+              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Demande envoyée avec succès!</h3>
+              <p className="text-lg sm:text-xl">Nous vous contacterons bientôt pour confirmer votre rendez-vous !</p>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
-  );
+  </motion.div>
+);
 };
 
 export default FormLine;
