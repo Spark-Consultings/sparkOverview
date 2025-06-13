@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ChevronRight, Play } from 'lucide-react';
-import VideoPlayer from "./VideoPlayer";
+import { Sparkles, ChevronRight, Play, ArrowDown } from 'lucide-react';
 
 const TypeWriter = ({ words }) => {
   const [text, setText] = useState("");
@@ -23,7 +21,7 @@ const TypeWriter = ({ words }) => {
             setTimeout(() => {
               setIsPaused(false);
               setIsDeleting(true);
-            }, 1500);
+            }, 2000);
           }
         } else {
           if (text.length === 0) {
@@ -34,282 +32,248 @@ const TypeWriter = ({ words }) => {
           }
         }
       },
-      isDeleting ? 50 : 150
+      isDeleting ? 80 : 120
     );
 
     return () => clearTimeout(timeout);
   }, [text, isDeleting, wordIndex, words, isPaused]);
 
   return (
-    <div className="flex items-center">
-      <span className="font-medium">{text}</span>
-      <span className="inline-block w-0.5 h-4 ml-1 bg-orange-500 animate-pulse" />
+    <div className="flex items-center justify-center">
+      <span className="font-light tracking-wide">{text}</span>
+      <div 
+        className="inline-block w-px h-6 ml-2 bg-gradient-to-b from-orange-400 to-red-500 animate-pulse" 
+      />
     </div>
   );
 };
 
-const FloatingElement = ({ delay = 0, duration = 3, className, children }) => (
-  <motion.div
-    animate={{
-      y: [-10, 10, -10],
-      opacity: [0.5, 1, 0.5],
-      rotateX: [0, 5, 0],
-      rotateY: [0, 5, 0],
-    }}
-    transition={{
-      duration,
-      delay,
-      repeat: Infinity,
-      ease: "easeInOut",
-    }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
-
-const GradientButton = ({ children, primary = false, onClick }) => (
-  <motion.button
-    whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(249, 115, 22, 0.5)" }}
-    whileTap={{ scale: 0.95 }}
-    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-    className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-all ${
+const GradientButton = ({ children, primary = false, onClick, className = "" }) => (
+  <button
+    className={`group relative px-6 py-3 md:px-8 md:py-4 rounded-2xl font-medium flex items-center gap-3 transition-all duration-500 overflow-hidden transform hover:scale-105 hover:-translate-y-1 active:scale-95 ${
       primary
-        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30"
-        : "bg-gray-800/50 backdrop-blur-xl text-white border border-orange-500/20 hover:bg-gray-800/70"
-    }`}
+        ? "bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 text-white shadow-2xl shadow-orange-500/20 hover:shadow-orange-500/30"
+        : "bg-white/5 backdrop-blur-xl text-white border border-white/10 hover:border-white/20 hover:bg-white/10"
+    } ${className}`}
     onClick={onClick}
   >
-    {children}
-  </motion.button>
+    {primary && (
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-orange-400 via-red-400 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+      />
+    )}
+    <span className="relative z-10 flex items-center gap-3">
+      {children}
+    </span>
+  </button>
 );
 
-const ParticleEffect = () => {
-  const particles = Array.from({ length: 50 }).map((_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 3 + 1,
-  }));
+const FloatingElements = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {[...Array(6)].map((_, i) => (
+      <div
+        key={i}
+        className="absolute w-2 h-2 bg-orange-400/30 rounded-full animate-pulse"
+        style={{
+          left: `${20 + i * 15}%`,
+          top: `${30 + i * 10}%`,
+          animationDelay: `${i * 1.5}s`,
+          animationDuration: `${8 + i * 2}s`
+        }}
+      />
+    ))}
+  </div>
+);
+
+const TrustedBrands = () => {
+  const brands = [
+    'Boltshift', 'Lightbox', 'FeatherDev', 'Spherule', 'GlobalBank', 'Logoipsum'
+  ];
 
   return (
-    <div className="absolute inset-0 pointer-events-none">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-orange-500"
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            width: particle.size,
-            height: particle.size,
-          }}
-          animate={{
-            x: [0, Math.random() * 100 - 50],
-            y: [0, Math.random() * 100 - 50],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: Math.random() * 5 + 5,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
+    <div className="relative mt-16 md:mt-20">
+      {/* Elegant Divider */}
+      <div className="flex items-center justify-center mb-8 md:mb-12">
+        <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent via-orange-400/60 to-transparent" />
+        <span className="mx-6 md:mx-8 text-gray-400/80 text-xs font-light tracking-[0.2em] uppercase">
+          Ils nous font confiance
+        </span>
+        <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent via-orange-400/60 to-transparent" />
+      </div>
+
+      {/* Brand Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 lg:gap-12 max-w-5xl mx-auto">
+        {brands.map((brand, index) => (
+          <div
+            key={brand}
+            className="text-gray-500/70 hover:text-gray-300/90 font-light text-sm md:text-base tracking-wide cursor-pointer transition-all duration-300 text-center hover:transform hover:-translate-y-1"
+          >
+            {brand}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
+
+const ScrollIndicator = () => (
+  <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
+    <span className="text-gray-400/60 text-xs font-light tracking-wider">DÉCOUVRIR</span>
+    <div className="w-6 h-10 border border-gray-400/30 rounded-full flex justify-center relative">
+      <div className="w-1 h-3 bg-gradient-to-b from-orange-400 to-red-500 rounded-full mt-2 animate-bounce" />
+    </div>
+  </div>
+);
 
 const ModernHeroSection = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const typingWords = [
-    "Evolution digitale",
-    "Innovation technologique",
-    "Maintenabilité",
-    "Bonnes pratiques",
+    "Évolution digitale",
+    "Innovation technologique", 
+    "Excellence technique",
+    "Solutions sur mesure"
   ];
 
   return (
-    <section className="relative min-h-screen pt-44 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gray-900">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900/50" />
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 2px 2px, rgba(249, 115, 22, 0.15) 1px, transparent 0)",
-            backgroundSize: "32px 32px",
-          }}
+    <div className="relative min-h-screen overflow-hidden">
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes gradient-shift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 200% 50%; }
+        }
+        
+        @keyframes gradient-shift-reverse {
+          0% { background-position: 200% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
+      {/* Refined Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-slate-900 to-gray-950" />
+        
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" 
+             style={{
+               backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+               backgroundSize: '40px 40px'
+             }} 
         />
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 360],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 -left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            rotate: [360, 0],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"
-        />
+        
+        {/* Ambient Light Effects */}
+        <div className="absolute top-1/3 left-1/5 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-orange-500/10 rounded-full blur-[60px] md:blur-[100px] animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/5 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-blue-500/10 rounded-full blur-[50px] md:blur-[80px] animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
-      <ParticleEffect />
+      <FloatingElements />
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto relative">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center lg:text-left w-full"
-          >
-            {/* Main Title */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="mb-6 sm:mb-8"
-            >
-              <div className="flex items-center gap-2 justify-center lg:justify-start mb-4">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="px-3 sm:px-4 py-1 bg-orange-500/10 rounded-full border border-orange-500/20 text-orange-400 text-xs sm:text-sm flex items-center gap-2"
-                >
-                  <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-                  Soyez positivement surpris. Sparkline !
-                </motion.div>
+      <section className="relative pt-20 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto text-center">
+          
+          {/* Refined Badge */}
+          <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-orange-500/10 via-red-500/10 to-orange-500/10 rounded-full border border-orange-500/20 text-orange-300/90 text-xs md:text-sm font-light tracking-wide mb-8 md:mb-12 transform hover:scale-105 transition-transform duration-300">
+            <div className="animate-spin">
+              <Sparkles className="w-3 h-3 md:w-4 md:h-4" />
+            </div>
+            Soyez positivement surpris. Sparkline !
+          </div>
+
+          {/* Refined Main Title */}
+          <div className="mb-8 md:mb-12">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[0.85] md:leading-[0.9] tracking-tight">
+              <span 
+                className="block bg-gradient-to-r from-orange-300 via-red-400 to-[#FF7900] text-transparent bg-clip-text"
+                style={{ 
+                  backgroundSize: "200% 100%",
+                  animation: "gradient-shift 8s linear infinite"
+                }}
+              >
+                SPARK
+              </span>
+              <span className="block text-gray-100 font-bold">THE CHANGE</span>
+              <span 
+                className="block bg-gradient-to-r from-blue-400 via-orange-400 to-[#FF7900] text-transparent bg-clip-text"
+                style={{ 
+                  backgroundSize: "200% 100%",
+                  animation: "gradient-shift-reverse 8s linear infinite"
+                }}
+              >
+                ILLUMINATE
+              </span>
+              <span className="block text-gray-100 font-bold">SUCCESS</span>
+            </h1>
+          </div>
+
+          {/* Typing Animation with refined styling */}
+          <div className="mb-12 md:mb-16">
+            <div className="text-lg sm:text-xl md:text-2xl text-orange-400/90 font-light tracking-wide">
+              <TypeWriter words={typingWords} />
+            </div>
+          </div>
+
+          {/* Refined Description */}
+          <div className="mb-12 md:mb-16">
+            <p className="text-gray-300/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-4xl mx-auto font-light tracking-wide px-4">
+              Nous accompagnons les entreprises dans leur{' '}
+              <span className="text-orange-400/90 font-normal">évolution numérique</span>{' '}
+              grâce à une expertise pointue en développement de plateformes robustes, 
+              en gestion optimisée des ressources, et en conception de{' '}
+              <span className="text-blue-400/90 font-normal">stratégies digitales percutantes</span>.
+            </p>
+          </div>
+
+          {/* Refined CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center mb-16 md:mb-20">
+            <GradientButton primary>
+              <span className="text-sm md:text-base">Découvrir nos services</span>
+              <div className="group-hover:translate-x-1 transition-transform duration-300">
+                <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
               </div>
-              <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
-                <motion.span
-                  className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text block mt-2"
-                  animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                >
-                  SPARK
-                </motion.span>
-                THE CHANGE
-                <motion.span
-                  className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text block mt-2"
-                  animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                >
-                  ILLUMINATE
-                </motion.span>
-                SUCCESS !
-              </h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-gray-400 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0"
-              >
-                Nous accompagnons les entreprises dans leur évolution numérique
-                grâce à une expertise pointue en développement de plateformes
-                robustes, en gestion optimisée des ressources, et en conception
-                de stratégies digitales percutantes.
-              </motion.p>
-            </motion.div>
+            </GradientButton>
+            <GradientButton onClick={() => setIsVideoOpen(true)}>
+              <Play className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="text-sm md:text-base">Notre présentation</span>
+            </GradientButton>
+          </div>
 
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8 sm:mb-12"
-            >
-              <GradientButton primary>
-                Découvrir <ChevronRight className="w-5 h-5" />
-              </GradientButton>
-              <GradientButton onClick={() => setIsVideoOpen(true)}>
-                <Play className="w-5 h-5 text-orange-500" />
-                Regarder notre présentation
-              </GradientButton>
-            </motion.div>
-          </motion.div>
+          {/* Trusted Brands */}
+          <TrustedBrands />
+        </div>
+      </section>
 
-          {/* Right Visual Section */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative w-full"
+      {/* Scroll Indicator */}
+      <ScrollIndicator />
+
+      {/* Enhanced Video Modal */}
+      {isVideoOpen && (
+        <div
+          className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 md:p-6"
+          onClick={() => setIsVideoOpen(false)}
+        >
+          <div
+            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl p-6 md:p-8 max-w-3xl w-full border border-gray-700/50 shadow-2xl transform scale-100 hover:scale-105 transition-transform duration-300"
+            onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full aspect-square max-w-[400px] lg:max-w-[600px] mx-auto">
-              {/* Orbital Ring */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0"
-              >
-                {Array.from({ length: 48 }).map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full bg-orange-500/30"
-                    style={{
-                      transform: `rotate(${i * 7.5}deg) translateX(clamp(140px, 30vw, 280px)) translate(-50%, -50%)`,
-                    }}
-                    animate={{ opacity: [0.3, 1, 0.3] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
-                  />
-                ))}
-              </motion.div>
-
-              {/* Floating Cards */}
-              <FloatingElement
-                delay={0}
-                className="absolute top-[10%] left-[10%] w-36 sm:w-48 h-28 sm:h-32 bg-gray-800/50 backdrop-blur-xl rounded-2xl border border-orange-500/20 p-4 flex flex-col justify-between"
-              >
-                <div className="text-lg sm:text-xl text-orange-500">
-                  <TypeWriter words={typingWords} />
-                </div>
-              </FloatingElement>
-
-              <FloatingElement
-                delay={0.5}
-                className="absolute bottom-[10%] right-[10%] w-36 sm:w-48 h-28 sm:h-32 bg-gray-800/50 backdrop-blur-xl rounded-2xl border border-orange-500/20 p-4 flex flex-col justify-between"
-              >
-                <div className="text-lg sm:text-xl text-orange-500">
-                  <TypeWriter words={typingWords} />
-                </div>
-              </FloatingElement>
-
-              {/* Center Element */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 360],
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center"
-                >
-                  <div className="absolute inset-1 rounded-full bg-gray-900 flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-orange-500" />
-                  </div>
-                </motion.div>
+            <h3 className="text-2xl md:text-3xl font-light text-white mb-6 text-center">Notre Présentation</h3>
+            <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl md:rounded-2xl flex items-center justify-center mb-6 md:mb-8 border border-gray-700/30">
+              <div className="flex flex-col items-center gap-4 cursor-pointer group">
+                <Play className="w-16 h-16 md:w-20 md:h-20 text-orange-400/70 group-hover:text-orange-400 group-hover:scale-110 transition-all duration-300" />
+                <span className="text-gray-400/80 font-light text-sm md:text-base">Cliquez pour lire</span>
               </div>
             </div>
-          </motion.div>
+            <button
+              onClick={() => setIsVideoOpen(false)}
+              className="w-full px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl md:rounded-2xl hover:shadow-xl hover:shadow-orange-500/25 transition-all duration-300 font-medium text-sm md:text-base hover:scale-105 active:scale-95"
+            >
+              Fermer
+            </button>
+          </div>
         </div>
-      </div>
-      
-      <AnimatePresence>
-        {isVideoOpen && <VideoPlayer onClose={() => setIsVideoOpen(false)} />}
-      </AnimatePresence>
-    </section>
+      )}
+    </div>
   );
 };
 
