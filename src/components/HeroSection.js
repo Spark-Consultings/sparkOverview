@@ -238,9 +238,6 @@ const ModernHeroSection = () => {
               <span className="text-sm md:text-base">Notre présentation</span>
             </GradientButton>
           </div>
-
-          {/* Trusted Brands */}
-          <TrustedBrands />
         </div>
       </section>
 
