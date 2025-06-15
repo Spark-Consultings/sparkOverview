@@ -23,6 +23,7 @@ import {
 import CompanyValuesSection from "./CompanyValuesSection";
 import { GlobalStyles, ScrollToTop } from './scroll-components';
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import PartnersSection from "./Parteners";
 
 const orangeIconClass = "w-5 h-5 text-orange-400";
 
@@ -53,6 +54,9 @@ const MainFeed = () => {
         </section>
         <section id="team-section">
           <FuturisticOurTeam />
+        </section>
+        <section id="partners-section">
+          <PartnersSection />
         </section>
         <section id="contact-section">
           <FormLine />

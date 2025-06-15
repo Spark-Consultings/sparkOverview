@@ -440,19 +440,6 @@ const EnhancedTeamSection = () => {
             ))}
           </div>
         </section>
-
-        {/* Stats Section */}
-        <section>
-          <SectionHeader
-            icon={Trophy}
-            title="Nos Réalisations"
-            subtitle="Les chiffres qui témoignent de notre expertise et de notre engagement."
-            count="4"
-            color="blue"
-          />
-          
-          <StatsGrid stats={statsData} />
-        </section>
       </div>
     </section>
   );
