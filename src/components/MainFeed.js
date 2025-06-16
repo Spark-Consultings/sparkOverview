@@ -44,9 +44,9 @@ const MainFeed = () => {
         <section id="features-section">
           <FeaturesSection />
         </section>
-        <section id="performance-section">
+        {/* <section id="performance-section">
           <PerformanceSection />
-        </section>
+        </section> */}
         <section className="pt-12" id="projects-section">
           <ProjectsSection />
         </section>
