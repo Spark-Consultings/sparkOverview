@@ -85,37 +85,6 @@ const FloatingElements = () => (
   </div>
 );
 
-const TrustedBrands = () => {
-  const brands = [
-    'Boltshift', 'Lightbox', 'FeatherDev', 'Spherule', 'GlobalBank', 'Logoipsum'
-  ];
-
-  return (
-    <div className="relative mt-16 md:mt-20">
-      {/* Elegant Divider */}
-      <div className="flex items-center justify-center mb-8 md:mb-12">
-        <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent via-orange-400/60 to-transparent" />
-        <span className="mx-6 md:mx-8 text-gray-400/80 text-xs font-light tracking-[0.2em] uppercase">
-          Ils nous font confiance
-        </span>
-        <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent via-orange-400/60 to-transparent" />
-      </div>
-
-      {/* Brand Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 lg:gap-12 max-w-5xl mx-auto">
-        {brands.map((brand, index) => (
-          <div
-            key={brand}
-            className="text-gray-500/70 hover:text-gray-300/90 font-light text-sm md:text-base tracking-wide cursor-pointer transition-all duration-300 text-center hover:transform hover:-translate-y-1"
-          >
-            {brand}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
 const ScrollIndicator = () => (
   <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
     <span className="text-gray-400/60 text-xs font-light tracking-wider">DÉCOUVRIR</span>
@@ -127,6 +96,11 @@ const ScrollIndicator = () => (
 
 const ModernHeroSection = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(false);
+  
+  // Remplacez cette URL par votre vidéo YouTube - SEULEMENT L'ID !
+  const youtubeVideoId = "UF2o_HHbr_8"; // Extrait de: https://www.youtube.com/watch?v=fwx3lzHkura5MhjA
+  
   const typingWords = [
     "Évolution digitale",
     "Innovation technologique", 
@@ -150,6 +124,7 @@ const ModernHeroSection = () => {
           100% { background-position: 0% 50%; }
         }
       `}</style>
+      
       {/* Refined Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-slate-900 to-gray-950" />
@@ -232,7 +207,10 @@ const ModernHeroSection = () => {
                 <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
               </div>
             </GradientButton>
-            <GradientButton onClick={() => setIsVideoOpen(true)}>
+            <GradientButton onClick={() => {
+              setIsVideoLoading(true);
+              setIsVideoOpen(true);
+            }}>
               <Play className="w-4 h-4 md:w-5 md:h-5" />
               <span className="text-sm md:text-base">Notre présentation</span>
             </GradientButton>
@@ -243,29 +221,60 @@ const ModernHeroSection = () => {
       {/* Scroll Indicator */}
       <ScrollIndicator />
 
-      {/* Enhanced Video Modal */}
+      {/* Enhanced Video Modal with YouTube Integration */}
       {isVideoOpen && (
         <div
-          className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 md:p-6"
-          onClick={() => setIsVideoOpen(false)}
+          className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center p-4 md:p-6"
+          onClick={() => {
+            setIsVideoOpen(false);
+            setIsVideoLoading(false);
+          }}
         >
           <div
-            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl p-6 md:p-8 max-w-3xl w-full border border-gray-700/50 shadow-2xl transform scale-100 hover:scale-105 transition-transform duration-300"
+            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl p-4 md:p-6 max-w-5xl w-full border border-gray-700/50 shadow-2xl transform scale-100 transition-all duration-300"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-2xl md:text-3xl font-light text-white mb-6 text-center">Notre Présentation</h3>
-            <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl md:rounded-2xl flex items-center justify-center mb-6 md:mb-8 border border-gray-700/30">
-              <div className="flex flex-col items-center gap-4 cursor-pointer group">
-                <Play className="w-16 h-16 md:w-20 md:h-20 text-orange-400/70 group-hover:text-orange-400 group-hover:scale-110 transition-all duration-300" />
-                <span className="text-gray-400/80 font-light text-sm md:text-base">Cliquez pour lire</span>
-              </div>
+            <div className="flex justify-between items-center mb-4 md:mb-6">
+              <h3 className="text-xl md:text-2xl font-light text-white">Notre Présentation</h3>
+              <button
+                onClick={() => {
+                  setIsVideoOpen(false);
+                  setIsVideoLoading(false);
+                }}
+                className="p-2 hover:bg-gray-700/50 rounded-full transition-colors duration-200 text-gray-400 hover:text-white"
+              >
+                <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
-            <button
-              onClick={() => setIsVideoOpen(false)}
-              className="w-full px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl md:rounded-2xl hover:shadow-xl hover:shadow-orange-500/25 transition-all duration-300 font-medium text-sm md:text-base hover:scale-105 active:scale-95"
-            >
-              Fermer
-            </button>
+            
+            <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl md:rounded-2xl overflow-hidden border border-gray-700/30 relative">
+              {isVideoLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 z-10">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+                    <span className="text-gray-300 text-sm">Chargement de la vidéo...</span>
+                  </div>
+                </div>
+              )}
+              
+              <iframe
+                src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0`}
+                title="Présentation de l'entreprise"
+                className="w-full h-full"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                onLoad={() => setIsVideoLoading(false)}
+              />
+            </div>
+            
+            <div className="mt-4 md:mt-6 text-center">
+              <p className="text-gray-400 text-xs md:text-sm font-light">
+                Découvrez comment nous transformons vos défis en opportunités
+              </p>
+            </div>
           </div>
         </div>
       )}
