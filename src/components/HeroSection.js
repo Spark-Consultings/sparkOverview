@@ -40,9 +40,9 @@ const TypeWriter = ({ words }) => {
 
   return (
     <div className="flex items-center justify-center">
-      <span className="font-light tracking-wide">{text}</span>
+      <span className="font-light tracking-wide text-center">{text}</span>
       <div 
-        className="inline-block w-px h-6 ml-2 bg-gradient-to-b from-orange-400 to-red-500 animate-pulse" 
+        className="inline-block w-px h-4 sm:h-6 ml-2 bg-gradient-to-b from-orange-400 to-red-500 animate-pulse" 
       />
     </div>
   );
@@ -50,9 +50,9 @@ const TypeWriter = ({ words }) => {
 
 const GradientButton = ({ children, primary = false, onClick, className = "" }) => (
   <button
-    className={`group relative px-6 py-3 md:px-8 md:py-4 rounded-2xl font-medium flex items-center gap-3 transition-all duration-500 overflow-hidden transform hover:scale-105 hover:-translate-y-1 active:scale-95 ${
+    className={`group relative px-4 py-3 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-xl sm:rounded-2xl font-medium flex items-center justify-center gap-2 sm:gap-3 transition-all duration-500 overflow-hidden transform hover:scale-105 hover:-translate-y-1 active:scale-95 w-full sm:w-auto min-w-[160px] sm:min-w-[200px] ${
       primary
-        ? "bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 text-white shadow-2xl shadow-orange-500/20 hover:shadow-orange-500/30"
+        ? "bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 text-white shadow-xl sm:shadow-2xl shadow-orange-500/20 hover:shadow-orange-500/30"
         : "bg-white/5 backdrop-blur-xl text-white border border-white/10 hover:border-white/20 hover:bg-white/10"
     } ${className}`}
     onClick={onClick}
@@ -62,7 +62,7 @@ const GradientButton = ({ children, primary = false, onClick, className = "" }) 
         className="absolute inset-0 bg-gradient-to-r from-orange-400 via-red-400 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
       />
     )}
-    <span className="relative z-10 flex items-center gap-3">
+    <span className="relative z-10 flex items-center gap-2 sm:gap-3 text-sm sm:text-base">
       {children}
     </span>
   </button>
@@ -70,13 +70,13 @@ const GradientButton = ({ children, primary = false, onClick, className = "" }) 
 
 const FloatingElements = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {[...Array(6)].map((_, i) => (
+    {[...Array(4)].map((_, i) => (
       <div
         key={i}
-        className="absolute w-2 h-2 bg-orange-400/30 rounded-full animate-pulse"
+        className="absolute w-1 h-1 sm:w-2 sm:h-2 bg-orange-400/30 rounded-full animate-pulse"
         style={{
-          left: `${20 + i * 15}%`,
-          top: `${30 + i * 10}%`,
+          left: `${20 + i * 20}%`,
+          top: `${30 + i * 15}%`,
           animationDelay: `${i * 1.5}s`,
           animationDuration: `${8 + i * 2}s`
         }}
@@ -86,10 +86,10 @@ const FloatingElements = () => (
 );
 
 const ScrollIndicator = () => (
-  <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
-    <span className="text-gray-400/60 text-xs font-light tracking-wider">DÉCOUVRIR</span>
-    <div className="w-6 h-10 border border-gray-400/30 rounded-full flex justify-center relative">
-      <div className="w-1 h-3 bg-gradient-to-b from-orange-400 to-red-500 rounded-full mt-2 animate-bounce" />
+  <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1 sm:gap-2">
+    <span className="text-gray-400/60 text-[10px] sm:text-xs font-light tracking-wider">DÉCOUVRIR</span>
+    <div className="w-5 h-8 sm:w-6 sm:h-10 border border-gray-400/30 rounded-full flex justify-center relative">
+      <div className="w-0.5 h-2 sm:w-1 sm:h-3 bg-gradient-to-b from-orange-400 to-red-500 rounded-full mt-1.5 sm:mt-2 animate-bounce" />
     </div>
   </div>
 );
@@ -99,7 +99,7 @@ const ModernHeroSection = () => {
   const [isVideoLoading, setIsVideoLoading] = useState(false);
   
   // Remplacez cette URL par votre vidéo YouTube - SEULEMENT L'ID !
-  const youtubeVideoId = "UF2o_HHbr_8"; // Extrait de: https://www.youtube.com/watch?v=fwx3lzHkura5MhjA
+  const youtubeVideoId = "fwx3lzHkura5MhjA"; // Extrait de: https://www.youtube.com/watch?v=fwx3lzHkura5MhjA
   
   const typingWords = [
     "Évolution digitale",
@@ -107,6 +107,18 @@ const ModernHeroSection = () => {
     "Excellence technique",
     "Solutions sur mesure"
   ];
+
+  // Fonction pour fermer la vidéo
+  const closeVideo = () => {
+    setIsVideoOpen(false);
+    setIsVideoLoading(false);
+  };
+
+  // Fonction pour ouvrir la vidéo
+  const openVideo = () => {
+    setIsVideoLoading(true);
+    setIsVideoOpen(true);
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -133,31 +145,32 @@ const ModernHeroSection = () => {
         <div className="absolute inset-0 opacity-[0.02]" 
              style={{
                backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-               backgroundSize: '40px 40px'
+               backgroundSize: '30px 30px'
              }} 
         />
         
-        {/* Ambient Light Effects */}
-        <div className="absolute top-1/3 left-1/5 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-orange-500/10 rounded-full blur-[60px] md:blur-[100px] animate-pulse" />
-        <div className="absolute bottom-1/3 right-1/5 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-blue-500/10 rounded-full blur-[50px] md:blur-[80px] animate-pulse" style={{ animationDelay: '2s' }} />
+        {/* Ambient Light Effects - Reduced for mobile */}
+        <div className="absolute top-1/4 left-1/6 w-[200px] sm:w-[300px] md:w-[500px] h-[200px] sm:h-[300px] md:h-[500px] bg-orange-500/8 sm:bg-orange-500/10 rounded-full blur-[40px] sm:blur-[60px] md:blur-[100px] animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/6 w-[150px] sm:w-[250px] md:w-[400px] h-[150px] sm:h-[250px] md:h-[400px] bg-blue-500/8 sm:bg-blue-500/10 rounded-full blur-[30px] sm:blur-[50px] md:blur-[80px] animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
       <FloatingElements />
 
       {/* Main Content */}
-      <section className="relative pt-20 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12">
+      <section className="relative pt-16 sm:pt-20 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto text-center">
           
           {/* Refined Badge */}
-          <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-orange-500/10 via-red-500/10 to-orange-500/10 rounded-full border border-orange-500/20 text-orange-300/90 text-xs md:text-sm font-light tracking-wide mb-8 md:mb-12 transform hover:scale-105 transition-transform duration-300">
+          <div className="inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 bg-gradient-to-r from-orange-500/10 via-red-500/10 to-orange-500/10 rounded-full border border-orange-500/20 text-orange-300/90 text-[11px] sm:text-xs md:text-sm font-light tracking-wide mb-6 sm:mb-8 md:mb-12 transform hover:scale-105 transition-transform duration-300">
             <div className="animate-spin">
+              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
             </div>
-            Soyez positivement surpris. Sparkline !
+            <span className="whitespace-nowrap">Soyez positivement surpris. Sparkline !</span>
           </div>
 
           {/* Refined Main Title */}
-          <div className="mb-8 md:mb-12">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[0.85] md:leading-[0.9] tracking-tight">
+          <div className="mb-6 sm:mb-8 md:mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[0.9] sm:leading-[0.85] md:leading-[0.9] tracking-tight">
               <span 
                 className="block bg-gradient-to-r from-orange-300 via-red-400 to-[#FF7900] text-transparent bg-clip-text"
                 style={{ 
@@ -182,15 +195,15 @@ const ModernHeroSection = () => {
           </div>
 
           {/* Typing Animation with refined styling */}
-          <div className="mb-12 md:mb-16">
-            <div className="text-lg sm:text-xl md:text-2xl text-orange-400/90 font-light tracking-wide">
+          <div className="mb-8 sm:mb-12 md:mb-16">
+            <div className="text-base sm:text-lg md:text-2xl text-orange-400/90 font-light tracking-wide px-2">
               <TypeWriter words={typingWords} />
             </div>
           </div>
 
           {/* Refined Description */}
-          <div className="mb-12 md:mb-16">
-            <p className="text-gray-300/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-4xl mx-auto font-light tracking-wide px-4">
+          <div className="mb-8 sm:mb-12 md:mb-16">
+            <p className="text-gray-300/80 text-sm sm:text-base md:text-xl leading-relaxed max-w-4xl mx-auto font-light tracking-wide px-2 sm:px-4">
               Nous accompagnons les entreprises dans leur{' '}
               <span className="text-orange-400/90 font-normal">évolution numérique</span>{' '}
               grâce à une expertise pointue en développement de plateformes robustes, 
@@ -200,19 +213,16 @@ const ModernHeroSection = () => {
           </div>
 
           {/* Refined CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center mb-16 md:mb-20">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center mb-12 sm:mb-16 md:mb-20 px-2">
             <GradientButton primary>
-              <span className="text-sm md:text-base">Découvrir nos services</span>
+              <span>Découvrir nos services</span>
               <div className="group-hover:translate-x-1 transition-transform duration-300">
-                <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
+                <ChevronRight className="w-4 h-4" />
               </div>
             </GradientButton>
-            <GradientButton onClick={() => {
-              setIsVideoLoading(true);
-              setIsVideoOpen(true);
-            }}>
-              <Play className="w-4 h-4 md:w-5 md:h-5" />
-              <span className="text-sm md:text-base">Notre présentation</span>
+            <GradientButton onClick={openVideo}>
+              <Play className="w-4 h-4" />
+              <span>Notre présentation</span>
             </GradientButton>
           </div>
         </div>
@@ -221,46 +231,46 @@ const ModernHeroSection = () => {
       {/* Scroll Indicator */}
       <ScrollIndicator />
 
-      {/* Enhanced Video Modal with YouTube Integration */}
+      {/* Enhanced Video Modal with Mobile Optimization */}
       {isVideoOpen && (
         <div
-          className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center p-4 md:p-6"
-          onClick={() => {
-            setIsVideoOpen(false);
-            setIsVideoLoading(false);
-          }}
+          className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 md:p-6"
+          onClick={closeVideo}
         >
           <div
-            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl p-4 md:p-6 max-w-5xl w-full border border-gray-700/50 shadow-2xl transform scale-100 transition-all duration-300"
+            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-6 w-full max-w-6xl border border-gray-700/50 shadow-2xl transform scale-100 transition-all duration-300 mx-2 sm:mx-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex justify-between items-center mb-4 md:mb-6">
-              <h3 className="text-xl md:text-2xl font-light text-white">Notre Présentation</h3>
+            {/* Header */}
+            <div className="flex justify-between items-center mb-3 sm:mb-4 md:mb-6">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-light text-white truncate pr-4">
+                Notre Présentation
+              </h3>
               <button
-                onClick={() => {
-                  setIsVideoOpen(false);
-                  setIsVideoLoading(false);
-                }}
-                className="p-2 hover:bg-gray-700/50 rounded-full transition-colors duration-200 text-gray-400 hover:text-white"
+                onClick={closeVideo}
+                className="p-1.5 sm:p-2 hover:bg-gray-700/50 rounded-full transition-colors duration-200 text-gray-400 hover:text-white flex-shrink-0"
               >
-                <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
             
-            <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl md:rounded-2xl overflow-hidden border border-gray-700/30 relative">
+            {/* Video Container */}
+            <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border border-gray-700/30 relative">
               {isVideoLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 z-10">
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
-                    <span className="text-gray-300 text-sm">Chargement de la vidéo...</span>
+                  <div className="flex flex-col items-center gap-3 sm:gap-4">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+                    <span className="text-gray-300 text-xs sm:text-sm text-center px-4">
+                      Chargement de la vidéo...
+                    </span>
                   </div>
                 </div>
               )}
               
               <iframe
-                src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0`}
+                src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&playsinline=1`}
                 title="Présentation de l'entreprise"
                 className="w-full h-full"
                 frameBorder="0"
@@ -270,8 +280,9 @@ const ModernHeroSection = () => {
               />
             </div>
             
-            <div className="mt-4 md:mt-6 text-center">
-              <p className="text-gray-400 text-xs md:text-sm font-light">
+            {/* Footer */}
+            <div className="mt-3 sm:mt-4 md:mt-6 text-center">
+              <p className="text-gray-400 text-xs sm:text-sm font-light px-2">
                 Découvrez comment nous transformons vos défis en opportunités
               </p>
             </div>
