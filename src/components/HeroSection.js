@@ -99,7 +99,7 @@ const ModernHeroSection = () => {
   const [isVideoLoading, setIsVideoLoading] = useState(false);
   
   // Remplacez cette URL par votre vidéo YouTube - SEULEMENT L'ID !
-  const youtubeVideoId = "fwx3lzHkura5MhjA"; // Extrait de: https://www.youtube.com/watch?v=fwx3lzHkura5MhjA
+  const youtubeVideoId = "UF2o_HHbr_8"; // Extrait de: https://www.youtube.com/watch?v=fwx3lzHkura5MhjA
   
   const typingWords = [
     "Évolution digitale",
