@@ -30,7 +30,7 @@ const ProjectCard = ({ project, index }) => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      className="group relative h-[420px]"
+      className="group relative h-[420px] sm:h-[400px] md:h-[420px]"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
@@ -57,9 +57,9 @@ const ProjectCard = ({ project, index }) => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.3 + index * 0.1 }}
-            className="absolute top-4 left-4"
+            className="absolute top-3 left-3 sm:top-4 sm:left-4"
           >
-            <div className="w-12 h-12 rounded-xl bg-white/90 backdrop-blur-sm p-2 shadow-lg">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/90 backdrop-blur-sm p-1.5 sm:p-2 shadow-lg">
               <img
                 src={project.logo}
                 alt={project.title}
@@ -73,7 +73,7 @@ const ProjectCard = ({ project, index }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-4 right-4 flex gap-2"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-1.5 sm:gap-2"
           >
             {project.githubUrl && (
               <motion.a
@@ -82,9 +82,10 @@ const ProjectCard = ({ project, index }) => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg hover:bg-white transition-colors"
+                className="w-8 h-8 sm:w-10 sm:h-10 bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:bg-white transition-colors"
               >
-                <Github size={18} className="text-gray-700" />
+                <Github size={14} className="sm:hidden text-gray-700" />
+                <Github size={18} className="hidden sm:block text-gray-700" />
               </motion.a>
             )}
             {project.liveUrl && (
@@ -94,9 +95,10 @@ const ProjectCard = ({ project, index }) => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg hover:bg-orange-600 transition-colors"
+                className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:bg-orange-600 transition-colors"
               >
-                <ArrowUpRight size={18} className="text-white" />
+                <ArrowUpRight size={14} className="sm:hidden text-white" />
+                <ArrowUpRight size={18} className="hidden sm:block text-white" />
               </motion.a>
             )}
           </motion.div>
@@ -109,7 +111,7 @@ const ProjectCard = ({ project, index }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + index * 0.1 }}
-              className="text-xl font-bold text-white mb-2 line-clamp-2"
+              className="text-lg sm:text-xl font-bold text-white mb-2 line-clamp-2"
             >
               {project.title}
             </motion.h3>
@@ -118,7 +120,7 @@ const ProjectCard = ({ project, index }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1 }}
-              className="text-gray-300 text-sm line-clamp-3 mb-4"
+              className="text-gray-300 text-xs sm:text-sm line-clamp-2 sm:line-clamp-3 mb-3 sm:mb-4"
             >
               {project.description}
             </motion.p>
@@ -129,19 +131,19 @@ const ProjectCard = ({ project, index }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 + index * 0.1 }}
-            className="flex flex-wrap gap-1.5"
+            className="flex flex-wrap gap-1 sm:gap-1.5"
           >
-            {project.technologies?.slice(0, 3).map((tech, idx) => (
+            {project.technologies?.slice(0, 2).map((tech, idx) => (
               <span
                 key={idx}
-                className="px-2 py-1 bg-gray-700 text-gray-300 text-xs rounded-lg font-medium"
+                className="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-gray-700 text-gray-300 text-xs rounded-md sm:rounded-lg font-medium"
               >
                 {tech}
               </span>
             ))}
-            {project.technologies?.length > 3 && (
-              <span className="px-2 py-1 bg-orange-900/50 text-orange-400 text-xs rounded-lg font-medium">
-                +{project.technologies.length - 3}
+            {project.technologies?.length > 2 && (
+              <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-orange-900/50 text-orange-400 text-xs rounded-md sm:rounded-lg font-medium">
+                +{project.technologies.length - 2}
               </span>
             )}
           </motion.div>
@@ -212,7 +214,7 @@ const ProjectsSection = () => {
   );
 
   return (
-    <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-900 min-h-screen">
+    <section className="py-12 sm:py-16 md:py-20 px-4 md:px-6 lg:px-8 bg-gray-900 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -220,20 +222,20 @@ const ProjectsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6"
           >
             <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
             Portfolio
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
             Nos{" "}
             <span className="text-orange-500 relative">
               Réalisations
@@ -247,7 +249,7 @@ const ProjectsSection = () => {
             </span>
           </h2>
 
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed px-4 sm:px-0">
             Découvrez notre collection de projets qui allient innovation, design moderne et performance technique.
           </p>
         </motion.div>
@@ -258,17 +260,18 @@ const ProjectsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="flex items-center justify-center mb-12"
+          className="flex items-center justify-center mb-8 sm:mb-12 px-4 sm:px-0"
         >
-          <div className="flex items-center gap-2 bg-gray-800 rounded-2xl p-2 shadow-lg border border-gray-700">
-            <Filter size={16} className="text-gray-400 ml-2" />
+          <div className="flex items-center gap-1 sm:gap-2 bg-gray-800 rounded-xl sm:rounded-2xl p-1.5 sm:p-2 shadow-lg border border-gray-700 w-full max-w-sm sm:max-w-none sm:w-auto overflow-x-auto">
+            <Filter size={14} className="sm:hidden text-gray-400 ml-1 flex-shrink-0" />
+            <Filter size={16} className="hidden sm:block text-gray-400 ml-2 flex-shrink-0" />
             {categories.map((category) => (
               <motion.button
                 key={category.id}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                className={`px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                   selectedCategory === category.id
                     ? "bg-orange-500 text-white shadow-lg"
                     : "text-gray-400 hover:text-white hover:bg-gray-700"
@@ -283,7 +286,7 @@ const ProjectsSection = () => {
         {/* Projects Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
         >
           <AnimatePresence mode="wait">
             {filteredProjects.map((project, index) => (
@@ -301,15 +304,16 @@ const ProjectsSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-16"
+            className="text-center py-12 sm:py-16 px-4"
           >
-            <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Filter size={24} className="text-gray-400" />
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <Filter size={20} className="sm:hidden text-gray-400" />
+              <Filter size={24} className="hidden sm:block text-gray-400" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2">
+            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
               Aucun projet trouvé
             </h3>
-            <p className="text-gray-400">
+            <p className="text-gray-400 text-sm sm:text-base">
               Essayez de changer le filtre pour voir plus de projets.
             </p>
           </motion.div>
