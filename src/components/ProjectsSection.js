@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Sparkles, Globe, Smartphone, Palette } from 'lucide-react';
+import { Github, Globe, ArrowUpRight, Filter } from 'lucide-react';
 
 const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -8,48 +8,19 @@ const ProjectCard = ({ project, index }) => {
   const cardVariants = {
     hidden: {
       opacity: 0,
-      y: 50,
-      rotateX: 45
+      y: 30,
+      scale: 0.95
     },
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
+      scale: 1,
       transition: {
         type: "spring",
-        damping: 15,
-        stiffness: 70,
-        delay: index * 0.15
+        damping: 20,
+        stiffness: 100,
+        delay: index * 0.1
       }
-    },
-    hover: {
-      scale: 1.05,
-      rotateY: 5,
-      transition: { duration: 0.3 }
-    }
-  };
-
-  const glowVariants = {
-    hover: {
-      opacity: 0.8,
-      scale: 1.1,
-      transition: { duration: 0.3 }
-    },
-    initial: {
-      opacity: 0.3,
-      scale: 1
-    }
-  };
-
-  const contentVariants = {
-    hover: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.3 }
-    },
-    initial: {
-      y: 30,
-      opacity: 0
     }
   };
 
@@ -58,151 +29,130 @@ const ProjectCard = ({ project, index }) => {
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      whileHover="hover"
-      viewport={{ once: true }}
-      className="group relative perspective-1000"
+      viewport={{ once: true, margin: "-50px" }}
+      className="group relative h-[420px]"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
       <motion.div
-        className="relative h-[400px] rounded-xl overflow-hidden backdrop-blur-lg
-                   transition-all duration-500 transform-gpu preserve-3d
-                   bg-gradient-to-br from-gray-900/90 to-gray-800/90
-                   border border-orange-500/20 shadow-xl"
+        whileHover={{ y: -8 }}
+        transition={{ type: "spring", damping: 20, stiffness: 300 }}
+        className="relative h-full bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500"
       >
-        <motion.div
-          variants={glowVariants}
-          className="absolute inset-0"
-        />
-
-        <motion.div
-          animate={{
-            backgroundPosition: ["0% 0%", "100% 100%"],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-xl"
-        />
-
-        <motion.div
-          animate={isHovered ? { scale: 1.1 } : { scale: 1 }}
-          transition={{ duration: 0.4 }}
-          className="absolute inset-0 z-0"
-        >
-          <img
+        {/* Image Container */}
+        <div className="relative h-48 overflow-hidden">
+          <motion.img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover opacity-70"
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           />
-        </motion.div>
-
-        <motion.div
-          variants={contentVariants}
-          className="relative h-full z-10 p-4 flex flex-col justify-between"
-        >
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
+          
+          {/* Logo */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.3 + index * 0.1 }}
+            className="absolute top-4 left-4"
           >
-            <img
-              src={project.logo}
-              alt={project.title}
-              className="w-16 h-16 rounded-full object-cover opacity-70"
-            />
+            <div className="w-12 h-12 rounded-xl bg-white/90 backdrop-blur-sm p-2 shadow-lg">
+              <img
+                src={project.logo}
+                alt={project.title}
+                className="w-full h-full rounded-lg object-cover"
+              />
+            </div>
           </motion.div>
 
-          <div className="space-y-3">
+          {/* Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-4 right-4 flex gap-2"
+          >
+            {project.githubUrl && (
+              <motion.a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg hover:bg-white transition-colors"
+              >
+                <Github size={18} className="text-gray-700" />
+              </motion.a>
+            )}
+            {project.liveUrl && (
+              <motion.a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg hover:bg-orange-600 transition-colors"
+              >
+                <ArrowUpRight size={18} className="text-white" />
+              </motion.a>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 flex flex-col justify-between h-[172px]">
+          <div>
             <motion.h3
-              className="text-2xl font-bold text-white mb-2 line-clamp-1"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 + index * 0.1 }}
+              className="text-xl font-bold text-white mb-2 line-clamp-2"
             >
               {project.title}
             </motion.h3>
 
-            <motion.div
-              className="h-0.5 bg-orange-500/50 rounded-full"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            />
-
             <motion.p
-              className="text-gray-300 line-clamp-2 text-sm"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + index * 0.1 }}
+              className="text-gray-300 text-sm line-clamp-3 mb-4"
             >
               {project.description}
             </motion.p>
-
-            <motion.div
-              className="flex flex-wrap gap-1.5"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              {project.technologies?.map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="px-2 py-1 rounded-lg bg-orange-500 text-white text-xs font-medium
-                           border border-orange-500/20 backdrop-blur-sm"
-                >
-                  {tech}
-                </span>
-              ))}
-            </motion.div>
-
-            <motion.div
-              className="flex flex-wrap gap-2 pt-2"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              {project.githubUrl && (
-                <motion.a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05, rotateZ: -1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 
-                           text-white text-sm font-medium group relative overflow-hidden"
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 
-                             transition-opacity"
-                  />
-                  <Github className="relative z-10" size={16} />
-                  <span className="relative z-10">Code Source</span>
-                </motion.a>
-              )}
-              {project.liveUrl && (
-                <motion.a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05, rotateZ: 1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-800 text-white text-sm font-medium 
-                           border border-orange-500/20 hover:bg-gray-700 group relative overflow-hidden"
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 opacity-0 
-                             group-hover:opacity-100 transition-opacity"
-                  />
-                  <Globe className="relative z-10" size={16} />
-                  <span className="relative z-10">Voir le Projet</span>
-                </motion.a>
-              )}
-            </motion.div>
           </div>
-        </motion.div>
+
+          {/* Technologies */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 + index * 0.1 }}
+            className="flex flex-wrap gap-1.5"
+          >
+            {project.technologies?.slice(0, 3).map((tech, idx) => (
+              <span
+                key={idx}
+                className="px-2 py-1 bg-gray-700 text-gray-300 text-xs rounded-lg font-medium"
+              >
+                {tech}
+              </span>
+            ))}
+            {project.technologies?.length > 3 && (
+              <span className="px-2 py-1 bg-orange-900/50 text-orange-400 text-xs rounded-lg font-medium">
+                +{project.technologies.length - 3}
+              </span>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Hover Effect Border */}
+        <motion.div
+          className="absolute inset-0 rounded-2xl border-2 border-orange-500/0 pointer-events-none"
+          animate={isHovered ? { borderColor: "rgb(249 115 22 / 0.3)" } : { borderColor: "rgb(249 115 22 / 0)" }}
+          transition={{ duration: 0.3 }}
+        />
       </motion.div>
     </motion.div>
   );
@@ -217,7 +167,7 @@ const ProjectsSection = () => {
       description: "Une plateforme étant votre source d'information sur la spiritualité et l'histoire Layène.",
       image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735754062/techback_ymazyq.jpg",
       liveUrl: "https://www.farlucidineohio.com/",
-      technologies: ["React", "Cloudinary", "Drive", "vercel"],
+      technologies: ["React", "Cloudinary", "Drive", "Vercel"],
       category: "web",
       logo: "https://res.cloudinary.com/drxouwbms/image/upload/v1735753581/farlu_teiota_1_mot1qq.png"
     },
@@ -226,36 +176,35 @@ const ProjectsSection = () => {
       description: "L'école des métiers d'avenir en Management, développement web, IT et programmation informatique",
       image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735754062/techback_ymazyq.jpg",
       liveUrl: "https://senegal.sentechacademy.com/",
-      technologies: ["Wordpress", "PHP"],
+      technologies: ["WordPress", "PHP", "MySQL"],
       category: "web",
       logo: "https://res.cloudinary.com/drxouwbms/image/upload/t_crop/v1735752711/sentech_ujdofs.png"
     },
     {
       title: "Madjiguene TMT",
-      description: "Entreprise sénégalaise evoluant dans le transport routier, la manutention et le transit",
+      description: "Entreprise sénégalaise évoluant dans le transport routier, la manutention et le transit",
       image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735754062/techback_ymazyq.jpg",
       liveUrl: "https://madjiguenelogistic.com/",
-      technologies: ["PHP"],
+      technologies: ["PHP", "JavaScript", "CSS"],
       category: "web",
       logo: "https://res.cloudinary.com/drxouwbms/image/upload/v1735753437/madjiguene_r5orlf.png"
     },
     {
       title: "Bayre Host",
-      description: "Plateforme d'hébergement de sites web",
+      description: "Plateforme d'hébergement de sites web avec solutions personnalisées",
       image: "https://res.cloudinary.com/drxouwbms/image/upload/v1735754062/techback_ymazyq.jpg",
       liveUrl: "https://bayrehost.com/",
-      technologies: ["Wordpress", "PHP", "Js"],
+      technologies: ["WordPress", "PHP", "JavaScript"],
       category: "web",
       logo: "https://res.cloudinary.com/drxouwbms/image/upload/v1735753785/bayrehost_i4hkgh.png"
     },
-   
   ];
 
   const categories = [
-    { id: "all", label: "Tous les Projets", icon: Sparkles },
-    { id: "web", label: "Applications Web", icon: Globe },
-    { id: "mobile", label: "Apps Mobiles", icon: Smartphone },
-    { id: "uiux", label: "UI/UX Design", icon: Palette },
+    { id: "all", label: "Tous" },
+    { id: "web", label: "Web" },
+    { id: "mobile", label: "Mobile" },
+    { id: "design", label: "Design" },
   ];
 
   const filteredProjects = projects.filter(
@@ -263,118 +212,108 @@ const ProjectsSection = () => {
   );
 
   return (
-    <section className="py-16 px-4 md:px-6 lg:px-8 relative overflow-hidden min-h-screen">
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute inset-0 overflow-hidden opacity-50"
-      >
-        <div className="absolute top-1/4 -left-48 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
-      </motion.div>
-
-      <div className="max-w-[1600px] mx-auto relative">
+    <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-900 min-h-screen">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center space-y-6 mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
           <motion.div
-            animate={{
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="flex items-center justify-center gap-3"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-6"
           >
-            <motion.div
-              animate={{
-                rotate: [0, 360],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            >
-              <Sparkles size={24} className="text-orange-500" />
-            </motion.div>
-            <span className="text-orange-500 font-medium text-lg">
-              Notre Portfolio
-            </span>
+            <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+            Portfolio
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Nos{" "}
-            <span className="text-orange-500 relative inline-block">
+            <span className="text-orange-500 relative">
               Réalisations
               <motion.div
                 className="absolute -bottom-2 left-0 w-full h-1 bg-orange-500 rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.8 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
               />
             </span>
           </h2>
 
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl font-light">
-            Découvrez notre collection de projets innovants qui démontrent notre expertise et notre créativité.
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+            Découvrez notre collection de projets qui allient innovation, design moderne et performance technique.
           </p>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="flex flex-wrap justify-center gap-3 pt-6"
-          >
+        {/* Filters */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="flex items-center justify-center mb-12"
+        >
+          <div className="flex items-center gap-2 bg-gray-800 rounded-2xl p-2 shadow-lg border border-gray-700">
+            <Filter size={16} className="text-gray-400 ml-2" />
             {categories.map((category) => (
               <motion.button
                 key={category.id}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all
-                          ${selectedCategory === category.id
-                    ? "bg-orange-500 text-white"
-                    : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50"
-                  }`}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                  selectedCategory === category.id
+                    ? "bg-orange-500 text-white shadow-lg"
+                    : "text-gray-400 hover:text-white hover:bg-gray-700"
+                }`}
               >
-                <category.icon size={18} />
-                <span>{category.label}</span>
+                {category.label}
               </motion.button>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
 
-        <div className="max-w-7xl mx-auto px-4">
+        {/* Projects Grid */}
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
+          <AnimatePresence mode="wait">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard
+                key={`${project.title}-${selectedCategory}`}
+                project={project}
+                index={index}
+              />
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Empty State */}
+        {filteredProjects.length === 0 && (
           <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 justify-items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-16"
           >
-            <AnimatePresence mode="wait">
-              {filteredProjects.map((project, index) => (
-                <ProjectCard
-                  key={project.title}
-                  project={project}
-                  index={index}
-                />
-              ))}
-            </AnimatePresence>
+            <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Filter size={24} className="text-gray-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-white mb-2">
+              Aucun projet trouvé
+            </h3>
+            <p className="text-gray-400">
+              Essayez de changer le filtre pour voir plus de projets.
+            </p>
           </motion.div>
-        </div>
+        )}
       </div>
     </section>
   );
