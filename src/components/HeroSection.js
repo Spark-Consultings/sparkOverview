@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, ChevronRight, Play, ArrowDown } from 'lucide-react';
+import { ChevronRight, Play } from 'lucide-react';
 
 const TypeWriter = ({ words }) => {
   const [text, setText] = useState("");
@@ -162,9 +162,6 @@ const ModernHeroSection = () => {
           
           {/* Refined Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 bg-gradient-to-r from-orange-500/10 via-red-500/10 to-orange-500/10 rounded-full border border-orange-500/20 text-orange-300/90 text-[11px] sm:text-xs md:text-sm font-light tracking-wide mb-6 sm:mb-8 md:mb-12 transform hover:scale-105 transition-transform duration-300">
-            <div className="animate-spin">
-              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
-            </div>
             <span className="whitespace-nowrap">Soyez positivement surpris. Sparkline !</span>
           </div>
 

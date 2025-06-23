@@ -4,29 +4,14 @@ import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
 import CustomCursor from "./CustomCursor";
 import FormLine from "./FormLine";
-import PerformanceSection from "./PerformanceSection";
-import logo from "../assets/logo.png";
+// import PerformanceSection from "./PerformanceSection";
 import FuturisticOurTeam from "./FuturisticOurTeam";
 import ProjectsSection from "./ProjectsSection";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Linkedin,
-  Twitter,
-  Facebook,
-  Instagram,
-  HelpCircle,
-  Shield,
-  FileText,
-} from "lucide-react";
 import CompanyValuesSection from "./CompanyValuesSection";
 import { GlobalStyles, ScrollToTop } from './scroll-components';
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import PartnersSection from "./Parteners";
 import Footer from "./Footer";
-
-const orangeIconClass = "w-5 h-5 text-orange-400";
 
 const MainFeed = () => {
   return (

@@ -35,23 +35,49 @@ const PartnersSection = () => {
   // Vrais logos des partenaires avec métadonnées
   const partnerLogos = [
     {
-      name: "Partner Solutions",
+      name: "Orange Digital Center",
       url: "https://res.cloudinary.com/dxernpnkd/image/upload/v1740074459/phdwopu68sbb9ige7uic.png",
-      alt: "Partner Solutions",
-      category: "Technology"
+      alt: "ODC",
+      category: "Technology & Innovation"
     },
     {
-      name: "UN Women",
+    name: "UNCHK",
       url: "https://www.unchk.sn/wp-content/uploads/2020/02/Logo_UN-Horizontal.png",
-      alt: "UN Women",
-      category: "Development"
+      alt: "UNCHK",
+      category: "Education & Innovation"
     },
     {
       name: "EDP Senegal",
       url: "https://edpsenegal.com/wp-content/uploads/2025/02/cropped-Blue-Purple-Modern-Gradient-Computer-Service-and-Repair-Logo-Photoroom-1-150x150.png",
       alt: "EDP Senegal",
-      category: "Energy"
+      category: "Art Oratoire"
+    },
+    {
+      name: "Impact RSE",
+      url: "https://impactrsesn.org/wp-content/uploads/2025/01/cropped-logoImpactRSE.jpg",
+      alt: "Impact RSE",
+      category: "RSE Sénégal",
+    },
+    {
+      name: "SenTech Academy",
+      url: "https://senegal.sentechacademy.com/wp-content/uploads/2022/08/d-removebg-preview.png",
+      alt: "SenTech Academy",
+      category: "Education"
+    },
+    {
+      name: "Madjiguene Logistic",
+      url: "https://madjiguenelogistic.com/assets/images/lmt.png",
+      alt: "Madjiguene Logistic",
+      category: "Logistique",
+    },
+    {
+      name: "BayreHost",
+      url: "https://bayrehost.com/wp-content/uploads/2021/06/mobile-logo-1.png",
+      alt: "BayreHost",
+      category: "Hébergement & Cloud",
     }
+
+
   ];
 
   // Tripler les logos pour un défilement fluide

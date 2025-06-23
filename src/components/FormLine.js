@@ -4,7 +4,7 @@ import { Listbox } from '@headlessui/react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { Upload, Clock, CheckCircle, ChevronRight, ChevronDown, AlertTriangle, Calendar, Users, Mail, Phone } from 'lucide-react';
+import { Upload, Clock, CheckCircle, ChevronDown } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const FormSteps = ({ currentStep }) => (
@@ -216,7 +216,6 @@ const FormLine = () => {
   const handleFinalSubmit = async () => {
   try {
     setIsSubmitting(true); // Indique que la soumission est en cours
-
     // Étape 1 : Télécharger le fichier sur Cloudinary
     let fileUrl = '';
     if (formData.projectFile && formData.projectFile.size <= MAX_FILE_SIZE) {

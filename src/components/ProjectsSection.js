@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Globe, ArrowUpRight, Filter } from 'lucide-react';
+import { Github, ArrowUpRight, Filter } from 'lucide-react';
 
 const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
