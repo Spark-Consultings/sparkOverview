@@ -55,7 +55,7 @@ const collaboratorsData = [
     role: 'Développeur Full Stack, Spécialiste Gaming, UI/UX Designer',
     image: 'https://res.cloudinary.com/dgro5x4h8/image/upload/v1750029626/IMG-20250615-WA0008_wawobp.jpg',
     skills: ['Growth', 'Analytics', 'Strategy', 'SEO'],
-    experience: '3+ ans',
+    experience: '4+ ans',
     location: 'Dakar, SN',
     description: 'Stratège digitale spécialisée dans la croissance et l\'optimisation des performances.',
     color: 'rose'
