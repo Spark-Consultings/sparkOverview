@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Crown, Star, MapPin, Award, Code, Palette, Database, Rocket, Globe, Trophy } from 'lucide-react';
+import { Crown, MapPin, Trophy } from 'lucide-react';
 
 const foundersData = [
   {
@@ -39,7 +39,7 @@ const foundersData = [
     id: 'seydina',
     name: 'Seydina Mouhammad Diop',
     role: 'Full-Stack Developper, Lead UI/UX Designer',
-    image: 'https://res.cloudinary.com/dgro5x4h8/image/upload/v1750091012/WhatsApp_Image_2025-01-31_at_21.58.17_nttnqr.jpg',
+    image: 'https://res.cloudinary.com/drxouwbms/image/upload/v1734391710/seydina-removebg-preview_btrgp6.png',
     skills: ['React', 'NuxtJs', 'UX Design', 'Frontend'],
     // experience: '4+ ans',
     // location: 'Dakar, SN',
@@ -55,8 +55,6 @@ const collaboratorsData = [
     role: 'Développeur Full Stack, Spécialiste Gaming, UI/UX Designer',
     image: 'https://res.cloudinary.com/dgro5x4h8/image/upload/v1750029626/IMG-20250615-WA0008_wawobp.jpg',
     skills: ['Growth', 'Analytics', 'Strategy', 'SEO'],
-    experience: '4+ ans',
-    location: 'Dakar, SN',
     description: 'Stratège digitale spécialisée dans la croissance et l\'optimisation des performances.',
     color: 'rose'
   },
@@ -71,13 +69,6 @@ const collaboratorsData = [
     description: 'Manager produit qui transforme les idées innovantes en solutions concrètes et efficaces.',
     color: 'amber'
   }
-];
-
-const statsData = [
-  { icon: Award, label: 'Années d\'expérience', value: '25+', color: 'blue' },
-  { icon: Rocket, label: 'Projets réalisés', value: '150+', color: 'purple' },
-  { icon: Globe, label: 'Clients satisfaits', value: '80+', color: 'emerald' },
-  { icon: Code, label: 'Solutions créées', value: '200+', color: 'violet' }
 ];
 
 // Optimized color system
@@ -179,7 +170,6 @@ const MemberCard = ({ member, isFounder = false }) => {
       className="group relative"
       onMouseEnter={() => handleInteraction(true)}
       onMouseLeave={() => handleInteraction(false)}
-      role="article"
       aria-label={`${member.name}, ${member.role}`}
     >
       {/* Founder Badge */}
@@ -309,41 +299,6 @@ const SectionHeader = ({ icon: Icon, title, subtitle, count, color = 'blue' }) =
         {subtitle}
       </p>
     </header>
-  );
-};
-
-// Optimized Stats Component
-const StatsGrid = ({ stats }) => {
-  return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-      {stats.map((stat, index) => {
-        const colors = colorSystem[stat.color];
-        return (
-          <div 
-            key={stat.label} 
-            className="text-center group"
-            style={{ animationDelay: `${index * 150}ms` }}
-          >
-            <div className={`
-              flex items-center justify-center w-16 h-16 mx-auto mb-4
-              bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl
-              transition-all duration-300 group-hover:${colors.border} group-hover:${colors.shadow}
-              group-hover:scale-105
-            `}>
-              <stat.icon className={`w-8 h-8 text-gray-400 group-hover:${colors.accent} transition-colors duration-300`} />
-            </div>
-            
-            <div className={`text-3xl font-bold text-white mb-2 group-hover:${colors.accent} transition-colors duration-300`}>
-              {stat.value}
-            </div>
-            
-            <div className="text-gray-400 text-sm font-medium">
-              {stat.label}
-            </div>
-          </div>
-        );
-      })}
-    </div>
   );
 };
 
