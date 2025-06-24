@@ -64,8 +64,6 @@ const collaboratorsData = [
     role: 'WebDesigner, Webmaster, Content Manager',
     image: 'https://res.cloudinary.com/drxouwbms/image/upload/v1750692727/WhatsApp_Image_2025-06-23_at_15.24.23_1_wfoudz.jpg',
     skills: ['Product', 'Innovation', 'Agile', 'Research'],
-    experience: '4+ ans',
-    location: 'Dakar, SN',
     description: 'Manager produit qui transforme les idées innovantes en solutions concrètes et efficaces.',
     color: 'amber'
   }
