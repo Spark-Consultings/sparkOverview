@@ -23,7 +23,7 @@ const EnhancedFuturisticLoader = () => {
         {/* Logo principal agrandi */}
         <div className="relative">
           <img 
-            src="http://localhost:3000/static/media/logo.26e5a02177f92c4ebf72.png"
+            src="https://www.sparkline.sn/static/media/logo.26e5a02177f92c4ebf72.png"
             alt="Logo"
             className="w-96 h-96 object-contain animate-pulse drop-shadow-2xl"
             style={{ 
