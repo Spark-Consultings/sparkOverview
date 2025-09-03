@@ -27,7 +27,7 @@ const EnhancedFuturisticLoader = () => {
             alt="Logo"
             className="w-96 h-96 object-contain animate-pulse drop-shadow-2xl"
             style={{ 
-              animationDuration: '3s',
+              animationDuration: '4s',
               filter: 'drop-shadow(0 0 30px rgba(251, 146, 60, 0.6))'
             }}
           />
