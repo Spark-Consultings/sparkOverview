@@ -1,7 +1,151 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
-import { ArrowRight, Check, Zap, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { motion, useMotionTemplate, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Check, Zap, Facebook, Instagram, Linkedin, PartyPopper } from 'lucide-react';
 import sparkLogo from '../assets/branding/sparkline-logo.png';
+
+// --- Confetti & Fireworks Component (New Year Special) ---
+const NewYearCelebration = () => {
+  // Confetti pieces
+  const confettiCount = 15;
+  const confetti = Array.from({ length: confettiCount });
+
+  // Fireworks bursts
+  const [fireworks, setFireworks] = useState([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Add a new firework burst periodically
+      const id = Date.now();
+      setFireworks(prev => [...prev, { id, x: Math.random() * 80 + 10, y: Math.random() * 60 + 10 }]);
+      // Remove firework after animation
+      setTimeout(() => {
+        setFireworks(prev => prev.filter(fw => fw.id !== id));
+      }, 2000);
+    }, 800); // New firework every 0.8s
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-50">
+      {/* Falling Confetti */}
+      {confetti.map((_, i) => (
+        <motion.div
+          key={`confetti-${i}`}
+          className="absolute w-1.5 h-3 rounded-[1px]"
+          style={{
+            backgroundColor: i % 2 === 0 ? '#fb923c' : (i % 3 === 0 ? '#fbbf24' : '#e2e8f0'), // Orange, Amber, Slate
+            top: -20,
+            left: `${Math.random() * 100}%`
+          }}
+          animate={{
+            y: ['0vh', '100vh'],
+            rotateX: [0, 360],
+            rotateY: [0, 360],
+            x: [0, (Math.random() - 0.5) * 100] // Drifting
+          }}
+          transition={{
+            duration: 5 + Math.random() * 5,
+            repeat: Infinity,
+            ease: "linear",
+            delay: Math.random() * 5
+          }}
+        />
+      ))}
+
+      {/* Subtle Fireworks */}
+      <AnimatePresence>
+        {fireworks.map(fw => (
+          <FireworkBurst key={fw.id} x={fw.x} y={fw.y} />
+        ))}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const FireworkBurst = ({ x, y }) => {
+  const particleCount = 24;
+  const sparkleCount = 12; // New secondary sparkles
+  const colors = ['#fb923c', '#f59e0b', '#fbbf24', '#ffffff', '#fdba74'];
+
+  return (
+    <div className="absolute z-50 pointer-events-none" style={{ top: `${y}%`, left: `${x}%` }}>
+      {/* 1. Shockwave Ring - Explosive expansion */}
+      <motion.div
+        className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-orange-200/50"
+        initial={{ width: 0, height: 0, opacity: 0.8, borderWidth: 4 }}
+        animate={{ width: 200, height: 200, opacity: 0, borderWidth: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      />
+
+      {/* 2. Main Explosion Particles (With Trails) */}
+      {Array.from({ length: particleCount }).map((_, i) => {
+        const angle = (i * 360) / particleCount + Math.random() * 10;
+        const radius = Math.random() * 80 + 50;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+        return (
+          <motion.div
+            key={`p-${i}`}
+            className="absolute w-1 h-1 rounded-full"
+            style={{
+              backgroundColor: color,
+              boxShadow: `0 0 6px ${color}` // Glow effect
+            }}
+            initial={{ scale: 0, opacity: 1, x: 0, y: 0 }}
+            animate={{
+              x: Math.cos(angle * (Math.PI / 180)) * radius,
+              y: [
+                0,
+                Math.sin(angle * (Math.PI / 180)) * radius,
+                Math.sin(angle * (Math.PI / 180)) * radius + 60 // Gravity fall
+              ],
+              opacity: [1, 1, 0],
+              scale: [1.5, 1, 0]
+            }}
+            transition={{
+              duration: 1.2 + Math.random(),
+              ease: [0.15, 1, 0.3, 1], // Strong "Pop" curve
+            }}
+          />
+        );
+      })}
+
+      {/* 3. Lingering Sparkles (Twinkling Glitters) */}
+      {Array.from({ length: sparkleCount }).map((_, i) => {
+        const angle = Math.random() * 360;
+        const radius = Math.random() * 40 + 20;
+
+        return (
+          <motion.div
+            key={`s-${i}`}
+            className="absolute w-0.5 h-0.5 bg-white rounded-full"
+            initial={{ scale: 0, opacity: 0, x: 0, y: 0 }}
+            animate={{
+              x: Math.cos(angle * (Math.PI / 180)) * radius,
+              y: Math.sin(angle * (Math.PI / 180)) * radius + 20, // Gentle float
+              opacity: [0, 1, 0, 1, 0], // Twinkle
+              scale: [0, 1, 0]
+            }}
+            transition={{
+              duration: 2 + Math.random(),
+              delay: 0.1,
+              ease: "easeOut"
+            }}
+          />
+        );
+      })}
+
+      {/* 4. Intense Center Flash */}
+      <motion.div
+        className="absolute w-8 h-8 bg-white/80 rounded-full -translate-x-1/2 -translate-y-1/2 blur-xl"
+        initial={{ scale: 0, opacity: 1 }}
+        animate={{ scale: 2.5, opacity: 0 }}
+        transition={{ duration: 0.2 }}
+      />
+    </div>
+  );
+};
+
 
 // --- Floating Lines Background Component ---
 const FloatingPaths = ({ position }) => {
@@ -197,6 +341,9 @@ export default function ComingSoon() {
   return (
     <div className="relative h-screen w-full bg-[#FAFAFA] text-[#111] font-['Roboto'] overflow-hidden selection:bg-orange-500/20 flex flex-col justify-between">
 
+      {/* --- New Year Celebration Layer --- */}
+      <NewYearCelebration />
+
       {/* --- Dual Layer Background --- */}
       <div className="absolute inset-0 z-0 overflow-hidden">
 
@@ -250,7 +397,7 @@ export default function ComingSoon() {
       <nav className="relative z-20 w-full px-8 py-8 h-[10vh] flex justify-end" />
 
       {/* --- Main Content --- */}
-      <main className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 h-[80vh] flex flex-col items-center justify-center">
+      <main className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 h-[80vh] flex flex-col items-center justify-center">
 
         <motion.div
           variants={stagger}
@@ -258,6 +405,24 @@ export default function ComingSoon() {
           animate="visible"
           className="flex flex-col items-center text-center w-full max-w-4xl"
         >
+
+          {/* --- New Year Badge --- */}
+          <motion.div
+            variants={fadeInUp}
+            className="mb-8 overflow-hidden rounded-full shadow-lg border border-orange-200"
+            animate={{
+              boxShadow: ["0px 0px 0px rgba(251, 146, 60, 0)", "0px 10px 30px rgba(251, 146, 60, 0.3)", "0px 0px 0px rgba(251, 146, 60, 0)"]
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            <div className="relative bg-white px-5 py-2 flex items-center gap-2">
+              <PartyPopper className="w-4 h-4 text-orange-500 animate-bounce" />
+              <span className="text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-amber-600 tracking-wider">
+                HAPPY NEW YEAR 2026
+              </span>
+            </div>
+          </motion.div>
+
 
           {/* Logo */}
           <motion.div variants={fadeInUp} className="mb-6 sm:mb-10">
@@ -270,8 +435,8 @@ export default function ComingSoon() {
             />
           </motion.div>
 
-          {/* Badge */}
-          <motion.div variants={fadeInUp} className="mb-6 sm:mb-8">
+          {/* Badge (Standard) */}
+          <motion.div variants={fadeInUp} className="mb-6 sm:mb-8 opacity-80">
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-white border border-slate-200/80 rounded-full shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
@@ -310,7 +475,7 @@ export default function ComingSoon() {
       </main>
 
       {/* --- Footer --- */}
-      <footer className="relative z-10 w-full h-[15vh] flex flex-col justify-end pb-8 items-center gap-6">
+      <footer className="relative z-20 w-full h-[15vh] flex flex-col justify-end pb-8 items-center gap-6">
         <div className="flex gap-5">
           {socialLinks.map(({ Icon, href }, i) => (
             <a
