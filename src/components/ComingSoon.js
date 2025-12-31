@@ -250,7 +250,7 @@ export default function ComingSoon() {
       <nav className="relative z-20 w-full px-8 py-8 h-[10vh] flex justify-end" />
 
       {/* --- Main Content --- */}
-      <main className="relative z-10 w-full max-w-7xl mx-auto px-6 h-[80vh] flex flex-col items-center justify-center">
+      <main className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 h-[80vh] flex flex-col items-center justify-center">
 
         <motion.div
           variants={stagger}
@@ -260,43 +260,44 @@ export default function ComingSoon() {
         >
 
           {/* Logo */}
-          <motion.div variants={fadeInUp} className="mb-10">
+          <motion.div variants={fadeInUp} className="mb-6 sm:mb-10">
             <motion.img
               src={sparkLogo}
               alt="Sparkline"
-              className="h-20 sm:h-24 object-contain"
+              className="h-16 sm:h-20 md:h-24 object-contain"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             />
           </motion.div>
 
           {/* Badge */}
-          <motion.div variants={fadeInUp} className="mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-slate-200/80 rounded-full shadow-sm">
+          <motion.div variants={fadeInUp} className="mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-white border border-slate-200/80 rounded-full shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
               </span>
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600">Coming Soon</span>
+              <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600">Coming Soon</span>
             </div>
           </motion.div>
 
-          {/* Headline - WITH FIX FOR CUT-OFF TEXT */}
-          <motion.h1 variants={fadeInUp} className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight text-slate-900 mb-6 py-2">
+          {/* Headline - Responsive typography */}
+          <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-tight text-slate-900 mb-6 py-2">
             <span className="block text-slate-900">We are</span>
+            {/* Added pb-3 to prevent gradient text clipping descending letters */}
             <span className="block text-transparent bg-clip-text bg-gradient-to-br from-orange-500 via-orange-600 to-amber-700 pb-3">
               Cooking Something!
             </span>
           </motion.h1>
 
           {/* Subtext */}
-          <motion.p variants={fadeInUp} className="text-lg md:text-xl text-slate-500 max-w-lg mx-auto leading-relaxed mb-12 font-light">
+          <motion.p variants={fadeInUp} className="text-base sm:text-lg md:text-xl text-slate-500 max-w-lg mx-auto leading-relaxed mb-8 sm:mb-12 font-light px-4">
             Refonte complète en cours. <br />
             <span className="font-normal text-slate-600">L'excellence digitale, réinventée.</span>
           </motion.p>
 
           {/* Input */}
-          <motion.div variants={fadeInUp} className="w-full">
+          <motion.div variants={fadeInUp} className="w-full px-4 sm:px-0">
             <MinimalGlassInput
               email={email}
               setEmail={setEmail}
