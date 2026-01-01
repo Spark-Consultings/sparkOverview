@@ -239,15 +239,15 @@ const MinimalGlassInput = ({ email, setEmail, status, handleSubmit }) => {
   return (
     <div
       onMouseMove={handleMouseMove}
-      className="group relative flex items-center p-1.5 rounded-2xl bg-white/60 backdrop-blur-xl border border-slate-200/60 shadow-lg hover:shadow-xl transition-all duration-500 max-w-sm mx-auto overflow-hidden"
+      className="group relative flex items-center p-2 rounded-[24px] bg-white/60 backdrop-blur-2xl border border-white/50 shadow-lg hover:shadow-2xl transition-all duration-500 max-w-sm mx-auto overflow-hidden ring-1 ring-white/40"
     >
       <motion.div
         className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-500"
         style={{
           background: useMotionTemplate`
                         radial-gradient(
-                        400px circle at ${mouseX}px ${mouseY}px,
-                        rgba(249, 115, 22, 0.1),
+                        450px circle at ${mouseX}px ${mouseY}px,
+                        rgba(249, 115, 22, 0.15),
                         transparent 80%
                         )
                     `,
@@ -257,7 +257,7 @@ const MinimalGlassInput = ({ email, setEmail, status, handleSubmit }) => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full h-[48px] flex items-center justify-center gap-2 text-green-700 font-medium bg-green-50/50 rounded-xl"
+          className="w-full h-[52px] flex items-center justify-center gap-2 text-green-700 font-medium bg-green-50/50 rounded-[20px]"
         >
           <Check className="w-5 h-5" />
           <span className="text-sm">You are on the list!</span>
@@ -269,17 +269,17 @@ const MinimalGlassInput = ({ email, setEmail, status, handleSubmit }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="email@company.com"
-            className="flex-1 bg-transparent border-none outline-none px-4 text-slate-800 placeholder:text-slate-400 h-[48px] text-[15px] font-medium z-10"
+            className="flex-1 bg-transparent border-none outline-none px-4 text-slate-800 placeholder:text-slate-400/80 h-[52px] text-[15px] font-medium z-10"
           />
           <button
             onClick={handleSubmit}
             disabled={status === 'loading'}
-            className="relative z-10 w-12 h-12 flex items-center justify-center bg-[#111] hover:bg-black text-white rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed shadow-md"
+            className="relative z-10 w-12 h-12 flex items-center justify-center bg-[#0F172A] hover:bg-black text-white rounded-[18px] transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
           >
             {status === 'loading' ? (
               <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
-              <ArrowRight className="w-5 h-5" strokeWidth={2} />
+              <ArrowRight className="w-5 h-5" strokeWidth={2.5} />
             )}
           </button>
         </>
@@ -339,7 +339,7 @@ export default function ComingSoon() {
   ];
 
   return (
-    <div className="relative h-screen w-full bg-[#FAFAFA] text-[#111] font-['Roboto'] overflow-hidden selection:bg-orange-500/20 flex flex-col justify-between">
+    <div className="relative min-h-[100dvh] w-full bg-[#FAFAFA] text-[#111] font-['Roboto'] overflow-hidden selection:bg-orange-500/20 flex flex-col justify-between">
 
       {/* --- New Year Celebration Layer --- */}
       <NewYearCelebration />
@@ -394,10 +394,10 @@ export default function ComingSoon() {
       </div>
 
       {/* --- Navbar --- */}
-      <nav className="relative z-20 w-full px-8 py-8 h-[10vh] flex justify-end" />
+      <nav className="relative z-20 w-full px-6 py-4 flex-none flex justify-end" />
 
       {/* --- Main Content --- */}
-      <main className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 h-[80vh] flex flex-col items-center justify-center">
+      <main className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 flex-1 flex flex-col items-center justify-center min-h-0">
 
         <motion.div
           variants={stagger}
@@ -409,15 +409,15 @@ export default function ComingSoon() {
           {/* --- New Year Badge --- */}
           <motion.div
             variants={fadeInUp}
-            className="mb-8 overflow-hidden rounded-full shadow-lg border border-orange-200"
+            className="mb-4 overflow-hidden rounded-full shadow-lg border border-orange-200 scale-90 sm:scale-100"
             animate={{
               boxShadow: ["0px 0px 0px rgba(251, 146, 60, 0)", "0px 10px 30px rgba(251, 146, 60, 0.3)", "0px 0px 0px rgba(251, 146, 60, 0)"]
             }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            <div className="relative bg-white px-5 py-2 flex items-center gap-2">
-              <PartyPopper className="w-4 h-4 text-orange-500 animate-bounce" />
-              <span className="text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-amber-600 tracking-wider">
+            <div className="relative bg-white px-4 py-1.5 flex items-center gap-2">
+              <PartyPopper className="w-3.5 h-3.5 text-orange-500 animate-bounce" />
+              <span className="text-xs sm:text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-amber-600 tracking-wider">
                 HAPPY NEW YEAR 2026
               </span>
             </div>
@@ -425,18 +425,18 @@ export default function ComingSoon() {
 
 
           {/* Logo */}
-          <motion.div variants={fadeInUp} className="mb-6 sm:mb-10">
+          <motion.div variants={fadeInUp} className="mb-4 sm:mb-6">
             <motion.img
               src={sparkLogo}
               alt="Sparkline"
-              className="h-16 sm:h-20 md:h-24 object-contain"
+              className="h-12 sm:h-16 md:h-20 object-contain"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             />
           </motion.div>
 
           {/* Badge (Standard) */}
-          <motion.div variants={fadeInUp} className="mb-6 sm:mb-8 opacity-80">
+          <motion.div variants={fadeInUp} className="mb-4 sm:mb-6 opacity-80">
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-white border border-slate-200/80 rounded-full shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
@@ -447,22 +447,22 @@ export default function ComingSoon() {
           </motion.div>
 
           {/* Headline - Responsive typography */}
-          <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-tight text-slate-900 mb-6 py-2">
+          <motion.h1 variants={fadeInUp} className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight text-slate-900 mb-4 py-1">
             <span className="block text-slate-900">We are</span>
             {/* Added pb-3 to prevent gradient text clipping descending letters */}
-            <span className="block text-transparent bg-clip-text bg-gradient-to-br from-orange-500 via-orange-600 to-amber-700 pb-3">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-br from-orange-500 via-orange-600 to-amber-700 pb-2">
               Cooking Something!
             </span>
           </motion.h1>
 
           {/* Subtext */}
-          <motion.p variants={fadeInUp} className="text-base sm:text-lg md:text-xl text-slate-500 max-w-lg mx-auto leading-relaxed mb-8 sm:mb-12 font-light px-4">
+          <motion.p variants={fadeInUp} className="text-sm sm:text-base md:text-lg text-slate-500 max-w-lg mx-auto leading-relaxed mb-6 sm:mb-8 font-light px-4">
             Refonte complète en cours. <br />
             <span className="font-normal text-slate-600">L'excellence digitale, réinventée.</span>
           </motion.p>
 
           {/* Input */}
-          <motion.div variants={fadeInUp} className="w-full px-4 sm:px-0">
+          <motion.div variants={fadeInUp} className="w-full px-4 sm:px-0 mb-2">
             <MinimalGlassInput
               email={email}
               setEmail={setEmail}
@@ -475,21 +475,21 @@ export default function ComingSoon() {
       </main>
 
       {/* --- Footer --- */}
-      <footer className="relative z-20 w-full h-[15vh] flex flex-col justify-end pb-8 items-center gap-6">
-        <div className="flex gap-5">
+      <footer className="relative z-20 w-full flex-none flex flex-col justify-end pb-6 pt-2 items-center gap-4">
+        <div className="flex gap-4">
           {socialLinks.map(({ Icon, href }, i) => (
             <a
               key={i}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center justify-center p-3 rounded-full bg-white border border-slate-200 shadow-sm hover:shadow-md hover:bg-slate-50 transition-all duration-300 hover:-translate-y-1"
+              className="group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/60 backdrop-blur-md border border-white/50 shadow-sm hover:shadow-lg hover:bg-white/90 transition-all duration-300 hover:-translate-y-1"
             >
-              <Icon size={18} strokeWidth={1.5} className="text-slate-500 group-hover:text-orange-600 transition-colors" />
+              <Icon size={18} strokeWidth={1.5} className="text-slate-600 group-hover:text-orange-600 transition-colors" />
             </a>
           ))}
         </div>
-        <p className="text-[10px] text-slate-400 font-medium uppercase tracking-[0.2em] opacity-40">
+        <p className="text-[9px] text-slate-400 font-medium uppercase tracking-[0.2em] opacity-40">
           © 2025 Sparkline. Tous droits réservés.
         </p>
       </footer>
